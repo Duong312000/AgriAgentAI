@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng ký tài khoản</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="web-container">
+    <div class="app-content">
+
+      <div style="padding: 24px; background-color: #f9f8ee; min-height: 100vh; display: flex; flex-direction: column;">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <div style="display: flex; justify-content: center; margin-bottom: 8px;">
+            <img src="../image/logo.png" style="height: 48px; width: auto;">
+          </div>
+          <h2 style="font-size: 28px; font-weight: 800; color: #658927;">Đăng ký</h2>
+          <p style="font-size: 14px; color: #64748b; margin-top: 4px;">Đăng ký tài khoản để bắt đầu hành trình của bạn</p>
+        </div>
+
+        <div style="border: 2px solid #bcd886; background-color: #f4f8ec; border-radius: 20px; padding: 18px; margin-bottom: 20px;">
+          <label class="form-label" style="text-align: center; font-size: 16px; color: #587820; margin-bottom: 12px;">Vai trò</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+            <div style="background: #ffffff; border: 2px solid #769f2e; border-radius: 16px; padding: 16px 8px; text-align: center; cursor: pointer;">
+              <img src="../image/4d6db1ad7275923ce24c19acbf3b0ad1.jpg" style="height: 48px; width: auto; margin-bottom: 8px;">
+              <div style="font-size: 14px; font-weight: 700; color: #2d4612;">Người nông dân</div>
+            </div>
+            <div style="background: #ffffff; border: 1.5px solid #d0d7de; border-radius: 16px; padding: 16px 8px; text-align: center; cursor: pointer; opacity: 0.8;">
+              <img src="../image/buyer_icon.png" style="height: 48px; width: auto; margin-bottom: 8px; object-fit: contain;">
+              <div style="font-size: 14px; font-weight: 700; color: #64748b;">Người mua hàng</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Tên (*):</label>
+            <input type="text" class="form-input" placeholder="Nhập họ và tên">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tên đăng nhập(*):</label>
+            <input type="text" class="form-input" placeholder="Nhập tên đăng nhập">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mật khẩu(*):</label>
+            <input type="password" class="form-input" placeholder="Nhập mật khẩu">
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Nhập lại mật khẩu(*):</label>
+            <input type="password" class="form-input" placeholder="Nhập lại mật khẩu">
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 20px; padding: 0 4px;">
+          <input type="checkbox" id="terms" style="margin-top: 4px; width: 18px; height: 18px; accent-color: #769f2e;">
+          <label for="terms" style="font-size: 13px; color: #475569; line-height: 1.4;">
+            Tôi đồng ý với chính sách và điều khoản của Hệ thống của Nông Thương
+          </label>
+        </div>
+
+        <a href="03-dang-nhap.html" class="btn-primary" style="margin-bottom: 16px; background-color: #8db837;">Đăng ký</a>
+
+        <div style="text-align: center; margin-bottom: 16px;">
+          <span style="font-size: 14px; color: #64748b;">Đã có tài khoản? <a href="03-dang-nhap.html" style="color: #658927; font-weight: 700; text-decoration: none;">Đăng nhập</a></span>
+        </div>
+
+        <div style="text-align: center; margin-top: auto;">
+          <div style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">hoặc tiếp tục bằng mạng xã hội</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <button class="btn-secondary" style="font-size: 14px;"><i class="fa-brands fa-facebook" style="color: #1877f2; font-size: 18px;"></i> Facebook</button>
+            <button class="btn-secondary" style="font-size: 14px;"><i class="fa-brands fa-google" style="color: #ea4335; font-size: 18px;"></i> Google</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
