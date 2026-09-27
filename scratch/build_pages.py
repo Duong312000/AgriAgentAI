@@ -24,20 +24,20 @@ def wrap_html(title, content, current_page=""):
 </html>
 """
 
-# Helper function for bottom navigation bar
+# Helper function for bottom navigation bar - Taller Capsule & Enhanced Drop Shadow
 def get_bottom_nav(active_tab):
     tabs = [
-        ("Trang chủ", "08-trang-chu-nong-dan.html", "fa-house", active_tab == "home"),
-        ("Trò chuyện", "14-danh-sach-tro-chuyen.html", "fa-comment-dots", active_tab == "chat"),
-        ("Thông Báo", "10-thong-bao.html", "fa-bell", active_tab == "notifications"),
-        ("Cá nhân", "13-ca-nhan.html", "fa-user", active_tab == "profile")
+        ("Trang chủ", "08-trang-chu-nong-dan.html", "fa-solid fa-house", active_tab == "home"),
+        ("Trò chuyện", "14-danh-sach-tro-chuyen.html", "fa-regular fa-comment-dots", active_tab == "chat"),
+        ("Thông Báo", "10-thong-bao.html", "fa-regular fa-bell", active_tab == "notifications"),
+        ("Cá nhân", "13-ca-nhan.html", "fa-regular fa-user", active_tab == "profile")
     ]
     
     html = '<div class="bottom-nav">\n'
     for name, link, icon, is_active in tabs:
         active_cls = "active" if is_active else ""
         html += f'  <a href="{link}" class="nav-item {active_cls}">\n'
-        html += f'    <i class="fa-solid {icon}" style="font-size: 20px;"></i>\n'
+        html += f'    <i class="{icon}"></i>\n'
         html += f'    <span>{name}</span>\n'
         html += '  </a>\n'
     html += '</div>\n'
@@ -47,21 +47,21 @@ def get_bottom_nav(active_tab):
 # 01. Splash Screen
 # ----------------------------------------------------------------------
 page_01 = """
-      <div style="background: linear-gradient(180deg, #e0f2fe 0%, #fef08a 40%, #d9f99d 70%, #84cc16 100%); min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 50px 24px 40px 24px; text-align: center;">
-        <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center;">
-          <img src="../image/logo.png" alt="Nông Thương Logo" style="width: 160px; height: auto; margin-bottom: 24px; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.1));">
-          <h1 style="font-size: 34px; font-weight: 800; color: #15803d; letter-spacing: 0.5px; margin-bottom: 6px;">
+      <div style="background: url('../image/splash_banner.jpg') no-repeat center top / cover; min-height: 100vh; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; padding: 0 24px 40px 24px; box-sizing: border-box;">
+        <div style="margin-top: 18vh; display: flex; flex-direction: column; align-items: center; width: 100%;">
+          <img src="../image/logo.png" alt="Nông Thương Logo" style="width: 350px; max-width: 88%; height: auto; margin-bottom: -10px; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.1));">
+          <h1 style="font-size: 36px; font-weight: 800; color: #1c522a; letter-spacing: 0.5px; margin-top: -26px; margin-bottom: 4px; text-shadow: 0 3px 6px rgba(0,0,0,0.25), 0 1px 2px rgba(255,255,255,0.8);">
             NÔNG THƯƠNG
           </h1>
-          <p style="font-size: 20px; font-style: italic; color: #2d4612; font-family: 'Georgia', serif;">Nông sản Việt, giá trị Việt</p>
+          <p style="font-family: 'Dancing Script', 'Georgia', cursive, serif; font-size: 22px; font-weight: 700; color: #234d20; margin-top: 2px; text-shadow: 0 1px 2px rgba(255,255,255,0.6);">Nông sản Việt, giá trị Việt</p>
         </div>
 
-        <div style="width: 100%; max-width: 360px; margin-bottom: 20px;">
-          <a href="03-dang-nhap.html" class="btn-primary" style="background-color: #769f2e; color: #ffffff; font-size: 18px; padding: 16px; border-radius: 30px; font-weight: 800; box-shadow: 0 6px 16px rgba(0,0,0,0.12);">
+        <div style="margin-top: 11vh; width: 100%; max-width: 340px;">
+          <a href="03-dang-nhap.html" class="btn-primary" style="background-color: #88ad37; color: #ffffff; font-size: 18px; padding: 16px 20px; border-radius: 30px; font-weight: 800; box-shadow: 0 8px 22px rgba(0,0,0,0.22), 0 4px 12px rgba(100,135,40,0.3); filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18)); display: flex; align-items: center; justify-content: center; text-decoration: none; width: 100%;">
             Đăng nhập
           </a>
-          <p style="margin-top: 18px; font-size: 15px; color: #2d4612; font-weight: 600;">
-            Bạn chưa có tài khoản, <a href="02-dang-ky.html" style="color: #15803d; text-decoration: underline; font-weight: 800;">Đăng ký ngay</a>
+          <p style="margin-top: 18px; font-size: 15px; color: #2d4612; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 1px 2px rgba(255,255,255,0.8); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));">
+            Bạn chưa có tài khoản, <a href="02-dang-ky.html" style="color: #1c522a; font-weight: 800; text-decoration: underline;">Đăng ký ngay</a>
           </p>
         </div>
       </div>
@@ -73,65 +73,74 @@ with open(os.path.join(output_dir, "01-man-hinh-chao.html"), "w", encoding="utf-
 # 02. Register Screen
 # ----------------------------------------------------------------------
 page_02 = """
-      <div style="padding: 24px; background-color: #f9f8ee; min-height: 100vh; display: flex; flex-direction: column;">
-        <div style="text-align: center; margin-bottom: 20px;">
-          <div style="display: flex; justify-content: center; margin-bottom: 8px;">
-            <img src="../image/logo.png" style="height: 48px; width: auto;">
-          </div>
-          <h2 style="font-size: 28px; font-weight: 800; color: #658927;">Đăng ký</h2>
-          <p style="font-size: 14px; color: #64748b; margin-top: 4px;">Đăng ký tài khoản để bắt đầu hành trình của bạn</p>
+      <div style="padding: 20px 20px 30px 20px; background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-sizing: border-box; overflow: hidden;">
+        <!-- Góc trên bên trái: Logo Nông Thương -->
+        <img src="../image/logo.png" alt="Nông Thương Logo" style="position: absolute; top: 16px; left: 16px; height: 42px; width: auto; z-index: 2;">
+
+        <!-- Góc trên bên phải: Hình bìa hoa văn bia.jpg -->
+        <img src="../image/bia.jpg" alt="Hoa văn bìa" style="position: absolute; top: 0; right: 0; width: 160px; height: auto; z-index: 1; pointer-events: none;">
+
+        <!-- Tiêu đề Đăng ký -->
+        <div style="text-align: center; margin-top: 45px; margin-bottom: 18px; z-index: 2;">
+          <h2 style="font-size: 30px; font-weight: 800; color: #769f2e; margin-bottom: 4px;">Đăng ký</h2>
+          <p style="font-size: 14px; color: #555555; margin: 0;">Đăng ký tài khoản để bắt đầu hành trình của bạn</p>
         </div>
 
-        <div style="border: 2px solid #bcd886; background-color: #f4f8ec; border-radius: 20px; padding: 18px; margin-bottom: 20px;">
-          <label class="form-label" style="text-align: center; font-size: 16px; color: #587820; margin-bottom: 12px;">Vai trò</label>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
-            <div style="background: #ffffff; border: 2px solid #769f2e; border-radius: 16px; padding: 16px 8px; text-align: center; cursor: pointer;">
-              <img src="../image/4d6db1ad7275923ce24c19acbf3b0ad1.jpg" style="height: 48px; width: auto; margin-bottom: 8px;">
+        <!-- Thẻ Form chọn vai trò và nhập thông tin -->
+        <div style="border: 1.5px solid #b8d67c; background-color: #f9faee; border-radius: 20px; padding: 18px 16px; margin-bottom: 16px; z-index: 2;">
+          <div style="text-align: center; font-size: 16px; font-weight: 700; color: #587820; margin-bottom: 14px;">Vai trò</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px;">
+            <div style="background: #ffffff; border: 1.5px solid #769f2e; border-radius: 16px; padding: 14px 8px; text-align: center; cursor: pointer;">
+              <img src="../image/4d6db1ad7275923ce24c19acbf3b0ad1.jpg" alt="Người nông dân" style="height: 44px; width: auto; margin-bottom: 6px; object-fit: contain;">
               <div style="font-size: 14px; font-weight: 700; color: #2d4612;">Người nông dân</div>
             </div>
-            <div style="background: #ffffff; border: 1.5px solid #d0d7de; border-radius: 16px; padding: 16px 8px; text-align: center; cursor: pointer; opacity: 0.8;">
-              <img src="../image/buyer_icon.png" style="height: 48px; width: auto; margin-bottom: 8px; object-fit: contain;">
-              <div style="font-size: 14px; font-weight: 700; color: #64748b;">Người mua hàng</div>
+            <div style="background: #ffffff; border: 1.5px solid #b0c290; border-radius: 16px; padding: 14px 8px; text-align: center; cursor: pointer; opacity: 0.85;">
+              <img src="../image/buyer_icon.png" alt="Người mua hàng" style="height: 44px; width: auto; margin-bottom: 6px; object-fit: contain;">
+              <div style="font-size: 14px; font-weight: 700; color: #2d4612;">Người mua hàng</div>
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="form-label">Tên (*):</label>
-            <input type="text" class="form-input" placeholder="Nhập họ và tên">
+          <div style="margin-bottom: 12px;">
+            <label style="display: block; font-size: 14px; font-weight: 700; color: #587820; margin-bottom: 6px;">Tên (*):</label>
+            <input type="text" style="width: 100%; height: 42px; background: #ffffff; border: 1px solid #d4e3b5; border-radius: 22px; padding: 0 16px; font-size: 14px; outline: none; box-sizing: border-box;" placeholder="Nhập họ và tên">
           </div>
-          <div class="form-group">
-            <label class="form-label">Tên đăng nhập(*):</label>
-            <input type="text" class="form-input" placeholder="Nhập tên đăng nhập">
+          <div style="margin-bottom: 12px;">
+            <label style="display: block; font-size: 14px; font-weight: 700; color: #587820; margin-bottom: 6px;">Tên đăng nhập(*):</label>
+            <input type="text" style="width: 100%; height: 42px; background: #ffffff; border: 1px solid #d4e3b5; border-radius: 22px; padding: 0 16px; font-size: 14px; outline: none; box-sizing: border-box;" placeholder="Nhập tên đăng nhập">
           </div>
-          <div class="form-group">
-            <label class="form-label">Mật khẩu(*):</label>
-            <input type="password" class="form-input" placeholder="Nhập mật khẩu">
+          <div style="margin-bottom: 12px;">
+            <label style="display: block; font-size: 14px; font-weight: 700; color: #587820; margin-bottom: 6px;">Mật khẩu(*):</label>
+            <input type="password" style="width: 100%; height: 42px; background: #ffffff; border: 1px solid #d4e3b5; border-radius: 22px; padding: 0 16px; font-size: 14px; outline: none; box-sizing: border-box;" placeholder="Nhập mật khẩu">
           </div>
-          <div class="form-group" style="margin-bottom: 0;">
-            <label class="form-label">Nhập lại mật khẩu(*):</label>
-            <input type="password" class="form-input" placeholder="Nhập lại mật khẩu">
+          <div style="margin-bottom: 0;">
+            <label style="display: block; font-size: 14px; font-weight: 700; color: #587820; margin-bottom: 6px;">Nhập lại mật khẩu(*):</label>
+            <input type="password" style="width: 100%; height: 42px; background: #ffffff; border: 1px solid #d4e3b5; border-radius: 22px; padding: 0 16px; font-size: 14px; outline: none; box-sizing: border-box;" placeholder="Nhập lại mật khẩu">
           </div>
         </div>
 
-        <div style="display: flex; gap: 10px; align-items: flex-start; margin-bottom: 20px; padding: 0 4px;">
-          <input type="checkbox" id="terms" style="margin-top: 4px; width: 18px; height: 18px; accent-color: #769f2e;">
-          <label for="terms" style="font-size: 13px; color: #475569; line-height: 1.4;">
+        <!-- Điều khoản -->
+        <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 18px; padding: 0 4px; z-index: 2;">
+          <input type="checkbox" id="terms" style="width: 18px; height: 18px; accent-color: #769f2e; cursor: pointer;">
+          <label for="terms" style="font-size: 13px; color: #555555; line-height: 1.35;">
             Tôi đồng ý với chính sách và điều khoản của Hệ thống của Nông Thương
           </label>
         </div>
 
-        <a href="03-dang-nhap.html" class="btn-primary" style="margin-bottom: 16px; background-color: #8db837;">Đăng ký</a>
+        <!-- Nút Đăng ký -->
+        <a href="03-dang-nhap.html" style="display: flex; align-items: center; justify-content: center; background-color: #88ad37; color: #ffffff; font-size: 18px; font-weight: 800; height: 48px; border-radius: 25px; text-decoration: none; box-shadow: 0 4px 12px rgba(136,173,55,0.3); margin-bottom: 16px; z-index: 2;">Đăng ký</a>
 
-        <div style="text-align: center; margin-bottom: 16px;">
-          <span style="font-size: 14px; color: #64748b;">Đã có tài khoản? <a href="03-dang-nhap.html" style="color: #658927; font-weight: 700; text-decoration: none;">Đăng nhập</a></span>
+        <!-- Đã có tài khoản? -->
+        <div style="text-align: center; font-size: 14px; color: #666666; margin-bottom: 16px; z-index: 2;">
+          Đã có tài khoản? <a href="03-dang-nhap.html" style="color: #769f2e; font-weight: 700; text-decoration: none;">Đăng nhập</a>
         </div>
 
-        <div style="text-align: center; margin-top: auto;">
-          <div style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">hoặc tiếp tục bằng mạng xã hội</div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-            <button class="btn-secondary" style="font-size: 14px;"><i class="fa-brands fa-facebook" style="color: #1877f2; font-size: 18px;"></i> Facebook</button>
-            <button class="btn-secondary" style="font-size: 14px;"><i class="fa-brands fa-google" style="color: #ea4335; font-size: 18px;"></i> Google</button>
-          </div>
+        <!-- Đăng nhập mạng xã hội -->
+        <div style="text-align: center; position: relative; margin-top: auto; margin-bottom: 14px; z-index: 2;">
+          <span style="position: relative; z-index: 2; background-color: #ffffff; padding: 0 12px; font-size: 13px; color: #888888;">hoặc tiếp tục bằng mạng xã hội</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; z-index: 2;">
+          <button style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; height: 42px; font-size: 14px; font-weight: 600; color: #333333; cursor: pointer;"><i class="fa-brands fa-facebook" style="color: #1877f2; font-size: 18px;"></i> Facebook</button>
+          <button style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; height: 42px; font-size: 14px; font-weight: 600; color: #333333; cursor: pointer;"><i class="fa-brands fa-google" style="color: #ea4335; font-size: 18px;"></i> Google</button>
         </div>
       </div>
 """
@@ -142,60 +151,70 @@ with open(os.path.join(output_dir, "02-dang-ky.html"), "w", encoding="utf-8") as
 # 03. Login Screen
 # ----------------------------------------------------------------------
 page_03 = """
-      <div style="background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column;">
-        <div style="height: 220px; overflow: hidden; position: relative;">
-          <img src="../image/co ban trai cay tren thuyen.jpg" alt="Thuyền trái cây" style="width: 100%; height: 100%; object-fit: cover;">
-          <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 40px; background: linear-gradient(180deg, transparent 0%, #ffffff 100%);"></div>
+      <div style="background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-sizing: border-box;">
+        <!-- Top Banner Header với nendangnhap.jpg và vòm lượn sóng uốn cong cao bên trái -->
+        <div style="height: 250px; position: relative; overflow: hidden; background-color: #e2e8f0;">
+          <img src="../image/nendangnhap.jpg" alt="Chợ nổi trái cây" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+          <svg style="position: absolute; bottom: -1px; left: 0; width: 100%; height: 75px; z-index: 2; pointer-events: none;" viewBox="0 0 500 100" preserveAspectRatio="none">
+            <path d="M 0,100 L 0,55 C 35,15 110,-5 190,30 C 280,65 390,75 500,70 L 500,100 Z" fill="#ffffff"/>
+          </svg>
         </div>
 
-        <div style="padding: 24px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="text-align: center; margin-bottom: 24px;">
-              <div style="margin-bottom: 8px;">
-                <img src="../image/logo.png" style="height: 48px; width: auto;">
-              </div>
-              <h2 style="font-size: 28px; font-weight: 800; color: #658927;">Đăng nhập</h2>
-              <p style="font-size: 14px; color: #64748b; margin-top: 4px;">Đăng nhập tài khoản để tiếp tục hành trình của bạn</p>
-            </div>
+        <!-- Thân trang Đăng nhập -->
+        <div style="padding: 10px 24px 30px 24px; flex: 1; display: flex; flex-direction: column; position: relative; z-index: 3;">
+          <!-- Cụm Logo (105px) + Chữ Đăng nhập sát rạt nhau trên 1 hàng và dịch nhiều hơn sang trái -->
+          <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 0px; margin-top: -25px; margin-bottom: 8px; margin-left: -130px;">
+            <img src="../image/logo.png" alt="Logo Nông Thương" style="height: 105px; width: auto; margin-right: -12px;">
+            <h2 style="font-size: 34px; font-weight: 800; color: #769f2e; text-align: center; margin: 0;">Đăng nhập</h2>
+          </div>
+          <p style="font-size: 14px; color: #555555; text-align: center; margin-top: 0; margin-bottom: 24px;">Đăng nhập tài khoản để tiếp tục hành trình của bạn</p>
 
-            <div class="form-group">
-              <label class="form-label">Email hoặc tên đăng nhập (*):</label>
-              <div style="position: relative;">
-                <i class="fa-regular fa-user" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #769f2e;"></i>
-                <input type="text" class="form-input" value="Tiến Thành" style="padding-left: 42px;">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Mật khẩu:</label>
-              <div style="position: relative;">
-                <i class="fa-solid fa-lock" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #769f2e;"></i>
-                <input type="password" class="form-input" value="123456" style="padding-left: 42px; padding-right: 42px;">
-                <i class="fa-regular fa-eye" style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #769f2e; cursor: pointer;"></i>
-              </div>
-            </div>
-
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #64748b; cursor: pointer;">
-                <input type="checkbox" checked style="accent-color: #769f2e;"> Ghi nhớ đăng nhập
-              </label>
-              <a href="04-quen-mat-khau-email.html" style="font-size: 13px; font-weight: 700; color: #658927; text-decoration: none;">Quên mật khẩu?</a>
-            </div>
-
-            <a href="08-trang-chu-nong-dan.html" class="btn-primary" style="background-color: #8db837; margin-bottom: 24px;">
-              Đăng nhập <i class="fa-solid fa-arrow-right"></i>
-            </a>
-
-            <div style="text-align: center; font-size: 13px; color: #94a3b8; margin-bottom: 16px;">hoặc tiếp tục bằng mạng xã hội</div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
-              <button class="btn-secondary" style="font-size: 14px;"><i class="fa-brands fa-facebook" style="color: #1877f2;"></i> Facebook</button>
-              <button class="btn-secondary" style="font-size: 14px;"><i class="fa-brands fa-google" style="color: #ea4335;"></i> Google</button>
+          <!-- Input Email hoặc Tên đăng nhập -->
+          <div style="margin-bottom: 18px;">
+            <label style="display: block; font-size: 14px; font-weight: 700; color: #587820; margin-bottom: 8px;">Email hoặc tên đăng nhập (*):</label>
+            <div style="position: relative;">
+              <i class="fa-regular fa-user" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #769f2e; font-size: 18px;"></i>
+              <input type="text" value="Tiến Thành" style="width: 100%; height: 48px; border-radius: 14px; border: 1px solid #e2e8f0; padding-left: 48px; padding-right: 16px; font-size: 15px; font-weight: 600; color: #2d3748; outline: none; box-sizing: border-box;">
             </div>
           </div>
 
-          <div style="text-align: center;">
-            <span style="font-size: 14px; color: #64748b;">Bạn chưa có tài khoản? <a href="02-dang-ky.html" style="color: #658927; font-weight: 700; text-decoration: none;">Đăng ký ngay</a></span>
+          <!-- Input Mật khẩu -->
+          <div style="margin-bottom: 18px;">
+            <label style="display: block; font-size: 14px; font-weight: 700; color: #587820; margin-bottom: 8px;">Mật khẩu:</label>
+            <div style="position: relative;">
+              <i class="fa-solid fa-lock" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #769f2e; font-size: 18px;"></i>
+              <input type="password" value="******" style="width: 100%; height: 48px; border-radius: 14px; border: 1px solid #e2e8f0; padding-left: 48px; padding-right: 48px; font-size: 15px; font-weight: 600; color: #2d3748; outline: none; box-sizing: border-box;">
+              <i class="fa-regular fa-eye" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #769f2e; font-size: 18px; cursor: pointer;"></i>
+            </div>
+          </div>
+
+          <!-- Ghi nhớ & Quên mật khẩu -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #555555; cursor: pointer;">
+              <input type="checkbox" style="width: 16px; height: 16px; accent-color: #769f2e; cursor: pointer;">
+              Ghi nhớ đăng nhập
+            </label>
+            <a href="04-quen-mat-khau-email.html" style="font-size: 13px; font-weight: 700; color: #587820; text-decoration: none;">Quên mật khẩu?</a>
+          </div>
+
+          <!-- Nút Đăng nhập -->
+          <a href="08-trang-chu-nong-dan.html" style="display: flex; align-items: center; justify-content: center; gap: 10px; background-color: #88ad37; color: #ffffff; font-size: 18px; font-weight: 800; height: 50px; border-radius: 25px; text-decoration: none; box-shadow: 0 4px 14px rgba(136,173,55,0.35); margin-bottom: 28px;">
+            Đăng nhập <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+          <!-- Mạng xã hội -->
+          <div style="text-align: center; position: relative; margin-bottom: 16px;">
+            <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background-color: #e2e8f0; z-index: 1;"></div>
+            <span style="position: relative; z-index: 2; background-color: #ffffff; padding: 0 12px; font-size: 13px; color: #888888;">hoặc tiếp tục bằng mạng xã hội</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 30px;">
+            <button style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; height: 44px; font-size: 14px; font-weight: 600; color: #333333; cursor: pointer;"><i class="fa-brands fa-facebook" style="color: #1877f2; font-size: 18px;"></i> Facebook</button>
+            <button style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; height: 44px; font-size: 14px; font-weight: 600; color: #333333; cursor: pointer;"><i class="fa-brands fa-google" style="color: #ea4335; font-size: 18px;"></i> Google</button>
+          </div>
+
+          <!-- Bạn chưa có tài khoản? -->
+          <div style="text-align: center; font-size: 14px; color: #555555; margin-top: auto;">
+            Bạn chưa có tài khoản? <a href="02-dang-ky.html" style="color: #769f2e; font-weight: 700; text-decoration: none;">Đăng ký ngay</a>
           </div>
         </div>
       </div>
@@ -307,21 +326,40 @@ with open(os.path.join(output_dir, "06-xac-nhan-otp.html"), "w", encoding="utf-8
 # 07. Reset Password Success Modal
 # ----------------------------------------------------------------------
 page_07 = """
-      <div style="padding: 24px; background-color: #64748b; min-height: 100vh; position: relative;">
-        <div style="opacity: 0.3;">
-          <h2 style="font-size: 24px; color: #ffffff; margin-bottom: 20px;">Đặt lại mật khẩu mới</h2>
-          <div class="form-group"><input type="password" class="form-input" value="12345678"></div>
-          <div class="form-group"><input type="password" class="form-input" value="12345678"></div>
+      <div style="padding: 24px; background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-sizing: border-box;">
+        <h2 style="font-size: 26px; font-weight: 800; color: #587820; text-align: center; margin-top: 40px; margin-bottom: 12px;">Đặt lại mật khẩu mới</h2>
+        <p style="font-size: 14px; color: #64748b; text-align: center; line-height: 1.5; margin-bottom: 32px; padding: 0 10px;">
+          Hãy nhập mật khẩu mới của bạn vào bên dưới và xem gợi ý khi thiết lập mật khẩu.
+        </p>
+
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; font-size: 14px; font-weight: 700; color: #475569; margin-bottom: 8px;">Set new password</label>
+          <div style="position: relative;">
+            <input type="password" id="pass1_py" value="••••••••••••" style="width: 100%; height: 48px; border-radius: 12px; border: 1px solid #cbd5e1; padding-left: 16px; padding-right: 48px; font-size: 15px; color: #1e293b; outline: none; box-sizing: border-box;">
+            <i class="fa-regular fa-eye-slash" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #64748b; font-size: 18px; cursor: pointer;"></i>
+          </div>
         </div>
 
-        <div class="modal-overlay">
-          <div class="modal-card">
-            <div style="width: 80px; height: 80px; background-color: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 20px rgba(34,197,94,0.3);">
-              <i class="fa-solid fa-check" style="font-size: 40px; color: #ffffff;"></i>
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; font-size: 14px; font-weight: 700; color: #475569; margin-bottom: 8px;">Xác nhận lại mật khẩu</label>
+          <div style="position: relative;">
+            <input type="password" id="pass2_py" value="••••••••••••" style="width: 100%; height: 48px; border-radius: 12px; border: 1px solid #cbd5e1; padding-left: 16px; padding-right: 48px; font-size: 15px; color: #1e293b; outline: none; box-sizing: border-box;">
+            <i class="fa-regular fa-eye-slash" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #64748b; font-size: 18px; cursor: pointer;"></i>
+          </div>
+        </div>
+
+        <!-- Nút bấm Đổi mật khẩu kích hoạt Modal thông báo thành công -->
+        <button onclick="document.getElementById('successModalPy').style.display='flex'" style="width: 100%; height: 50px; background-color: #88ad37; color: #ffffff; font-size: 17px; font-weight: 800; border-radius: 25px; border: none; cursor: pointer; margin-top: 16px; box-shadow: 0 4px 14px rgba(136,173,55,0.35);">Đổi mật khẩu</button>
+
+        <!-- Overlay Popup Thông báo thành công (Hiển thị mờ đè nền khi bấm Đổi mật khẩu) -->
+        <div id="successModalPy" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(30, 41, 59, 0.65); display: none; align-items: flex-end; justify-content: center; z-index: 999;">
+          <div style="background-color: #ffffff; border-top-left-radius: 30px; border-top-right-radius: 30px; width: 100%; max-width: 450px; padding: 36px 24px 45px 24px; text-align: center; box-sizing: border-box;">
+            <div style="width: 90px; height: 90px; background-color: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; box-shadow: 0 8px 20px rgba(34,197,94,0.3);">
+              <i class="fa-solid fa-check" style="font-size: 44px; color: #ffffff;"></i>
             </div>
-            <h3 style="font-size: 22px; font-weight: 800; color: #587820; margin-bottom: 8px;">Đặt lại mật khẩu thành công</h3>
-            <p style="font-size: 14px; color: #64748b; margin-bottom: 24px;">Quay lại trang đăng nhập để đăng nhập lại</p>
-            <a href="03-dang-nhap.html" class="btn-primary" style="background-color: #8db837;">
+            <h3 style="font-size: 22px; font-weight: 800; color: #587820; margin-top: 0; margin-bottom: 8px;">Đặt lại mật khẩu thành công</h3>
+            <p style="font-size: 14px; color: #64748b; margin-top: 0; margin-bottom: 28px;">Quay lại trang đăng nhập để đăng nhập lại</p>
+            <a href="03-dang-nhap.html" style="display: flex; align-items: center; justify-content: center; background-color: #88ad37; color: #ffffff; font-size: 16px; font-weight: 700; height: 48px; border-radius: 12px; text-decoration: none; width: 80%; margin: 0 auto; box-shadow: 0 4px 12px rgba(136,173,55,0.3);">
               Trở về trang đăng nhập
             </a>
           </div>
@@ -335,96 +373,143 @@ with open(os.path.join(output_dir, "07-dat-lai-mat-khau-thanh-cong.html"), "w", 
 # 08. Farmer Home Screen
 # ----------------------------------------------------------------------
 page_08 = """
-      <div class="app-header" style="justify-content: space-between;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <img src="../image/logo.png" style="height: 32px; width: auto;">
-          <span style="font-size: 20px; font-weight: 800; color: #587820;">NÔNG THƯƠNG</span>
-        </div>
-        <div style="display: flex; gap: 10px;">
-          <a href="10-thong-bao.html" style="width: 38px; height: 38px; background: #eaf3d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #587820; text-decoration: none;">
-            <i class="fa-regular fa-bell" style="font-size: 18px;"></i>
+      <div style="background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 90px; box-sizing: border-box;">
+        <!-- Header Top -->
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 20px 10px 20px;">
+          <div style="display: flex; align-items: center; gap: 0px; margin-left: -12px;">
+            <img src="../image/logo.png" alt="Logo" style="height: 72px; width: auto; margin-right: -8px;">
+            <span style="font-size: 28px; font-weight: 800; color: #769f2e; letter-spacing: 0.5px;">NÔNG THƯƠNG</span>
+          </div>
+          <a href="10-thong-bao.html" style="width: 42px; height: 42px; background-color: #eaf4d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #587820; text-decoration: none; font-size: 18px;">
+            <i class="fa-regular fa-bell"></i>
           </a>
-          <div style="width: 38px; height: 38px; background: #eaf3d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #587820;">
-            <i class="fa-solid fa-sliders" style="font-size: 18px;"></i>
+        </div>
+
+        <!-- Thanh Tìm kiếm & Nút Lọc sliders -->
+        <div style="display: flex; align-items: center; gap: 12px; padding: 0 20px; margin-bottom: 20px;">
+          <div style="flex: 1; height: 46px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 25px; display: flex; align-items: center; padding: 0 16px; box-sizing: border-box;">
+            <i class="fa-solid fa-magnifying-glass" style="color: #64748b; font-size: 18px;"></i>
+            <input type="text" style="border: none; outline: none; background: transparent; width: 100%; font-size: 15px; color: #333333; margin-left: 10px;" placeholder="Tìm kiếm">
+          </div>
+          <div style="width: 42px; height: 42px; background-color: #eaf4d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #587820; font-size: 18px;">
+            <i class="fa-solid fa-sliders"></i>
           </div>
         </div>
-      </div>
 
-      <div style="padding: 0 16px 20px 16px; flex: 1;">
-        <div class="search-box">
-          <i class="fa-solid fa-magnifying-glass" style="color: #94a3b8; font-size: 18px;"></i>
-          <input type="text" placeholder="Tìm kiếm">
-        </div>
+        <!-- Banner Chào mừng Tràn Viền Màn Hình Edge-to-Edge -->
+        <div style="margin: 0 0 24px 0; width: 100%; background: url('../image/home_banner.jpg') no-repeat center / cover; padding: 24px 20px 28px 20px; position: relative; overflow: hidden; box-sizing: border-box;">
+          <!-- Ảnh nhân vật 1.5x xích xuống 1 xíu -->
+          <img src="../image/nhanvat.png" alt="Nhân vật Nông Thương" style="position: absolute; right: -18px; top: 8px; height: 225px; width: auto; object-fit: contain; filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.32)); z-index: 2; pointer-events: none;">
 
-        <div class="welcome-banner" style="display: flex; justify-content: space-between; align-items: flex-end; padding-right: 10px;">
-          <div>
-            <div style="font-size: 18px; color: #2d4612; font-weight: 700;">Chào mừng bạn !</div>
-            <div class="tag">Tiến Thành</div>
-            <div style="font-size: 14px; color: #475569; margin-bottom: 14px; font-weight: 600;">Một ngày vui vẻ nhé</div>
-            <a href="12-dang-san-pham-giong-noi.html" style="display: inline-block; background: #c0a827; color: #ffffff; text-align: center; padding: 12px 20px; border-radius: 14px; font-weight: 800; font-size: 15px; text-decoration: none;">
+          <!-- Cụm chữ chào mừng dịch xích sang bên phải -->
+          <div style="position: relative; z-index: 3; max-width: 65%; margin-left: 20px;">
+            <div style="font-size: 24px; font-weight: 800; color: #1e5234; margin-bottom: 8px;">Chào mừng bạn !</div>
+            <div style="display: inline-block; background-color: #0d6847; color: #ffffff; font-size: 16px; font-weight: 700; padding: 6px 28px; border-radius: 4px; margin-bottom: 10px; clip-path: polygon(0 0, 100% 0, 92% 100%, 8% 100%);">Tiến Thành</div>
+            <div style="font-size: 16px; font-weight: 700; color: #92401d; margin-bottom: 14px;">Một ngày vui vẻ nhé</div>
+          </div>
+
+          <!-- Nút BÁN SẢN PHẨM NGAY: Rộng hơn, Căn giữa, Có Drop Shadow & Hover -->
+          <div style="display: flex; justify-content: center; width: 100%; margin-top: 16px; position: relative; z-index: 4;">
+            <a href="15-dang-san-pham-nhap-lieu.html" class="btn-sell-now">
               BÁN SẢN PHẨM NGAY
             </a>
           </div>
-          <img src="../image/Thiết kế chưa có tên-Recovered.png" style="height: 120px; width: auto; object-fit: contain; margin-bottom: -10px;">
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="font-size: 16px; font-weight: 800; color: #2d4612;">Loại trái cây</h3>
-          <a href="#" style="font-size: 13px; font-weight: 700; color: #64748b;">Xem tất cả</a>
+        <!-- Mục Loại trái cây (1.25x Scroll Ngang) -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px; margin-bottom: 12px;">
+          <span style="font-size: 18px; font-weight: 800; color: #2d4612;">Loại trái cây</span>
+          <a href="#" style="font-size: 14px; font-weight: 700; color: #444444; text-decoration: underline;">Xem tất cả</a>
         </div>
-        <div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 16px;">
-          <div style="background: #e6f2d4; border-radius: 20px; padding: 8px 16px; display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-            <img src="../image/Trái cây/xoai.jpg" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;">
-            <span style="font-size: 14px; font-weight: 700;">Chuối</span>
+        <div class="categories-horizontal-scroll">
+          <div class="category-pill-card">
+            <img src="../image/Trái cây/xoai.jpg" alt="Chuối" class="category-pill-img">
+            <span class="category-pill-name">Chuối</span>
           </div>
-          <div style="background: #e6f2d4; border-radius: 20px; padding: 8px 16px; display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-            <img src="../image/Trái cây/chom chom ban.jpg" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;">
-            <span style="font-size: 14px; font-weight: 700;">Mít</span>
+          <div class="category-pill-card">
+            <img src="../image/Trái cây/chom chom ban.jpg" alt="Mít" class="category-pill-img">
+            <span class="category-pill-name">Mít</span>
           </div>
-          <div style="background: #e6f2d4; border-radius: 20px; padding: 8px 16px; display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-            <img src="../image/Trái cây/oi.jpg" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;">
-            <span style="font-size: 14px; font-weight: 700;">Cam</span>
+          <div class="category-pill-card">
+            <img src="../image/Trái cây/oi.jpg" alt="Cam" class="category-pill-img">
+            <span class="category-pill-name">Cam</span>
+          </div>
+          <div class="category-pill-card">
+            <img src="../image/Trái cây/dua hau.jpg" alt="Dưa hấu" class="category-pill-img">
+            <span class="category-pill-name">Dưa hấu</span>
+          </div>
+          <div class="category-pill-card">
+            <img src="../image/Trái cây/sau rieng.jpg" alt="Sầu riêng" class="category-pill-img">
+            <span class="category-pill-name">Sầu riêng</span>
+          </div>
+          <div class="category-pill-card">
+            <img src="../image/Trái cây/vai.jpg" alt="Vải" class="category-pill-img">
+            <span class="category-pill-name">Vải</span>
+          </div>
+          <div class="category-pill-card">
+            <img src="../image/Trái cây/thanh long.jpg" alt="Khác" class="category-pill-img">
+            <span class="category-pill-name">Khác</span>
           </div>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="font-size: 16px; font-weight: 800; color: #2d4612;">Danh mục sản phẩm</h3>
-          <a href="#" style="font-size: 13px; font-weight: 700; color: #64748b;">Xem tất cả</a>
+        <!-- Mục Danh mục sản phẩm -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px; margin-bottom: 12px;">
+          <span style="font-size: 17px; font-weight: 800; color: #333333;">Danh mục sản phẩm</span>
+          <a href="#" style="font-size: 14px; font-weight: 700; color: #444444; text-decoration: underline;">Xem tất cả</a>
         </div>
 
-        <div class="product-grid">
-          <a href="24-chi-tiet-san-pham.html" class="product-card">
-            <i class="fa-regular fa-heart" style="position: absolute; top: 10px; right: 10px; color: #ef4444; font-size: 16px;"></i>
-            <img src="../image/Trái cây/vai.jpg" alt="Vải">
-            <div class="name">Vải</div>
-            <div style="font-size: 12px; color: #f59e0b; margin: 2px 0;"><i class="fa-solid fa-star"></i> 4.5 (672)</div>
-            <div class="price">27.000 VNĐ/kg</div>
+        <!-- Grid Sản phẩm -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0 20px;">
+          <a href="24-chi-tiet-san-pham.html" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
+            <div style="position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; background: #ffffff; border: 1px solid #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 13px;"><i class="fa-regular fa-heart"></i></div>
+            <img src="../image/Trái cây/vai.jpg" alt="Vải" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; margin-top: 6px; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <div style="font-size: 15px; font-weight: 700; color: #333333; margin-bottom: 4px;">Vải</div>
+            <div style="font-size: 12px; color: #444444; margin-bottom: 4px;"><span style="color: #f59e0b;">★</span> 4.5 <span style="color: #666;">(672)</span></div>
+            <div style="font-size: 14px; font-weight: 800; color: #1c522a;">27.000 VNĐ/kg</div>
           </a>
 
-          <a href="24-chi-tiet-san-pham.html" class="product-card">
-            <i class="fa-regular fa-heart" style="position: absolute; top: 10px; right: 10px; color: #ef4444; font-size: 16px;"></i>
-            <img src="../image/Trái cây/thanh long.jpg" alt="Thanh long">
-            <div class="name">Thanh long</div>
-            <div style="font-size: 12px; color: #f59e0b; margin: 2px 0;"><i class="fa-solid fa-star"></i> 4.8 (62)</div>
-            <div class="price">20.000 VNĐ/kg</div>
+          <a href="24-chi-tiet-san-pham.html" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
+            <div style="position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; background: #ffffff; border: 1px solid #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 13px;"><i class="fa-regular fa-heart"></i></div>
+            <img src="../image/Trái cây/thanh long.jpg" alt="Thanh long" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; margin-top: 6px; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <div style="font-size: 15px; font-weight: 700; color: #333333; margin-bottom: 4px;">Thanh long</div>
+            <div style="font-size: 12px; color: #444444; margin-bottom: 4px;"><span style="color: #f59e0b;">★</span> 4.8 <span style="color: #666;">(62)</span></div>
+            <div style="font-size: 14px; font-weight: 800; color: #1c522a;">20.000 VNĐ/kg</div>
           </a>
 
-          <a href="24-chi-tiet-san-pham.html" class="product-card">
-            <i class="fa-regular fa-heart" style="position: absolute; top: 10px; right: 10px; color: #ef4444; font-size: 16px;"></i>
-            <img src="../image/Trái cây/dua hau.jpg" alt="Dưa hấu">
-            <div class="name">Dưa hấu</div>
-            <div style="font-size: 12px; color: #f59e0b; margin: 2px 0;"><i class="fa-solid fa-star"></i> 5 (81)</div>
-            <div class="price">20.000 VNĐ/kg</div>
+          <a href="24-chi-tiet-san-pham.html" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
+            <div style="position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; background: #ffffff; border: 1px solid #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 13px;"><i class="fa-regular fa-heart"></i></div>
+            <img src="../image/Trái cây/dua hau.jpg" alt="Dưa hấu" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; margin-top: 6px; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <div style="font-size: 15px; font-weight: 700; color: #333333; margin-bottom: 4px;">Dưa hấu</div>
+            <div style="font-size: 12px; color: #444444; margin-bottom: 4px;"><span style="color: #f59e0b;">★</span> 5 <span style="color: #666;">(81)</span></div>
+            <div style="font-size: 14px; font-weight: 800; color: #1c522a;">20.000 VNĐ/kg</div>
           </a>
 
-          <a href="24-chi-tiet-san-pham.html" class="product-card">
-            <i class="fa-regular fa-heart" style="position: absolute; top: 10px; right: 10px; color: #ef4444; font-size: 16px;"></i>
-            <img src="../image/Trái cây/sau rieng.jpg" alt="Sầu riêng">
-            <div class="name">Sầu riêng</div>
-            <div style="font-size: 12px; color: #f59e0b; margin: 2px 0;"><i class="fa-solid fa-star"></i> 4.5 (92)</div>
-            <div class="price">35.000 VNĐ/kg</div>
+          <a href="24-chi-tiet-san-pham.html" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
+            <div style="position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; background: #ffffff; border: 1px solid #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 13px;"><i class="fa-regular fa-heart"></i></div>
+            <img src="../image/Trái cây/sau rieng.jpg" alt="Sầu riêng" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; margin-top: 6px; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <div style="font-size: 15px; font-weight: 700; color: #333333; margin-bottom: 4px;">Sầu riêng</div>
+            <div style="font-size: 12px; color: #444444; margin-bottom: 4px;"><span style="color: #f59e0b;">★</span> 4.5 <span style="color: #666;">(92)</span></div>
+            <div style="font-size: 14px; font-weight: 800; color: #1c522a;">35.000 VNĐ/kg</div>
+          </a>
+
+          <a href="24-chi-tiet-san-pham.html" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
+            <div style="position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; background: #ffffff; border: 1px solid #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 13px;"><i class="fa-regular fa-heart"></i></div>
+            <img src="../image/Trái cây/oi.jpg" alt="Ổi" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; margin-top: 6px; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <div style="font-size: 15px; font-weight: 700; color: #333333; margin-bottom: 4px;">Ổi vú sữa</div>
+            <div style="font-size: 12px; color: #444444; margin-bottom: 4px;"><span style="color: #f59e0b;">★</span> 4.7 <span style="color: #666;">(120)</span></div>
+            <div style="font-size: 14px; font-weight: 800; color: #1c522a;">25.000 VNĐ/kg</div>
+          </a>
+
+          <a href="24-chi-tiet-san-pham.html" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
+            <div style="position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; background: #ffffff; border: 1px solid #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 13px;"><i class="fa-regular fa-heart"></i></div>
+            <img src="../image/Trái cây/xoai.jpg" alt="Xoài" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; margin-top: 6px; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <div style="font-size: 15px; font-weight: 700; color: #333333; margin-bottom: 4px;">Xoài Cát</div>
+            <div style="font-size: 12px; color: #444444; margin-bottom: 4px;"><span style="color: #f59e0b;">★</span> 4.6 <span style="color: #666;">(210)</span></div>
+            <div style="font-size: 14px; font-weight: 800; color: #1c522a;">30.000 VNĐ/kg</div>
           </a>
         </div>
+      </div>
+
       </div>
 """ + get_bottom_nav("home")
 with open(os.path.join(output_dir, "08-trang-chu-nong-dan.html"), "w", encoding="utf-8") as f:
@@ -465,21 +550,37 @@ page_09 = """
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="font-size: 16px; font-weight: 800; color: #2d4612;">Loại trái cây</h3>
-          <a href="#" style="font-size: 13px; font-weight: 700; color: #64748b;">Xem tất cả</a>
+          <h3 style="font-size: 18px; font-weight: 800; color: #2d4612;">Loại trái cây</h3>
+          <a href="#" style="font-size: 14px; font-weight: 700; color: #64748b;">Xem tất cả</a>
         </div>
-        <div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 16px;">
-          <div style="background: #e6f2d4; border-radius: 20px; padding: 8px 16px; display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-            <img src="../image/Trái cây/xoai.jpg" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;">
-            <span style="font-size: 14px; font-weight: 700;">Chuối</span>
+        <div class="categories-horizontal-scroll" style="padding-left: 0; padding-right: 0;">
+          <div class="category-pill-card">
+            <img src="../image/Trái cây/xoai.jpg" alt="Chuối" class="category-pill-img">
+            <span class="category-pill-name">Chuối</span>
           </div>
-          <div style="background: #e6f2d4; border-radius: 20px; padding: 8px 16px; display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-            <img src="../image/Trái cây/chom chom ban.jpg" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;">
-            <span style="font-size: 14px; font-weight: 700;">Mít</span>
+          <div class="category-pill-card">
+            <img src="../image/Trái cây/chom chom ban.jpg" alt="Mít" class="category-pill-img">
+            <span class="category-pill-name">Mít</span>
           </div>
-          <div style="background: #e6f2d4; border-radius: 20px; padding: 8px 16px; display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-            <img src="../image/Trái cây/oi.jpg" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;">
-            <span style="font-size: 14px; font-weight: 700;">Cam</span>
+          <div class="category-pill-card">
+            <img src="../image/Trái cây/oi.jpg" alt="Cam" class="category-pill-img">
+            <span class="category-pill-name">Cam</span>
+          </div>
+          <div class="category-pill-card">
+            <img src="../image/Trái cây/dua hau.jpg" alt="Dưa hấu" class="category-pill-img">
+            <span class="category-pill-name">Dưa hấu</span>
+          </div>
+          <div class="category-pill-card">
+            <img src="../image/Trái cây/sau rieng.jpg" alt="Sầu riêng" class="category-pill-img">
+            <span class="category-pill-name">Sầu riêng</span>
+          </div>
+          <div class="category-pill-card">
+            <img src="../image/Trái cây/vai.jpg" alt="Vải" class="category-pill-img">
+            <span class="category-pill-name">Vải</span>
+          </div>
+          <div class="category-pill-card">
+            <img src="../image/Trái cây/thanh long.jpg" alt="Khác" class="category-pill-img">
+            <span class="category-pill-name">Khác</span>
           </div>
         </div>
 
