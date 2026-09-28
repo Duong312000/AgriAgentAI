@@ -1,85 +1,153 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đăng sản phẩm giọng nói</title>
+  <title>Thu thập thông tin - Giọng nói</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #FFFAD4;
+    }
+    .interactive-btn {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    .interactive-btn:hover, .interactive-btn:active {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12) !important;
+    }
+    .card-interactive {
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .card-interactive:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(234, 179, 8, 0.3) !important;
+    }
+  </style>
 </head>
+
 <body>
-  <div class="web-container">
+  <div class="web-container" style="background-color: #FFFAD4;">
     <div class="app-content">
 
-      <div class="app-header">
-        <a href="08-trang-chu-nong-dan.html" class="btn-back"><i class="fa-solid fa-chevron-left"></i></a>
-        <div>
-          <h2 style="font-size: 16px; font-weight: 800; color: #587820;">Thu thập thông tin</h2>
-          <div style="font-size: 12px; color: #64748b;">Hãy cung cấp thông tin về sản phẩm của bạn</div>
-        </div>
-      </div>
+      <div style="background-color: #FFFAD4; min-height: 100vh; display: flex; flex-direction: column; padding: 24px 20px 110px 20px; box-sizing: border-box;">
 
-      <div style="padding: 16px; flex: 1;">
-        <div style="border: 2px dashed #f59e0b; background-color: #fffbeb; border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 16px;">
-          <i class="fa-solid fa-camera" style="font-size: 40px; color: #334155; margin-bottom: 12px;"></i>
-          <div style="font-size: 14px; font-weight: 700; color: #78350f;">Chụp ảnh hoặc tải hình ảnh lên</div>
-          <div style="font-size: 12px; color: #92400e; margin-top: 4px;">Hình ảnh sẽ hiện lên tại đây</div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
-          <button class="btn-secondary" style="border: 1px dashed #769f2e; background: #f4f8ec; font-size: 14px;"><i class="fa-solid fa-camera"></i> Chụp ảnh</button>
-          <button class="btn-secondary" style="border: 1px dashed #769f2e; background: #f4f8ec; font-size: 14px;"><i class="fa-solid fa-image"></i> Tải ảnh từ thư viện</button>
-        </div>
-
-        <div style="font-size: 14px; font-weight: 800; color: #587820; margin-bottom: 4px;">Mô tả chi tiết sản phẩm</div>
-        <div style="font-size: 12px; color: #64748b; margin-bottom: 12px;">Hãy chọn hình thức để mô tả về sản phẩm của bạn</div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; border-radius: 10px; overflow: hidden; margin-bottom: 24px;">
-          <div style="background-color: #92400e; color: #ffffff; text-align: center; padding: 12px; font-weight: 700; font-size: 14px;">Giọng nói</div>
-          <a href="15-dang-san-pham-nhap-lieu.html" style="background-color: #fef08a; color: #854d0e; text-align: center; padding: 12px; font-weight: 700; font-size: 14px; text-decoration: none;">Nhập chữ</a>
-        </div>
-
-        <div style="text-align: center; margin-bottom: 20px;">
-          <div style="width: 110px; height: 110px; background: #4d7c0f; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; box-shadow: 0 10px 25px rgba(77,124,15,0.3);">
-            <i class="fa-solid fa-microphone" style="font-size: 50px; color: #ffffff;"></i>
-          </div>
-          <div style="font-size: 16px; font-weight: 800; color: #1e293b;">Đang thu giọng nói...</div>
-          <div style="background: #f1f5f9; padding: 10px 16px; border-radius: 12px; margin-top: 10px; font-size: 14px; color: #475569; font-style: italic;">
-            "Tôi muốn bán chôm chôm, 50 kg,"
+        <!-- Header Top: Simple left arrow + Olive title -->
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 24px;">
+          <a href="08-trang-chu-nong-dan.html" style="font-size: 20px; color: #222222; text-decoration: none; margin-top: 1px; display: inline-flex; align-items: center;">
+            <i class="fa-solid fa-arrow-left"></i>
+          </a>
+          <div>
+            <h2 style="font-size: 20px; font-weight: 800; color: #74862b; margin: 0 0 6px 0; letter-spacing: -0.2px;">Thu thập thông tin</h2>
+            <div style="font-size: 14px; color: #666666; font-weight: 500;">Hãy cung cấp thông tin về sản phẩm của bạn</div>
           </div>
         </div>
 
-        <div style="margin-bottom: 20px;">
-          <div style="font-size: 13px; font-weight: 700; color: #334155; margin-bottom: 10px;">Bạn có thể trả lời những câu hỏi như sau:</div>
-          <div style="background: #fef08a; padding: 10px 14px; border-radius: 12px; margin-bottom: 8px; font-size: 13px; font-weight: 700;">Loại trái cây: <span style="font-weight: 400;">Bán trái cây gì?</span></div>
-          <div style="background: #fef08a; padding: 10px 14px; border-radius: 12px; margin-bottom: 8px; font-size: 13px; font-weight: 700;">Sản lượng: <span style="font-weight: 400;">Cần bán bao nhiêu kg hoặc tấn?</span></div>
-          <div style="background: #fef08a; padding: 10px 14px; border-radius: 12px; margin-bottom: 8px; font-size: 13px; font-weight: 700;">Thời gian: <span style="font-weight: 400;">Khi nào thu hoạch hoặc cần bán xong trước ngày nào?</span></div>
+        <!-- Box 1: Large Image Upload Container -->
+        <div class="interactive-btn" style="border: 1.5px dashed #e6d68b; background-color: #fdf6d8; border-radius: 18px; padding: 32px 16px; text-align: center; margin-bottom: 14px; box-shadow: 0 4px 14px rgba(230, 214, 139, 0.25);">
+          <i class="fa-solid fa-camera" style="font-size: 48px; color: #000000; margin-bottom: 14px;"></i>
+          <div style="font-size: 16px; font-weight: 700; color: #74862b; margin-bottom: 4px;">Chụp ảnh hoặc tải hình ảnh lên</div>
+          <div style="font-size: 13px; color: #998a44; font-weight: 500;">Hình ảnh sẽ hiện lên tại đây</div>
         </div>
 
-        <a href="17-dinh-gia-ai.html" class="btn-primary" style="background-color: #8db837; margin-bottom: 20px;">
+        <!-- Box 2 & 3: Two small upload buttons -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px;">
+          <button class="interactive-btn" style="border: 1.5px dashed #e6d68b; background-color: #fdf6d8; border-radius: 14px; padding: 14px 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 700; color: #74862b; outline: none; box-shadow: 0 4px 10px rgba(230, 214, 139, 0.2);">
+            <i class="fa-solid fa-camera" style="font-size: 20px; color: #000000;"></i> Chụp ảnh
+          </button>
+          <button class="interactive-btn" style="border: 1.5px dashed #e6d68b; background-color: #fdf6d8; border-radius: 14px; padding: 14px 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 700; color: #74862b; outline: none; box-shadow: 0 4px 10px rgba(230, 214, 139, 0.2);">
+            <i class="fa-solid fa-images" style="font-size: 20px; color: #000000;"></i> Tải ảnh từ thư viện
+          </button>
+        </div>
+
+        <!-- Section Title: Mô tả chi tiết sản phẩm -->
+        <div style="font-size: 16px; font-weight: 800; color: #74862b; margin-bottom: 4px;">Mô tả chi tiết sản phẩm</div>
+        <div style="font-size: 14px; color: #666666; margin-bottom: 16px; font-weight: 500;">Hãy chọn hình thức để mô tả về sản phẩm của bạn</div>
+
+        <!-- Tab Toggle Switch -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; border-radius: 10px; overflow: hidden; margin-bottom: 32px; box-shadow: 0 4px 12px rgba(122, 68, 0, 0.15);">
+          <div class="interactive-btn" style="background-color: #7a4400; color: #ffffff; text-align: center; padding: 14px; font-weight: 700; font-size: 15px;">Giọng nói</div>
+          <a href="15-dang-san-pham-nhap-lieu.html" class="interactive-btn" style="background-color: #fdf6d8; color: #7a4400; text-align: center; padding: 14px; font-weight: 700; font-size: 15px; text-decoration: none;">Nhập chữ</a>
+        </div>
+
+        <!-- Voice Recording Circle Area -->
+        <div style="text-align: center; margin-bottom: 32px;">
+          <div class="interactive-btn" style="width: 150px; height: 150px; background-color: #518206; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 12px 32px rgba(81, 130, 6, 0.45);">
+            <i class="fa-solid fa-microphone" style="font-size: 70px; color: #ffffff;"></i>
+          </div>
+          <div style="font-size: 18px; font-weight: 800; color: #111827; margin-bottom: 14px;">Đang thu giọng nói...</div>
+          <div style="background-color: #f1f3f5; padding: 14px 20px; border-radius: 12px; display: inline-block; width: 100%; box-sizing: border-box; font-size: 14px; color: #888888; font-weight: 400; text-align: left;">
+            Tôi muốn bán chôm chôm, 50 kg,
+          </div>
+        </div>
+
+        <!-- Suggested Prompt Questions List -->
+        <div style="margin-bottom: 32px;">
+          <div style="font-size: 16px; font-weight: 800; color: #111827; margin-bottom: 16px;">Bạn có thể trả lời những câu hỏi như sau:</div>
+
+          <!-- Card 1 -->
+          <div class="card-interactive" style="background-color: #fbe786; padding: 18px 20px; border-radius: 20px; margin-bottom: 14px; font-size: 15px; color: #3d3200; font-weight: 500; line-height: 1.4; box-shadow: 0 4px 12px rgba(251, 231, 134, 0.35);">
+            <strong style="font-weight: 800; color: #2d2400;">Loại trái cây:</strong> Bán trái cây gì?
+          </div>
+
+          <!-- Card 2 -->
+          <div class="card-interactive" style="background-color: #fbe786; padding: 18px 20px; border-radius: 20px; margin-bottom: 14px; font-size: 15px; color: #3d3200; font-weight: 500; line-height: 1.4; box-shadow: 0 4px 12px rgba(251, 231, 134, 0.35);">
+            <strong style="font-weight: 800; color: #2d2400;">Sản lượng:</strong> Cần bán bao nhiêu kg hoặc tấn?
+          </div>
+
+          <!-- Card 3 -->
+          <div class="card-interactive" style="background-color: #fbe786; padding: 18px 20px; border-radius: 20px; margin-bottom: 14px; font-size: 15px; color: #3d3200; font-weight: 500; line-height: 1.4; box-shadow: 0 4px 12px rgba(251, 231, 134, 0.35);">
+            <strong style="font-weight: 800; color: #2d2400;">Thời gian:</strong> Khi nào thu hoạch hoặc cần bán xong trước ngày nào?
+          </div>
+
+          <!-- Card 4 -->
+          <div class="card-interactive" style="background-color: #fbe786; padding: 18px 20px; border-radius: 20px; margin-bottom: 14px; font-size: 15px; color: #3d3200; font-weight: 500; line-height: 1.4; box-shadow: 0 4px 12px rgba(251, 231, 134, 0.35);">
+            <strong style="font-weight: 800; color: #2d2400;">Giá bán:</strong> Muốn bán giá bao nhiêu 1 kg?<br>(Hoặc: "Dùng giá chợ AI đề xuất?")
+          </div>
+
+          <!-- Card 5 -->
+          <div class="card-interactive" style="background-color: #fbe786; padding: 18px 20px; border-radius: 20px; margin-bottom: 14px; font-size: 15px; color: #3d3200; font-weight: 500; line-height: 1.4; box-shadow: 0 4px 12px rgba(251, 231, 134, 0.35);">
+            <strong style="font-weight: 800; color: #2d2400;">Địa điểm:</strong> Vườn hoặc kho hiện ở đâu?
+          </div>
+        </div>
+
+        <!-- Button Tiếp theo -->
+        <a href="17-dinh-gia-ai.html" class="interactive-btn" style="display: block; width: 100%; background-color: #749c25; color: #ffffff; text-align: center; padding: 16px 20px; border-radius: 16px; font-size: 18px; font-weight: 800; text-decoration: none; box-shadow: 0 8px 20px rgba(116, 156, 37, 0.4); box-sizing: border-box; margin-bottom: 12px;">
           Tiếp theo
         </a>
+
       </div>
-<div class="bottom-nav">
-  <a href="08-trang-chu-nong-dan.html" class="nav-item active">
-    <i class="fa-solid fa-house"></i>
-    <span>Trang chủ</span>
-  </a>
-  <a href="14-danh-sach-tro-chuyen.html" class="nav-item ">
-    <i class="fa-regular fa-comment-dots"></i>
-    <span>Trò chuyện</span>
-  </a>
-  <a href="10-thong-bao.html" class="nav-item ">
-    <i class="fa-regular fa-bell"></i>
-    <span>Thông Báo</span>
-  </a>
-  <a href="13-ca-nhan.html" class="nav-item ">
-    <i class="fa-regular fa-user"></i>
-    <span>Cá nhân</span>
-  </a>
-</div>
+
+      <!-- Bottom Navigation Bar -->
+      <div class="bottom-nav">
+        <a href="08-trang-chu-nong-dan.html" class="nav-item active">
+          <i class="fa-solid fa-house"></i>
+          <span>Trang chủ</span>
+        </a>
+        <a href="14-danh-sach-tro-chuyen.html" class="nav-item">
+          <i class="fa-regular fa-comment-dots"></i>
+          <span>Trò chuyện</span>
+        </a>
+        <a href="10-thong-bao.html" class="nav-item">
+          <i class="fa-regular fa-bell"></i>
+          <span>Thông Báo</span>
+        </a>
+        <a href="13-ca-nhan.html" class="nav-item">
+          <i class="fa-regular fa-user"></i>
+          <span>Cá nhân</span>
+        </a>
+      </div>
 
     </div>
   </div>
 </body>
+
 </html>

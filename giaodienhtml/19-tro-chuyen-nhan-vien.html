@@ -3,39 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trò chuyện hỗ trợ</title>
+  <title>Nhân viên hỗ trợ</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="web-container">
-    <div class="app-content">
+  <div class="web-container" style="background-color: #f7d44c;">
+    <div class="app-content" style="background-color: #FFFAD4;">
 
-      <div class="app-header" style="background-color: #fde047; color: #1e293b; justify-content: space-between;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <a href="13-ca-nhan.html" style="color: #1e293b; text-decoration: none;"><i class="fa-solid fa-chevron-left" style="font-size: 18px;"></i></a>
-          <img src="../image/logo.png" style="height: 28px; width: auto;">
-          <span style="font-size: 18px; font-weight: 800;">Nhân viên hỗ trợ</span>
-        </div>
-        <div style="display: flex; gap: 14px;">
-          <i class="fa-solid fa-phone" style="font-size: 18px;"></i>
-          <i class="fa-solid fa-video" style="font-size: 18px;"></i>
+      <!-- Header Top -->
+      <div style="background-color: #f7d44c; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <a href="13-ca-nhan.html" style="color: #6b7a22; text-decoration: none; display: flex; align-items: center;">
+            <i class="fa-solid fa-chevron-left" style="font-size: 20px;"></i>
+          </a>
+          <img src="../image/logo.png" alt="Logo" style="height: 32px; width: auto;">
+          <h2 style="font-size: 19px; font-weight: 700; color: #262626; margin: 0;">Nhân viên hỗ trợ</h2>
         </div>
       </div>
 
-      <div style="padding: 16px; flex: 1; background-color: #fefce8;">
-        <div style="display: flex; gap: 8px; max-width: 85%;">
-          <img src="../image/logo.png" style="height: 24px; width: auto; margin-top: 4px;">
-          <div style="background: #ffffff; padding: 12px 16px; border-radius: 18px 18px 18px 4px; font-size: 14px; box-shadow: var(--shadow-sm);">
+      <!-- Main Chat Body -->
+      <div style="padding: 24px 18px; flex: 1; background-color: #FFFAD4; display: flex; flex-direction: column; gap: 20px; box-sizing: border-box;">
+        
+        <!-- Support Staff Message Bubble -->
+        <div style="display: flex; gap: 10px; align-items: flex-start; max-width: 85%;">
+          <img src="../image/logo.png" alt="Logo" style="height: 28px; width: auto; margin-top: 4px; flex-shrink: 0;">
+          <div style="background-color: #f1f1f5; padding: 14px 20px; border-radius: 22px; font-size: 15px; font-weight: 500; color: #262626; line-height: 1.4; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
             Chào bạn, bạn đang cần hỗ trợ gì ạ? ❤️
           </div>
         </div>
+
       </div>
 
-      <div style="background: #fde047; padding: 10px 14px; display: flex; items: center; gap: 10px; align-items: center;">
-        <i class="fa-solid fa-paperclip" style="font-size: 18px; color: #475569;"></i>
-        <input type="text" placeholder="Aa" style="flex: 1; border: none; outline: none; padding: 8px 14px; border-radius: 20px; background: #ffffff;">
-        <i class="fa-solid fa-paper-plane" style="font-size: 18px; color: #4d7c0f;"></i>
+      <!-- Bottom Chat Input Toolbar -->
+      <div style="background-color: #f7d44c; padding: 10px 14px; display: flex; align-items: center; gap: 12px; box-sizing: border-box;">
+        
+        <i class="fa-solid fa-paper-plane" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+        <i class="fa-solid fa-camera" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+        <i class="fa-solid fa-image" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+        <i class="fa-solid fa-microphone" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+
+        <!-- Input Box Capsule -->
+        <div style="flex: 1; display: flex; align-items: center; background-color: rgba(220, 190, 70, 0.4); border-radius: 20px; padding: 8px 14px;">
+          <input type="text" placeholder="Aa" style="width: 100%; border: none; outline: none; background: transparent; font-size: 15px; color: #262626;">
+          <i class="fa-regular fa-face-smile" style="font-size: 20px; color: #6b7a22; cursor: pointer; margin-left: 6px;"></i>
+        </div>
+
+        <i class="fa-solid fa-thumbs-up" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+
       </div>
 
     </div>

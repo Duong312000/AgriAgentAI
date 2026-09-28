@@ -1,108 +1,256 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đăng sản phẩm nhập liệu</title>
+  <title>Thu thập thông tin - Nhập chữ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #FFFAD4;
+    }
+
+    .interactive-btn {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .interactive-btn:hover, .interactive-btn:active {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12) !important;
+    }
+
+    .custom-input {
+      width: 100%;
+      background-color: #f3f4f6;
+      border: 1px solid transparent;
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 15px;
+      color: #1f2937;
+      font-weight: 500;
+      outline: none;
+      box-sizing: border-box;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .custom-input:focus {
+      background-color: #ffffff;
+      border-color: #74862b;
+      box-shadow: 0 4px 12px rgba(116, 134, 43, 0.15);
+    }
+
+    .select-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .select-wrapper select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    .select-wrapper i {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #1f2937;
+      font-size: 13px;
+      pointer-events: none;
+    }
+
+    .form-label-custom {
+      display: block;
+      font-size: 15px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+  </style>
 </head>
+
 <body>
-  <div class="web-container">
+  <div class="web-container" style="background-color: #FFFAD4;">
     <div class="app-content">
 
-      <div class="app-header">
-        <a href="08-trang-chu-nong-dan.html" class="btn-back"><i class="fa-solid fa-chevron-left"></i></a>
-        <div>
-          <h2 style="font-size: 16px; font-weight: 800; color: #587820;">Thu thập thông tin</h2>
-          <div style="font-size: 12px; color: #64748b;">Hãy cung cấp thông tin về sản phẩm của bạn</div>
-        </div>
-      </div>
+      <div style="background-color: #FFFAD4; min-height: 100vh; display: flex; flex-direction: column; padding: 24px 20px 110px 20px; box-sizing: border-box;">
 
-      <div style="padding: 16px; flex: 1;">
-        <div style="border: 2px dashed #f59e0b; background-color: #fffbeb; border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 16px;">
-          <i class="fa-solid fa-camera" style="font-size: 36px; color: #334155; margin-bottom: 8px;"></i>
-          <div style="font-size: 13px; font-weight: 700; color: #78350f;">Chụp ảnh hoặc tải hình ảnh lên</div>
-        </div>
-
-        <div style="font-size: 14px; font-weight: 800; color: #587820; margin-bottom: 8px;">Mô tả chi tiết sản phẩm</div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; border-radius: 10px; overflow: hidden; margin-bottom: 16px;">
-          <a href="12-dang-san-pham-giong-noi.html" style="background-color: #fef08a; color: #854d0e; text-align: center; padding: 10px; font-weight: 700; font-size: 14px; text-decoration: none;">Giọng nói</a>
-          <div style="background-color: #92400e; color: #ffffff; text-align: center; padding: 10px; font-weight: 700; font-size: 14px;">Nhập chữ</div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Loại trái cây muốn bán</label>
-          <input type="text" class="form-input" value="Xoài">
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-          <div class="form-group">
-            <label class="form-label">Số điện thoại</label>
-            <input type="text" class="form-input" value="0914122980">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Ngày thu hoạch</label>
-            <input type="text" class="form-input" value="20/10/2026">
+        <!-- Header Top: Simple left arrow + Olive title -->
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 24px;">
+          <a href="08-trang-chu-nong-dan.html" style="font-size: 20px; color: #222222; text-decoration: none; margin-top: 1px; display: inline-flex; align-items: center;">
+            <i class="fa-solid fa-arrow-left"></i>
+          </a>
+          <div>
+            <h2 style="font-size: 20px; font-weight: 800; color: #74862b; margin: 0 0 6px 0; letter-spacing: -0.2px;">Thu thập thông tin</h2>
+            <div style="font-size: 14px; color: #666666; font-weight: 500;">Hãy cung cấp thông tin về sản phẩm của bạn</div>
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-          <div class="form-group">
-            <label class="form-label">Sản lượng</label>
-            <input type="text" class="form-input" value="50kg">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Giá cả/ kg</label>
-            <input type="text" class="form-input" value="30.000 vnđ">
-          </div>
+        <!-- Box 1: Large Image Upload Container -->
+        <div class="interactive-btn" style="border: 1.5px dashed #e6d68b; background-color: #fdf6d8; border-radius: 18px; padding: 32px 16px; text-align: center; margin-bottom: 14px; box-shadow: 0 4px 14px rgba(230, 214, 139, 0.25);">
+          <i class="fa-solid fa-camera" style="font-size: 48px; color: #000000; margin-bottom: 14px;"></i>
+          <div style="font-size: 16px; font-weight: 700; color: #74862b; margin-bottom: 4px;">Chụp ảnh hoặc tải hình ảnh lên</div>
+          <div style="font-size: 13px; color: #998a44; font-weight: 500;">Hình ảnh sẽ hiện lên tại đây</div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
-          <div class="form-group">
-            <label class="form-label">Ấp</label>
-            <input type="text" class="form-input" value="ấp Hòa">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Xã</label>
-            <input type="text" class="form-input" value="Vĩnh Kim">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Tỉnh</label>
-            <input type="text" class="form-input" value="Đồng Tháp">
-          </div>
+        <!-- Box 2 & 3: Two small upload buttons -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px;">
+          <button class="interactive-btn" style="border: 1.5px dashed #e6d68b; background-color: #fdf6d8; border-radius: 14px; padding: 14px 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 700; color: #74862b; outline: none; box-shadow: 0 4px 10px rgba(230, 214, 139, 0.2);">
+            <i class="fa-solid fa-camera" style="font-size: 20px; color: #000000;"></i> Chụp ảnh
+          </button>
+          <button class="interactive-btn" style="border: 1.5px dashed #e6d68b; background-color: #fdf6d8; border-radius: 14px; padding: 14px 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 700; color: #74862b; outline: none; box-shadow: 0 4px 10px rgba(230, 214, 139, 0.2);">
+            <i class="fa-solid fa-images" style="font-size: 20px; color: #000000;"></i> Tải ảnh từ thư viện
+          </button>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">Mô tả chi tiết sản phẩm</label>
-          <textarea class="form-input" rows="3">5 kg xoài cát loại 1, da nhẵn,...</textarea>
+        <!-- Section Title: Mô tả chi tiết sản phẩm -->
+        <div style="font-size: 16px; font-weight: 800; color: #74862b; margin-bottom: 4px;">Mô tả chi tiết sản phẩm</div>
+        <div style="font-size: 14px; color: #666666; margin-bottom: 16px; font-weight: 500;">Hãy chọn hình thức để mô tả về sản phẩm của bạn</div>
+
+        <!-- Tab Toggle Switch (Active: Nhập chữ) -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; border-radius: 10px; overflow: hidden; margin-bottom: 28px; box-shadow: 0 4px 12px rgba(122, 68, 0, 0.15);">
+          <a href="12-dang-san-pham-giong-noi.html" class="interactive-btn" style="background-color: #fdf6d8; color: #7a4400; text-align: center; padding: 14px; font-weight: 700; font-size: 15px; text-decoration: none;">Giọng nói</a>
+          <div class="interactive-btn" style="background-color: #7a4400; color: #ffffff; text-align: center; padding: 14px; font-weight: 700; font-size: 15px;">Nhập chữ</div>
         </div>
 
-        <a href="20-chinh-sua-bai-dang.html" class="btn-primary" style="background-color: #8db837; margin-bottom: 20px;">
+        <!-- Form Fields Section -->
+        <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 32px;">
+
+          <!-- Field 1: Loại trái cây muốn bán -->
+          <div>
+            <label class="form-label-custom">Loại trái cây muốn bán</label>
+            <input type="text" class="custom-input" value="Xoài">
+          </div>
+
+          <!-- Row 2: Số điện thoại & Ngày thu hoạch -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div>
+              <label class="form-label-custom">Số điện thoại</label>
+              <input type="text" class="custom-input" value="0914122980">
+            </div>
+            <div>
+              <label class="form-label-custom">Ngày thu hoạch</label>
+              <div class="select-wrapper">
+                <select class="custom-input">
+                  <option selected>20/10/2026</option>
+                  <option>25/10/2026</option>
+                  <option>30/10/2026</option>
+                </select>
+                <i class="fa-solid fa-caret-down"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 3: Sản lượng & Giá cả/ kg -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div>
+              <label class="form-label-custom">Sản lượng</label>
+              <input type="text" class="custom-input" value="50kg">
+            </div>
+            <div>
+              <label class="form-label-custom">Giá cả/ kg</label>
+              <div class="select-wrapper">
+                <select class="custom-input">
+                  <option selected>30.000 vnđ</option>
+                  <option>35.000 vnđ</option>
+                  <option>40.000 vnđ</option>
+                </select>
+                <i class="fa-solid fa-caret-down"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 4: Ấp, Xã, Tỉnh -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+            <div>
+              <label class="form-label-custom">Ấp</label>
+              <div class="select-wrapper">
+                <select class="custom-input" style="padding: 14px 28px 14px 12px; font-size: 14px;">
+                  <option selected>ấp Hòa</option>
+                  <option>ấp Bình</option>
+                </select>
+                <i class="fa-solid fa-caret-down" style="right: 8px;"></i>
+              </div>
+            </div>
+            <div>
+              <label class="form-label-custom">Xã</label>
+              <div class="select-wrapper">
+                <select class="custom-input" style="padding: 14px 28px 14px 12px; font-size: 14px;">
+                  <option selected>Vĩnh Kim</option>
+                  <option>Kim Sơn</option>
+                </select>
+                <i class="fa-solid fa-caret-down" style="right: 8px;"></i>
+              </div>
+            </div>
+            <div>
+              <label class="form-label-custom">Tỉnh</label>
+              <div class="select-wrapper">
+                <select class="custom-input" style="padding: 14px 28px 14px 12px; font-size: 14px;">
+                  <option selected>Đồng Tháp</option>
+                  <option>Tiền Giang</option>
+                </select>
+                <i class="fa-solid fa-caret-down" style="right: 8px;"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Field 5: Địa chỉ cụ thể & Sử dụng vị trí hiện tại -->
+          <div>
+            <label class="form-label-custom">Địa chỉ cụ thể</label>
+            <input type="text" class="custom-input" value="ấp Hòa, Xã Vĩnh Kim, tỉnh Đồng Tháp">
+            <a href="#" style="color: #2563eb; font-size: 13.5px; text-align: center; display: block; margin-top: 10px; text-decoration: none; font-weight: 600;">
+              Sử dụng vị trí hiện tại của bạn
+            </a>
+          </div>
+
+          <!-- Field 6: Mô tả chi tiết sản phẩm -->
+          <div>
+            <label class="form-label-custom">Mô tả chi tiết sản phẩm</label>
+            <textarea class="custom-input" rows="4" style="resize: none;">5 kg xoài cát loại 1, da nhẵn,...</textarea>
+          </div>
+
+        </div>
+
+        <!-- Button Tiếp theo -->
+        <a href="17-dinh-gia-ai.html" class="interactive-btn" style="display: block; width: 100%; background-color: #749c25; color: #ffffff; text-align: center; padding: 16px 20px; border-radius: 16px; font-size: 18px; font-weight: 800; text-decoration: none; box-shadow: 0 8px 20px rgba(116, 156, 37, 0.4); box-sizing: border-box; margin-bottom: 12px;">
           Tiếp theo
         </a>
+
       </div>
-<div class="bottom-nav">
-  <a href="08-trang-chu-nong-dan.html" class="nav-item active">
-    <i class="fa-solid fa-house"></i>
-    <span>Trang chủ</span>
-  </a>
-  <a href="14-danh-sach-tro-chuyen.html" class="nav-item ">
-    <i class="fa-regular fa-comment-dots"></i>
-    <span>Trò chuyện</span>
-  </a>
-  <a href="10-thong-bao.html" class="nav-item ">
-    <i class="fa-regular fa-bell"></i>
-    <span>Thông Báo</span>
-  </a>
-  <a href="13-ca-nhan.html" class="nav-item ">
-    <i class="fa-regular fa-user"></i>
-    <span>Cá nhân</span>
-  </a>
-</div>
+
+      <!-- Bottom Navigation Bar -->
+      <div class="bottom-nav">
+        <a href="08-trang-chu-nong-dan.html" class="nav-item active">
+          <i class="fa-solid fa-house"></i>
+          <span>Trang chủ</span>
+        </a>
+        <a href="14-danh-sach-tro-chuyen.html" class="nav-item">
+          <i class="fa-regular fa-comment-dots"></i>
+          <span>Trò chuyện</span>
+        </a>
+        <a href="10-thong-bao.html" class="nav-item">
+          <i class="fa-regular fa-bell"></i>
+          <span>Thông Báo</span>
+        </a>
+        <a href="13-ca-nhan.html" class="nav-item">
+          <i class="fa-regular fa-user"></i>
+          <span>Cá nhân</span>
+        </a>
+      </div>
 
     </div>
   </div>
 </body>
+
 </html>
