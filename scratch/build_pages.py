@@ -923,59 +923,141 @@ with open(os.path.join(output_dir, "13-ca-nhan.html"), "w", encoding="utf-8") as
 # 14. Chat Conversations List
 # ----------------------------------------------------------------------
 page_14 = """
-      <div style="background-color: #fef08a; padding: 16px 12px; display: flex; gap: 14px; overflow-x: auto; flex-shrink: 0;">
-        <div style="text-align: center; flex-shrink: 0;">
-          <div style="position: relative; width: 52px; height: 52px; margin: 0 auto 4px;">
-            <img src="../image/Trái cây/xoai.jpg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-            <span style="position: absolute; bottom: 0; right: 0; width: 14px; height: 14px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
-          </div>
-          <div style="font-size: 11px; font-weight: 700; color: #334155;">Dương Mít</div>
-        </div>
-
-        <div style="text-align: center; flex-shrink: 0;">
-          <div style="position: relative; width: 52px; height: 52px; margin: 0 auto 4px;">
-            <img src="../image/Trái cây/chom chom ban.jpg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-            <span style="position: absolute; bottom: 0; right: 0; width: 14px; height: 14px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
-          </div>
-          <div style="font-size: 11px; font-weight: 700; color: #334155;">Khang Xoài</div>
-        </div>
-
-        <div style="text-align: center; flex-shrink: 0;">
-          <div style="position: relative; width: 52px; height: 52px; margin: 0 auto 4px;">
-            <img src="../image/Trái cây/sau rieng.jpg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-            <span style="position: absolute; bottom: 0; right: 0; width: 14px; height: 14px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
-          </div>
-          <div style="font-size: 11px; font-weight: 700; color: #334155;">Thanh</div>
+      <div class="app-header green" style="justify-content: space-between;">
+        <h2 class="header-title" style="font-size: 20px; font-weight: 800;">Trò chuyện</h2>
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <i class="fa-solid fa-magnifying-glass" style="font-size: 18px;"></i>
+          <i class="fa-solid fa-ellipsis-vertical" style="font-size: 18px;"></i>
         </div>
       </div>
 
-      <div style="padding: 16px; flex: 1;">
-        <a href="18-tro-chuyen-ai-agriagent.html" style="display: flex; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit;">
-          <img src="../image/Trái cây/chom chom ban.jpg" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover;">
-          <div style="flex: 1;">
-            <div style="font-weight: 800; font-size: 15px; color: #1e293b;">Khang Xoài</div>
-            <div style="font-size: 13px; color: #64748b; margin-top: 2px;">Bạn: Xoài này ngon lắm anh · 9:40 AM</div>
+      <!-- Top horizontal active story avatars -->
+      <div style="background-color: #f4f8ec; padding: 14px 12px; display: flex; gap: 16px; overflow-x: auto; flex-shrink: 0; border-bottom: 1px solid #e2e8f0;">
+        <a href="18-tro-chuyen-ai-agriagent.html" style="text-align: center; flex-shrink: 0; text-decoration: none;">
+          <div style="position: relative; width: 54px; height: 54px; margin: 0 auto 4px; border: 2px solid #769f2e; border-radius: 50%; padding: 2px; background: #fff;">
+            <img src="../image/logo.png" style="width: 100%; height: 100%; border-radius: 50%; object-fit: contain;">
+            <span style="position: absolute; bottom: 0; right: 0; width: 14px; height: 14px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
           </div>
-          <i class="fa-regular fa-circle" style="color: #cbd5e1;"></i>
+          <div style="font-size: 11px; font-weight: 700; color: #1e293b;">Agri AI</div>
         </a>
 
-        <a href="19-tro-chuyen-nhan-vien.html" style="display: flex; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit;">
-          <img src="../image/Trái cây/oi.jpg" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover;">
-          <div style="flex: 1;">
-            <div style="font-weight: 800; font-size: 15px; color: #1e293b;">Trường Giang</div>
-            <div style="font-size: 13px; color: #64748b; margin-top: 2px;">Bạn: Xin lỗi vì trời mưa · 9:25 AM</div>
+        <a href="28-tro-chuyen-ca-nhan.html?user=khang-xoai" style="text-align: center; flex-shrink: 0; text-decoration: none;">
+          <div style="position: relative; width: 54px; height: 54px; margin: 0 auto 4px; border: 2px solid #769f2e; border-radius: 50%; padding: 2px; background: #fff;">
+            <img src="../image/Trái cây/chom chom ban.jpg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+            <span style="position: absolute; bottom: 0; right: 0; width: 14px; height: 14px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
           </div>
-          <i class="fa-solid fa-circle-check" style="color: #94a3b8;"></i>
+          <div style="font-size: 11px; font-weight: 700; color: #1e293b;">Khang Xoài</div>
         </a>
 
-        <div style="display: flex; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f5f9;">
-          <img src="../image/Trái cây/sau rieng.jpg" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover;">
-          <div style="flex: 1;">
-            <div style="font-weight: 800; font-size: 15px; color: #1e293b;">Thanh</div>
-            <div style="font-size: 13px; color: #64748b; margin-top: 2px;">Bạn: Mình xin xác nhận lại đơ... · Fri</div>
+        <a href="28-tro-chuyen-ca-nhan.html?user=duong-mit" style="text-align: center; flex-shrink: 0; text-decoration: none;">
+          <div style="position: relative; width: 54px; height: 54px; margin: 0 auto 4px; border: 2px solid #769f2e; border-radius: 50%; padding: 2px; background: #fff;">
+            <img src="../image/Trái cây/xoai.jpg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+            <span style="position: absolute; bottom: 0; right: 0; width: 14px; height: 14px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
           </div>
-          <i class="fa-solid fa-circle-check" style="color: #94a3b8;"></i>
-        </div>
+          <div style="font-size: 11px; font-weight: 700; color: #1e293b;">Dương Mít</div>
+        </a>
+
+        <a href="28-tro-chuyen-ca-nhan.html?user=truong-giang" style="text-align: center; flex-shrink: 0; text-decoration: none;">
+          <div style="position: relative; width: 54px; height: 54px; margin: 0 auto 4px; border: 2px solid #769f2e; border-radius: 50%; padding: 2px; background: #fff;">
+            <img src="../image/Trái cây/oi.jpg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+            <span style="position: absolute; bottom: 0; right: 0; width: 14px; height: 14px; background: #cbd5e1; border: 2px solid #fff; border-radius: 50%;"></span>
+          </div>
+          <div style="font-size: 11px; font-weight: 700; color: #1e293b;">Trường Giang</div>
+        </a>
+
+        <a href="28-tro-chuyen-ca-nhan.html?user=thanh" style="text-align: center; flex-shrink: 0; text-decoration: none;">
+          <div style="position: relative; width: 54px; height: 54px; margin: 0 auto 4px; border: 2px solid #769f2e; border-radius: 50%; padding: 2px; background: #fff;">
+            <img src="../image/Trái cây/sau rieng.jpg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+            <span style="position: absolute; bottom: 0; right: 0; width: 14px; height: 14px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
+          </div>
+          <div style="font-size: 11px; font-weight: 700; color: #1e293b;">Thanh</div>
+        </a>
+      </div>
+
+      <!-- Main Chat Conversations List -->
+      <div style="padding: 8px 16px; flex: 1; background: #ffffff;">
+        <a href="18-tro-chuyen-ai-agriagent.html" style="display: flex; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit;">
+          <div style="position: relative;">
+            <img src="../image/logo.png" style="width: 52px; height: 52px; border-radius: 50%; object-fit: contain; background: #fef08a; padding: 4px;">
+            <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
+          </div>
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <div style="font-weight: 800; font-size: 15px; color: #1e293b;">AgriAgent AI</div>
+              <span style="font-size: 11px; color: #769f2e; font-weight: 700;">Trợ lý AI</span>
+            </div>
+            <div style="font-size: 13px; color: #64748b;">Chào bạn, mình là AgriAgent AI! Bạn có thắc mắc...</div>
+          </div>
+        </a>
+
+        <a href="19-tro-chuyen-nhan-vien.html" style="display: flex; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit;">
+          <div style="position: relative;">
+            <img src="../image/logo.png" style="width: 52px; height: 52px; border-radius: 50%; object-fit: contain; background: #fef08a; padding: 4px;">
+            <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
+          </div>
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <div style="font-weight: 800; font-size: 15px; color: #1e293b;">Nhân viên hỗ trợ</div>
+              <span style="font-size: 11px; color: #94a3b8;">Vừa xong</span>
+            </div>
+            <div style="font-size: 13px; color: #64748b;">Chào bạn, Trung tâm hỗ trợ AgriAgent AI xin nghe! ❤️</div>
+          </div>
+        </a>
+
+        <a href="28-tro-chuyen-ca-nhan.html?user=khang-xoai" style="display: flex; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit;">
+          <div style="position: relative;">
+            <img src="../image/Trái cây/chom chom ban.jpg" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover;">
+            <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
+          </div>
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <div style="font-weight: 800; font-size: 15px; color: #1e293b;">Khang Xoài</div>
+              <span style="font-size: 11px; color: #94a3b8;">9:41 AM</span>
+            </div>
+            <div style="font-size: 13px; color: #64748b;">Dạ 30.000đ/kg thôi anh, ghép chuyến giao tận nơi...</div>
+          </div>
+        </a>
+
+        <a href="28-tro-chuyen-ca-nhan.html?user=duong-mit" style="display: flex; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit;">
+          <div style="position: relative;">
+            <img src="../image/Trái cây/xoai.jpg" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover;">
+            <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
+          </div>
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <div style="font-weight: 800; font-size: 15px; color: #1e293b;">Dương Mít</div>
+              <span style="font-size: 11px; color: #94a3b8;">8:22 AM</span>
+            </div>
+            <div style="font-size: 13px; color: #64748b;">Dạ cũng đang vào lứa thu hoạch ngon lắm chú ạ.</div>
+          </div>
+        </a>
+
+        <a href="28-tro-chuyen-ca-nhan.html?user=truong-giang" style="display: flex; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit;">
+          <div style="position: relative;">
+            <img src="../image/Trái cây/oi.jpg" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover;">
+          </div>
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <div style="font-weight: 800; font-size: 15px; color: #1e293b;">Trường Giang</div>
+              <span style="font-size: 11px; color: #94a3b8;">9:26 AM</span>
+            </div>
+            <div style="font-size: 13px; color: #64748b;">Dạ xe bên em có bạt che kín nên nông sản an toàn...</div>
+          </div>
+        </a>
+
+        <a href="28-tro-chuyen-ca-nhan.html?user=thanh" style="display: flex; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit;">
+          <div style="position: relative;">
+            <img src="../image/Trái cây/sau rieng.jpg" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover;">
+            <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
+          </div>
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <div style="font-weight: 800; font-size: 15px; color: #1e293b;">Thanh</div>
+              <span style="font-size: 11px; color: #94a3b8;">Thứ 6</span>
+            </div>
+            <div style="font-size: 13px; color: #64748b;">Ok bạn nhé, tài xế sẽ gọi trước khi giao 15 phút.</div>
+          </div>
+        </a>
       </div>
 """ + get_bottom_nav("chat")
 with open(os.path.join(output_dir, "14-danh-sach-tro-chuyen.html"), "w", encoding="utf-8") as f:
@@ -1158,44 +1240,33 @@ with open(os.path.join(output_dir, "17-dinh-gia-ai.html"), "w", encoding="utf-8"
 # 18. Chat with AgriAgent AI Assistant
 # ----------------------------------------------------------------------
 page_18 = """
-      <div class="app-header" style="background-color: #fde047; color: #1e293b; justify-content: space-between;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <a href="17-dinh-gia-ai.html" style="color: #1e293b; text-decoration: none;"><i class="fa-solid fa-chevron-left" style="font-size: 18px;"></i></a>
-          <img src="../image/logo.png" style="height: 28px; width: auto;">
-          <span style="font-size: 18px; font-weight: 800;">AgriAgent AI</span>
-        </div>
-        <div style="display: flex; gap: 14px;">
-          <i class="fa-solid fa-phone" style="font-size: 18px;"></i>
-          <i class="fa-solid fa-video" style="font-size: 18px;"></i>
-        </div>
-      </div>
-
-      <div style="padding: 16px; flex: 1; background-color: #fefce8; display: flex; flex-direction: column; gap: 14px;">
-        <div style="display: flex; gap: 8px; max-width: 85%;">
-          <img src="../image/logo.png" style="height: 24px; width: auto; margin-top: 4px;">
-          <div style="background: #ffffff; padding: 12px 16px; border-radius: 18px 18px 18px 4px; font-size: 14px; box-shadow: var(--shadow-sm);">
-            Chào bạn, bạn có thắc mắc gì không ?
+      <div class="app-header green" style="justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.05);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <a href="14-danh-sach-tro-chuyen.html" class="btn-back" style="color: #ffffff;"><i class="fa-solid fa-chevron-left"></i></a>
+          <img id="chat-header-avatar" src="../image/logo.png" style="width: 40px; height: 40px; border-radius: 50%; object-fit: contain; background: #fef08a; padding: 2px;">
+          <div>
+            <div id="chat-header-name" style="font-size: 16px; font-weight: 800; color: #ffffff; line-height: 1.2;">AgriAgent AI</div>
+            <div id="chat-header-status" style="font-size: 11px; color: rgba(255,255,255,0.85);">Trợ lý AI trực tuyến 24/7</div>
           </div>
         </div>
-
-        <div style="align-self: flex-end; max-width: 80%; background: #4f46e5; color: #ffffff; padding: 12px 16px; border-radius: 18px 18px 4px 18px; font-size: 14px;">
-          Tôi muốn hỏi về giá thành và cách chăm cây
-        </div>
-
-        <div style="display: flex; gap: 8px; max-width: 85%;">
-          <img src="../image/logo.png" style="height: 24px; width: auto; margin-top: 4px;">
-          <div style="background: #ffffff; padding: 12px 16px; border-radius: 18px 18px 18px 4px; font-size: 14px; box-shadow: var(--shadow-sm);">
-            Mình hiểu ý bạn rồi ! Hãy cho mình thêm thông tin về sản phẩm của bạn nhé, đừng ngần ngại
-          </div>
+        <div style="display: flex; gap: 16px; color: #ffffff; font-size: 18px; align-items: center;">
+          <i class="fa-solid fa-phone" style="cursor: pointer;"></i>
+          <i class="fa-solid fa-video" style="cursor: pointer;"></i>
         </div>
       </div>
 
-      <div style="background: #fde047; padding: 10px 14px; display: flex; items: center; gap: 10px; align-items: center;">
-        <i class="fa-solid fa-paperclip" style="font-size: 18px; color: #475569;"></i>
-        <i class="fa-solid fa-camera" style="font-size: 18px; color: #475569;"></i>
-        <input type="text" placeholder="Aa" style="flex: 1; border: none; outline: none; padding: 8px 14px; border-radius: 20px; background: #ffffff;">
-        <i class="fa-solid fa-thumbs-up" style="font-size: 20px; color: #475569;"></i>
+      <div id="chat-messages-list" style="padding: 16px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; background-color: #FFFAD4; gap: 10px;">
+        <!-- Dynamic chat content populated by js/chat.js -->
       </div>
+
+      <div style="padding: 12px 16px; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; align-items: center; gap: 10px; position: sticky; bottom: 0;">
+        <button style="border: none; background: none; color: #769f2e; font-size: 20px; cursor: pointer;"><i class="fa-solid fa-paperclip"></i></button>
+        <button style="border: none; background: none; color: #769f2e; font-size: 20px; cursor: pointer;"><i class="fa-solid fa-camera"></i></button>
+        <input id="chat-input" type="text" placeholder="Nhập tin nhắn..." style="flex: 1; border: 1.5px solid #cbd5e1; outline: none; padding: 10px 16px; border-radius: 24px; font-size: 14px; background: #f8fafc;">
+        <button id="btn-send-chat" style="border: none; background: #769f2e; color: #ffffff; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(118,159,46,0.3); flex-shrink: 0;"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+      <script src="../js/chat.js"></script>
+      <script>document.addEventListener('DOMContentLoaded', initChatPage);</script>
 """
 with open(os.path.join(output_dir, "18-tro-chuyen-ai-agriagent.html"), "w", encoding="utf-8") as f:
     f.write(wrap_html("Trò chuyện với AI", page_18))
@@ -1204,35 +1275,71 @@ with open(os.path.join(output_dir, "18-tro-chuyen-ai-agriagent.html"), "w", enco
 # 19. Chat with Support Staff
 # ----------------------------------------------------------------------
 page_19 = """
-      <div class="app-header" style="background-color: #fde047; color: #1e293b; justify-content: space-between;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <a href="13-ca-nhan.html" style="color: #1e293b; text-decoration: none;"><i class="fa-solid fa-chevron-left" style="font-size: 18px;"></i></a>
-          <img src="../image/logo.png" style="height: 28px; width: auto;">
-          <span style="font-size: 18px; font-weight: 800;">Nhân viên hỗ trợ</span>
-        </div>
-        <div style="display: flex; gap: 14px;">
-          <i class="fa-solid fa-phone" style="font-size: 18px;"></i>
-          <i class="fa-solid fa-video" style="font-size: 18px;"></i>
-        </div>
-      </div>
-
-      <div style="padding: 16px; flex: 1; background-color: #fefce8;">
-        <div style="display: flex; gap: 8px; max-width: 85%;">
-          <img src="../image/logo.png" style="height: 24px; width: auto; margin-top: 4px;">
-          <div style="background: #ffffff; padding: 12px 16px; border-radius: 18px 18px 18px 4px; font-size: 14px; box-shadow: var(--shadow-sm);">
-            Chào bạn, bạn đang cần hỗ trợ gì ạ? ❤️
+      <div class="app-header green" style="justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.05);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <a href="14-danh-sach-tro-chuyen.html" class="btn-back" style="color: #ffffff;"><i class="fa-solid fa-chevron-left"></i></a>
+          <img id="chat-header-avatar" src="../image/logo.png" style="width: 40px; height: 40px; border-radius: 50%; object-fit: contain; background: #fef08a; padding: 2px;">
+          <div>
+            <div id="chat-header-name" style="font-size: 16px; font-weight: 800; color: #ffffff; line-height: 1.2;">Nhân viên hỗ trợ</div>
+            <div id="chat-header-status" style="font-size: 11px; color: rgba(255,255,255,0.85);">Bộ phận chăm sóc khách hàng</div>
           </div>
         </div>
+        <div style="display: flex; gap: 16px; color: #ffffff; font-size: 18px; align-items: center;">
+          <i class="fa-solid fa-phone" style="cursor: pointer;"></i>
+          <i class="fa-solid fa-video" style="cursor: pointer;"></i>
+        </div>
       </div>
 
-      <div style="background: #fde047; padding: 10px 14px; display: flex; items: center; gap: 10px; align-items: center;">
-        <i class="fa-solid fa-paperclip" style="font-size: 18px; color: #475569;"></i>
-        <input type="text" placeholder="Aa" style="flex: 1; border: none; outline: none; padding: 8px 14px; border-radius: 20px; background: #ffffff;">
-        <i class="fa-solid fa-paper-plane" style="font-size: 18px; color: #4d7c0f;"></i>
+      <div id="chat-messages-list" style="padding: 16px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; background-color: #FFFAD4; gap: 10px;">
+        <!-- Dynamic chat content populated by js/chat.js -->
       </div>
+
+      <div style="padding: 12px 16px; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; align-items: center; gap: 10px; position: sticky; bottom: 0;">
+        <button style="border: none; background: none; color: #769f2e; font-size: 20px; cursor: pointer;"><i class="fa-solid fa-paperclip"></i></button>
+        <button style="border: none; background: none; color: #769f2e; font-size: 20px; cursor: pointer;"><i class="fa-solid fa-camera"></i></button>
+        <input id="chat-input" type="text" placeholder="Nhập yêu cầu hỗ trợ..." style="flex: 1; border: 1.5px solid #cbd5e1; outline: none; padding: 10px 16px; border-radius: 24px; font-size: 14px; background: #f8fafc;">
+        <button id="btn-send-chat" style="border: none; background: #769f2e; color: #ffffff; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(118,159,46,0.3); flex-shrink: 0;"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+      <script src="../js/chat.js"></script>
+      <script>document.addEventListener('DOMContentLoaded', initChatPage);</script>
 """
 with open(os.path.join(output_dir, "19-tro-chuyen-nhan-vien.html"), "w", encoding="utf-8") as f:
     f.write(wrap_html("Trò chuyện hỗ trợ", page_19))
+
+# ----------------------------------------------------------------------
+# 28. Individual Personal Chat Screen
+# ----------------------------------------------------------------------
+page_28 = """
+      <div class="app-header green" style="justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.05);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <a href="14-danh-sach-tro-chuyen.html" class="btn-back" style="color: #ffffff;"><i class="fa-solid fa-chevron-left"></i></a>
+          <img id="chat-header-avatar" src="../image/Trái cây/chom chom ban.jpg" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff;">
+          <div>
+            <div id="chat-header-name" style="font-size: 16px; font-weight: 800; color: #ffffff; line-height: 1.2;">Nông dân</div>
+            <div id="chat-header-status" style="font-size: 11px; color: rgba(255,255,255,0.85);">Đang hoạt động</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 16px; color: #ffffff; font-size: 18px; align-items: center;">
+          <i class="fa-solid fa-phone" style="cursor: pointer;"></i>
+          <i class="fa-solid fa-video" style="cursor: pointer;"></i>
+        </div>
+      </div>
+
+      <div id="chat-messages-list" style="padding: 16px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; background-color: #f9f8ee; gap: 10px;">
+        <!-- Dynamic chat content populated by js/chat.js -->
+      </div>
+
+      <div style="padding: 12px 16px; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; align-items: center; gap: 10px; position: sticky; bottom: 0;">
+        <button style="border: none; background: none; color: #769f2e; font-size: 20px; cursor: pointer;"><i class="fa-solid fa-paperclip"></i></button>
+        <button style="border: none; background: none; color: #769f2e; font-size: 20px; cursor: pointer;"><i class="fa-solid fa-camera"></i></button>
+        <input id="chat-input" type="text" placeholder="Nhập tin nhắn..." style="flex: 1; border: 1.5px solid #cbd5e1; outline: none; padding: 10px 16px; border-radius: 24px; font-size: 14px; background: #f8fafc;">
+        <button id="btn-send-chat" style="border: none; background: #769f2e; color: #ffffff; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(118,159,46,0.3); flex-shrink: 0;"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+      <script src="../js/chat.js"></script>
+      <script>document.addEventListener('DOMContentLoaded', initChatPage);</script>
+"""
+with open(os.path.join(output_dir, "28-tro-chuyen-ca-nhan.html"), "w", encoding="utf-8") as f:
+    f.write(wrap_html("Trò chuyện cá nhân", page_28))
 
 # ----------------------------------------------------------------------
 # 20. Post / Edit Product Screen
