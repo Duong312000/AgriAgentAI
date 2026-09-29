@@ -1240,30 +1240,39 @@ with open(os.path.join(output_dir, "17-dinh-gia-ai.html"), "w", encoding="utf-8"
 # 18. Chat with AgriAgent AI Assistant
 # ----------------------------------------------------------------------
 page_18 = """
-      <div class="app-header green" style="justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.05);">
+      <!-- Header Top: Sunny Yellow, matching original sample -->
+      <div style="background-color: #fde047; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #facc15;">
         <div style="display: flex; align-items: center; gap: 12px;">
-          <a href="14-danh-sach-tro-chuyen.html" class="btn-back" style="color: #ffffff;"><i class="fa-solid fa-chevron-left"></i></a>
-          <img id="chat-header-avatar" src="../image/logo.png" style="width: 40px; height: 40px; border-radius: 50%; object-fit: contain; background: #fef08a; padding: 2px;">
+          <a href="14-danh-sach-tro-chuyen.html" style="color: #111827; text-decoration: none; font-size: 18px; display: flex; align-items: center;">
+            <i class="fa-solid fa-chevron-left"></i>
+          </a>
+          <img id="chat-header-avatar" src="../image/logo.png" alt="Logo" style="height: 32px; width: auto;">
           <div>
-            <div id="chat-header-name" style="font-size: 16px; font-weight: 800; color: #ffffff; line-height: 1.2;">AgriAgent AI</div>
-            <div id="chat-header-status" style="font-size: 11px; color: rgba(255,255,255,0.85);">Trợ lý AI trực tuyến 24/7</div>
+            <div id="chat-header-name" style="font-size: 19px; font-weight: 800; color: #111827; margin: 0; line-height: 1.2;">AgriAgent AI</div>
+            <div id="chat-header-status" style="font-size: 11px; color: #587820; font-weight: 600;">Trợ lý AI trực tuyến 24/7</div>
           </div>
         </div>
-        <div style="display: flex; gap: 16px; color: #ffffff; font-size: 18px; align-items: center;">
-          <i class="fa-solid fa-phone" style="cursor: pointer;"></i>
-          <i class="fa-solid fa-video" style="cursor: pointer;"></i>
+      </div>
+
+      <!-- Main Chat Body -->
+      <div id="chat-messages-list" style="padding: 24px 18px; flex: 1; background-color: #FFFAD4; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box; overflow-y: auto;">
+        <!-- Messages rendered dynamically by js/chat.js -->
+      </div>
+
+      <!-- Bottom Chat Input Toolbar matching original sample -->
+      <div style="background-color: #fde047; padding: 10px 14px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #facc15;">
+        <i class="fa-solid fa-camera" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+        <i class="fa-regular fa-image" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+        <i class="fa-solid fa-microphone" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+
+        <div style="flex: 1; display: flex; align-items: center; background-color: #ffffff; border-radius: 22px; padding: 6px 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+          <input id="chat-input" type="text" placeholder="Aa" style="width: 100%; border: none; outline: none; background: transparent; font-size: 15px; color: #111827;">
+          <i class="fa-regular fa-face-smile" style="font-size: 20px; color: #6b7a22; cursor: pointer; margin-left: 6px;"></i>
         </div>
-      </div>
 
-      <div id="chat-messages-list" style="padding: 16px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; background-color: #FFFAD4; gap: 10px;">
-        <!-- Dynamic chat content populated by js/chat.js -->
-      </div>
-
-      <div style="padding: 12px 16px; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; align-items: center; gap: 10px; position: sticky; bottom: 0;">
-        <button style="border: none; background: none; color: #769f2e; font-size: 20px; cursor: pointer;"><i class="fa-solid fa-paperclip"></i></button>
-        <button style="border: none; background: none; color: #769f2e; font-size: 20px; cursor: pointer;"><i class="fa-solid fa-camera"></i></button>
-        <input id="chat-input" type="text" placeholder="Nhập tin nhắn..." style="flex: 1; border: 1.5px solid #cbd5e1; outline: none; padding: 10px 16px; border-radius: 24px; font-size: 14px; background: #f8fafc;">
-        <button id="btn-send-chat" style="border: none; background: #769f2e; color: #ffffff; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(118,159,46,0.3); flex-shrink: 0;"><i class="fa-solid fa-paper-plane"></i></button>
+        <button id="btn-send-chat" style="border: none; background: #6b7a22; color: #ffffff; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; flex-shrink: 0; box-shadow: 0 3px 8px rgba(107,122,34,0.3);">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
       </div>
       <script src="../js/chat.js"></script>
       <script>document.addEventListener('DOMContentLoaded', initChatPage);</script>
@@ -1275,30 +1284,39 @@ with open(os.path.join(output_dir, "18-tro-chuyen-ai-agriagent.html"), "w", enco
 # 19. Chat with Support Staff
 # ----------------------------------------------------------------------
 page_19 = """
-      <div class="app-header green" style="justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.05);">
+      <!-- Header Top: Sunny Yellow, matching original sample -->
+      <div style="background-color: #f7d44c; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #eab308;">
         <div style="display: flex; align-items: center; gap: 12px;">
-          <a href="14-danh-sach-tro-chuyen.html" class="btn-back" style="color: #ffffff;"><i class="fa-solid fa-chevron-left"></i></a>
-          <img id="chat-header-avatar" src="../image/logo.png" style="width: 40px; height: 40px; border-radius: 50%; object-fit: contain; background: #fef08a; padding: 2px;">
+          <a href="14-danh-sach-tro-chuyen.html" style="color: #262626; text-decoration: none; display: flex; align-items: center;">
+            <i class="fa-solid fa-chevron-left" style="font-size: 18px;"></i>
+          </a>
+          <img id="chat-header-avatar" src="../image/logo.png" alt="Logo" style="height: 32px; width: auto;">
           <div>
-            <div id="chat-header-name" style="font-size: 16px; font-weight: 800; color: #ffffff; line-height: 1.2;">Nhân viên hỗ trợ</div>
-            <div id="chat-header-status" style="font-size: 11px; color: rgba(255,255,255,0.85);">Bộ phận chăm sóc khách hàng</div>
+            <div id="chat-header-name" style="font-size: 19px; font-weight: 700; color: #262626; margin: 0; line-height: 1.2;">Nhân viên hỗ trợ</div>
+            <div id="chat-header-status" style="font-size: 11px; color: #6b7a22; font-weight: 600;">Bộ phận chăm sóc khách hàng</div>
           </div>
         </div>
-        <div style="display: flex; gap: 16px; color: #ffffff; font-size: 18px; align-items: center;">
-          <i class="fa-solid fa-phone" style="cursor: pointer;"></i>
-          <i class="fa-solid fa-video" style="cursor: pointer;"></i>
+      </div>
+
+      <!-- Main Chat Body -->
+      <div id="chat-messages-list" style="padding: 24px 18px; flex: 1; background-color: #FFFAD4; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box; overflow-y: auto;">
+        <!-- Messages rendered dynamically by js/chat.js -->
+      </div>
+
+      <!-- Bottom Chat Input Toolbar matching original sample -->
+      <div style="background-color: #f7d44c; padding: 10px 14px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #eab308;">
+        <i class="fa-solid fa-camera" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+        <i class="fa-regular fa-image" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+        <i class="fa-solid fa-microphone" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+
+        <div style="flex: 1; display: flex; align-items: center; background-color: #ffffff; border-radius: 22px; padding: 6px 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+          <input id="chat-input" type="text" placeholder="Aa" style="width: 100%; border: none; outline: none; background: transparent; font-size: 15px; color: #262626;">
+          <i class="fa-regular fa-face-smile" style="font-size: 20px; color: #6b7a22; cursor: pointer; margin-left: 6px;"></i>
         </div>
-      </div>
 
-      <div id="chat-messages-list" style="padding: 16px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; background-color: #FFFAD4; gap: 10px;">
-        <!-- Dynamic chat content populated by js/chat.js -->
-      </div>
-
-      <div style="padding: 12px 16px; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; align-items: center; gap: 10px; position: sticky; bottom: 0;">
-        <button style="border: none; background: none; color: #769f2e; font-size: 20px; cursor: pointer;"><i class="fa-solid fa-paperclip"></i></button>
-        <button style="border: none; background: none; color: #769f2e; font-size: 20px; cursor: pointer;"><i class="fa-solid fa-camera"></i></button>
-        <input id="chat-input" type="text" placeholder="Nhập yêu cầu hỗ trợ..." style="flex: 1; border: 1.5px solid #cbd5e1; outline: none; padding: 10px 16px; border-radius: 24px; font-size: 14px; background: #f8fafc;">
-        <button id="btn-send-chat" style="border: none; background: #769f2e; color: #ffffff; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(118,159,46,0.3); flex-shrink: 0;"><i class="fa-solid fa-paper-plane"></i></button>
+        <button id="btn-send-chat" style="border: none; background: #6b7a22; color: #ffffff; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; flex-shrink: 0; box-shadow: 0 3px 8px rgba(107,122,34,0.3);">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
       </div>
       <script src="../js/chat.js"></script>
       <script>document.addEventListener('DOMContentLoaded', initChatPage);</script>
@@ -1310,30 +1328,39 @@ with open(os.path.join(output_dir, "19-tro-chuyen-nhan-vien.html"), "w", encodin
 # 28. Individual Personal Chat Screen
 # ----------------------------------------------------------------------
 page_28 = """
-      <div class="app-header green" style="justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.05);">
+      <!-- Header Top: Sunny Yellow, matching original sample -->
+      <div style="background-color: #fde047; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #facc15;">
         <div style="display: flex; align-items: center; gap: 12px;">
-          <a href="14-danh-sach-tro-chuyen.html" class="btn-back" style="color: #ffffff;"><i class="fa-solid fa-chevron-left"></i></a>
-          <img id="chat-header-avatar" src="../image/Trái cây/chom chom ban.jpg" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff;">
+          <a href="14-danh-sach-tro-chuyen.html" style="color: #111827; text-decoration: none; font-size: 18px; display: flex; align-items: center;">
+            <i class="fa-solid fa-chevron-left"></i>
+          </a>
+          <img id="chat-header-avatar" src="../image/Trái cây/chom chom ban.jpg" alt="Avatar" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff;">
           <div>
-            <div id="chat-header-name" style="font-size: 16px; font-weight: 800; color: #ffffff; line-height: 1.2;">Nông dân</div>
-            <div id="chat-header-status" style="font-size: 11px; color: rgba(255,255,255,0.85);">Đang hoạt động</div>
+            <div id="chat-header-name" style="font-size: 18px; font-weight: 800; color: #111827; margin: 0; line-height: 1.2;">Nông dân</div>
+            <div id="chat-header-status" style="font-size: 11px; color: #587820; font-weight: 600;">Đang hoạt động</div>
           </div>
         </div>
-        <div style="display: flex; gap: 16px; color: #ffffff; font-size: 18px; align-items: center;">
-          <i class="fa-solid fa-phone" style="cursor: pointer;"></i>
-          <i class="fa-solid fa-video" style="cursor: pointer;"></i>
+      </div>
+
+      <!-- Main Chat Body -->
+      <div id="chat-messages-list" style="padding: 24px 18px; flex: 1; background-color: #FFFAD4; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box; overflow-y: auto;">
+        <!-- Messages rendered dynamically by js/chat.js -->
+      </div>
+
+      <!-- Bottom Chat Input Toolbar matching original sample -->
+      <div style="background-color: #fde047; padding: 10px 14px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #facc15;">
+        <i class="fa-solid fa-camera" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+        <i class="fa-regular fa-image" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+        <i class="fa-solid fa-microphone" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+
+        <div style="flex: 1; display: flex; align-items: center; background-color: #ffffff; border-radius: 22px; padding: 6px 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+          <input id="chat-input" type="text" placeholder="Aa" style="width: 100%; border: none; outline: none; background: transparent; font-size: 15px; color: #111827;">
+          <i class="fa-regular fa-face-smile" style="font-size: 20px; color: #6b7a22; cursor: pointer; margin-left: 6px;"></i>
         </div>
-      </div>
 
-      <div id="chat-messages-list" style="padding: 16px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; background-color: #f9f8ee; gap: 10px;">
-        <!-- Dynamic chat content populated by js/chat.js -->
-      </div>
-
-      <div style="padding: 12px 16px; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; align-items: center; gap: 10px; position: sticky; bottom: 0;">
-        <button style="border: none; background: none; color: #769f2e; font-size: 20px; cursor: pointer;"><i class="fa-solid fa-paperclip"></i></button>
-        <button style="border: none; background: none; color: #769f2e; font-size: 20px; cursor: pointer;"><i class="fa-solid fa-camera"></i></button>
-        <input id="chat-input" type="text" placeholder="Nhập tin nhắn..." style="flex: 1; border: 1.5px solid #cbd5e1; outline: none; padding: 10px 16px; border-radius: 24px; font-size: 14px; background: #f8fafc;">
-        <button id="btn-send-chat" style="border: none; background: #769f2e; color: #ffffff; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(118,159,46,0.3); flex-shrink: 0;"><i class="fa-solid fa-paper-plane"></i></button>
+        <button id="btn-send-chat" style="border: none; background: #6b7a22; color: #ffffff; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; flex-shrink: 0; box-shadow: 0 3px 8px rgba(107,122,34,0.3);">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
       </div>
       <script src="../js/chat.js"></script>
       <script>document.addEventListener('DOMContentLoaded', initChatPage);</script>
