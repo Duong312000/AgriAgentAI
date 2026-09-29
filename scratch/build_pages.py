@@ -924,15 +924,29 @@ with open(os.path.join(output_dir, "13-ca-nhan.html"), "w", encoding="utf-8") as
 # ----------------------------------------------------------------------
 page_14 = """
       <div style="background-color: #FFFAD4; flex: 1; display: flex; flex-direction: column;">
+        <!-- Top Header: User Profile Avatar & Name (Matching Screenshot) -->
+        <div style="padding: 20px 20px 12px 20px; display: flex; align-items: center; gap: 14px;">
+          <img src="../image/a28917e48c7907a6a465f308c3e68ba2.jpg" alt="Thùy Anh" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
+          <h1 style="font-size: 28px; font-weight: 800; color: #111827; margin: 0;">Thùy Anh</h1>
+        </div>
+
+        <!-- Search Bar Capsule (Matching Screenshot) -->
+        <div style="padding: 0 20px 14px 20px;">
+          <div style="display: flex; align-items: center; gap: 10px; border: 1.5px solid #111827; border-radius: 14px; padding: 10px 16px; background-color: rgba(255,255,255,0.15);">
+            <i class="fa-solid fa-magnifying-glass" style="color: #64748b; font-size: 16px;"></i>
+            <input type="text" placeholder="Search" style="flex: 1; border: none; outline: none; background: transparent; font-size: 16px; color: #111827; font-family: inherit;">
+          </div>
+        </div>
+
         <!-- Top Horizontal Scrollable Active Avatars (Matching Mockup) -->
-        <div style="display: flex; gap: 16px; overflow-x: auto; padding: 24px 16px 16px 16px; flex-shrink: 0; background-color: #FFFAD4;">
+        <div style="display: flex; gap: 16px; overflow-x: auto; padding: 4px 20px 16px 20px; flex-shrink: 0; background-color: #FFFAD4;">
           
           <a href="28-tro-chuyen-ca-nhan.html?user=duong-mit" style="text-align: center; flex-shrink: 0; text-decoration: none;">
-            <div style="position: relative; width: 64px; height: 64px; margin: 0 auto 6px;">
+            <div style="position: relative; width: 62px; height: 62px; margin: 0 auto 6px;">
               <img src="../image/622f949df277af76c811644427ebcace.jpg" alt="Dương Mít" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
               <span style="position: absolute; bottom: 2px; right: 2px; width: 14px; height: 14px; background-color: #22c55e; border: 2.5px solid #ffffff; border-radius: 50%;"></span>
             </div>
-            <div style="font-size: 13px; font-weight: 600; color: #887a38;">Dương Mít</div>
+            <div style="font-size: 13px; font-weight: 600; color: #b5a468;">Dương Mít</div>
           </a>
 
           <a href="28-tro-chuyen-ca-nhan.html?user=khang-xoai" style="text-align: center; flex-shrink: 0; text-decoration: none;">
