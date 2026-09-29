@@ -923,141 +923,116 @@ with open(os.path.join(output_dir, "13-ca-nhan.html"), "w", encoding="utf-8") as
 # 14. Chat Conversations List
 # ----------------------------------------------------------------------
 page_14 = """
-      <div class="app-header green" style="justify-content: space-between;">
-        <h2 class="header-title" style="font-size: 20px; font-weight: 800;">Trò chuyện</h2>
-        <div style="display: flex; gap: 16px; align-items: center;">
-          <i class="fa-solid fa-magnifying-glass" style="font-size: 18px;"></i>
-          <i class="fa-solid fa-ellipsis-vertical" style="font-size: 18px;"></i>
+      <div style="background-color: #FFFAD4; flex: 1; display: flex; flex-direction: column;">
+        <!-- Top Horizontal Scrollable Active Avatars (Matching Mockup) -->
+        <div style="display: flex; gap: 16px; overflow-x: auto; padding: 24px 16px 16px 16px; flex-shrink: 0; background-color: #FFFAD4;">
+          
+          <a href="28-tro-chuyen-ca-nhan.html?user=duong-mit" style="text-align: center; flex-shrink: 0; text-decoration: none;">
+            <div style="position: relative; width: 64px; height: 64px; margin: 0 auto 6px;">
+              <img src="../image/622f949df277af76c811644427ebcace.jpg" alt="Dương Mít" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+              <span style="position: absolute; bottom: 2px; right: 2px; width: 14px; height: 14px; background-color: #22c55e; border: 2.5px solid #ffffff; border-radius: 50%;"></span>
+            </div>
+            <div style="font-size: 13px; font-weight: 600; color: #887a38;">Dương Mít</div>
+          </a>
+
+          <a href="28-tro-chuyen-ca-nhan.html?user=khang-xoai" style="text-align: center; flex-shrink: 0; text-decoration: none;">
+            <div style="position: relative; width: 64px; height: 64px; margin: 0 auto 6px;">
+              <img src="../image/74acf8d5fc78215adb7b31123fc10cc7.jpg" alt="Khang Xoài" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+              <span style="position: absolute; bottom: 2px; right: 2px; width: 14px; height: 14px; background-color: #22c55e; border: 2.5px solid #ffffff; border-radius: 50%;"></span>
+            </div>
+            <div style="font-size: 13px; font-weight: 600; color: #887a38;">Khang Xoài</div>
+          </a>
+
+          <a href="28-tro-chuyen-ca-nhan.html?user=thanh" style="text-align: center; flex-shrink: 0; text-decoration: none;">
+            <div style="position: relative; width: 64px; height: 64px; margin: 0 auto 6px;">
+              <img src="../image/492be8585cfc89c15c16f933b6b71976.jpg" alt="Thanh" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+              <span style="position: absolute; bottom: 2px; right: 2px; width: 14px; height: 14px; background-color: #22c55e; border: 2.5px solid #ffffff; border-radius: 50%;"></span>
+            </div>
+            <div style="font-size: 13px; font-weight: 600; color: #887a38;">Thanh</div>
+          </a>
+
+          <a href="19-tro-chuyen-nhan-vien.html" style="text-align: center; flex-shrink: 0; text-decoration: none;">
+            <div style="position: relative; width: 64px; height: 64px; margin: 0 auto 6px;">
+              <img src="../image/bf6893740faf9b9fd905b3094897788d.jpg" alt="Tiến Thành" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+              <span style="position: absolute; bottom: 2px; right: 2px; width: 14px; height: 14px; background-color: #22c55e; border: 2.5px solid #ffffff; border-radius: 50%;"></span>
+            </div>
+            <div style="font-size: 13px; font-weight: 600; color: #887a38;">Tiến Thành</div>
+          </a>
+
+          <a href="18-tro-chuyen-ai-agriagent.html" style="text-align: center; flex-shrink: 0; text-decoration: none;">
+            <div style="position: relative; width: 64px; height: 64px; margin: 0 auto 6px;">
+              <img src="../image/c5919ec5bc42fbf3f1d7a1bc77f41519.jpg" alt="Anh Thùy" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+              <span style="position: absolute; bottom: 2px; right: 2px; width: 14px; height: 14px; background-color: #22c55e; border: 2.5px solid #ffffff; border-radius: 50%;"></span>
+            </div>
+            <div style="font-size: 13px; font-weight: 600; color: #887a38;">Anh Thùy</div>
+          </a>
+
         </div>
-      </div>
 
-      <!-- Top horizontal active story avatars -->
-      <div style="background-color: #f4f8ec; padding: 14px 12px; display: flex; gap: 16px; overflow-x: auto; flex-shrink: 0; border-bottom: 1px solid #e2e8f0;">
-        <a href="18-tro-chuyen-ai-agriagent.html" style="text-align: center; flex-shrink: 0; text-decoration: none;">
-          <div style="position: relative; width: 54px; height: 54px; margin: 0 auto 4px; border: 2px solid #769f2e; border-radius: 50%; padding: 2px; background: #fff;">
-            <img src="../image/logo.png" style="width: 100%; height: 100%; border-radius: 50%; object-fit: contain;">
-            <span style="position: absolute; bottom: 0; right: 0; width: 14px; height: 14px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
-          </div>
-          <div style="font-size: 11px; font-weight: 700; color: #1e293b;">Agri AI</div>
-        </a>
+        <!-- Recent Chat List (Matching Mockup) -->
+        <div style="padding: 12px 18px; flex: 1; background-color: #FFFAD4; display: flex; flex-direction: column; gap: 16px;">
 
-        <a href="28-tro-chuyen-ca-nhan.html?user=khang-xoai" style="text-align: center; flex-shrink: 0; text-decoration: none;">
-          <div style="position: relative; width: 54px; height: 54px; margin: 0 auto 4px; border: 2px solid #769f2e; border-radius: 50%; padding: 2px; background: #fff;">
-            <img src="../image/Trái cây/chom chom ban.jpg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-            <span style="position: absolute; bottom: 0; right: 0; width: 14px; height: 14px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
-          </div>
-          <div style="font-size: 11px; font-weight: 700; color: #1e293b;">Khang Xoài</div>
-        </a>
-
-        <a href="28-tro-chuyen-ca-nhan.html?user=duong-mit" style="text-align: center; flex-shrink: 0; text-decoration: none;">
-          <div style="position: relative; width: 54px; height: 54px; margin: 0 auto 4px; border: 2px solid #769f2e; border-radius: 50%; padding: 2px; background: #fff;">
-            <img src="../image/Trái cây/xoai.jpg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-            <span style="position: absolute; bottom: 0; right: 0; width: 14px; height: 14px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
-          </div>
-          <div style="font-size: 11px; font-weight: 700; color: #1e293b;">Dương Mít</div>
-        </a>
-
-        <a href="28-tro-chuyen-ca-nhan.html?user=truong-giang" style="text-align: center; flex-shrink: 0; text-decoration: none;">
-          <div style="position: relative; width: 54px; height: 54px; margin: 0 auto 4px; border: 2px solid #769f2e; border-radius: 50%; padding: 2px; background: #fff;">
-            <img src="../image/Trái cây/oi.jpg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-            <span style="position: absolute; bottom: 0; right: 0; width: 14px; height: 14px; background: #cbd5e1; border: 2px solid #fff; border-radius: 50%;"></span>
-          </div>
-          <div style="font-size: 11px; font-weight: 700; color: #1e293b;">Trường Giang</div>
-        </a>
-
-        <a href="28-tro-chuyen-ca-nhan.html?user=thanh" style="text-align: center; flex-shrink: 0; text-decoration: none;">
-          <div style="position: relative; width: 54px; height: 54px; margin: 0 auto 4px; border: 2px solid #769f2e; border-radius: 50%; padding: 2px; background: #fff;">
-            <img src="../image/Trái cây/sau rieng.jpg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-            <span style="position: absolute; bottom: 0; right: 0; width: 14px; height: 14px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
-          </div>
-          <div style="font-size: 11px; font-weight: 700; color: #1e293b;">Thanh</div>
-        </a>
-      </div>
-
-      <!-- Main Chat Conversations List -->
-      <div style="padding: 8px 16px; flex: 1; background: #ffffff;">
-        <a href="18-tro-chuyen-ai-agriagent.html" style="display: flex; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit;">
-          <div style="position: relative;">
-            <img src="../image/logo.png" style="width: 52px; height: 52px; border-radius: 50%; object-fit: contain; background: #fef08a; padding: 4px;">
-            <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
-          </div>
-          <div style="flex: 1;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-              <div style="font-weight: 800; font-size: 15px; color: #1e293b;">AgriAgent AI</div>
-              <span style="font-size: 11px; color: #769f2e; font-weight: 700;">Trợ lý AI</span>
+          <!-- Item 1: Khang Xoài -->
+          <a href="28-tro-chuyen-ca-nhan.html?user=khang-xoai" style="display: flex; gap: 14px; align-items: center; text-decoration: none; color: inherit;">
+            <img src="../image/74acf8d5fc78215adb7b31123fc10cc7.jpg" alt="Khang Xoài" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 800; font-size: 16px; color: #111827; margin-bottom: 3px;">Khang Xoài</div>
+              <div style="font-size: 14px; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                Bạn: Xoài này ngon lắm anh · 9:40 AM
+              </div>
             </div>
-            <div style="font-size: 13px; color: #64748b;">Chào bạn, mình là AgriAgent AI! Bạn có thắc mắc...</div>
-          </div>
-        </a>
+            <i class="fa-regular fa-circle" style="color: #cbd5e1; font-size: 20px;"></i>
+          </a>
 
-        <a href="19-tro-chuyen-nhan-vien.html" style="display: flex; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit;">
-          <div style="position: relative;">
-            <img src="../image/logo.png" style="width: 52px; height: 52px; border-radius: 50%; object-fit: contain; background: #fef08a; padding: 4px;">
-            <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
-          </div>
-          <div style="flex: 1;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-              <div style="font-weight: 800; font-size: 15px; color: #1e293b;">Nhân viên hỗ trợ</div>
-              <span style="font-size: 11px; color: #94a3b8;">Vừa xong</span>
+          <!-- Item 2: Trường Giang -->
+          <a href="28-tro-chuyen-ca-nhan.html?user=truong-giang" style="display: flex; gap: 14px; align-items: center; text-decoration: none; color: inherit;">
+            <img src="../image/a28917e48c7907a6a465f308c3e68ba2.jpg" alt="Trường Giang" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 800; font-size: 16px; color: #111827; margin-bottom: 3px;">Trường Giang</div>
+              <div style="font-size: 14px; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                Bạn: Xin lỗi vì trời mưa · 9:25 AM
+              </div>
             </div>
-            <div style="font-size: 13px; color: #64748b;">Chào bạn, Trung tâm hỗ trợ AgriAgent AI xin nghe! ❤️</div>
-          </div>
-        </a>
+            <i class="fa-solid fa-circle-check" style="color: #cbd5e1; font-size: 20px;"></i>
+          </a>
 
-        <a href="28-tro-chuyen-ca-nhan.html?user=khang-xoai" style="display: flex; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit;">
-          <div style="position: relative;">
-            <img src="../image/Trái cây/chom chom ban.jpg" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover;">
-            <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
-          </div>
-          <div style="flex: 1;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-              <div style="font-weight: 800; font-size: 15px; color: #1e293b;">Khang Xoài</div>
-              <span style="font-size: 11px; color: #94a3b8;">9:41 AM</span>
+          <!-- Item 3: Thanh -->
+          <a href="28-tro-chuyen-ca-nhan.html?user=thanh" style="display: flex; gap: 14px; align-items: center; text-decoration: none; color: inherit;">
+            <img src="../image/492be8585cfc89c15c16f933b6b71976.jpg" alt="Thanh" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 800; font-size: 16px; color: #111827; margin-bottom: 3px;">Thanh</div>
+              <div style="font-size: 14px; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                Bạn: Mình xin xác nhận lại đơ... · Fri
+              </div>
             </div>
-            <div style="font-size: 13px; color: #64748b;">Dạ 30.000đ/kg thôi anh, ghép chuyến giao tận nơi...</div>
-          </div>
-        </a>
+            <i class="fa-solid fa-circle-check" style="color: #cbd5e1; font-size: 20px;"></i>
+          </a>
 
-        <a href="28-tro-chuyen-ca-nhan.html?user=duong-mit" style="display: flex; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit;">
-          <div style="position: relative;">
-            <img src="../image/Trái cây/xoai.jpg" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover;">
-            <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
-          </div>
-          <div style="flex: 1;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-              <div style="font-weight: 800; font-size: 15px; color: #1e293b;">Dương Mít</div>
-              <span style="font-size: 11px; color: #94a3b8;">8:22 AM</span>
+          <!-- Item 4: Anh Trần / Hỗ trợ -->
+          <a href="19-tro-chuyen-nhan-vien.html" style="display: flex; gap: 14px; align-items: center; text-decoration: none; color: inherit;">
+            <img src="../image/c5919ec5bc42fbf3f1d7a1bc77f41519.jpg" alt="Anh Trần" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 800; font-size: 16px; color: #111827; margin-bottom: 3px;">Anh Trần</div>
+              <div style="font-size: 14px; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                Anh còn xoài sấy không ạ? · Fri
+              </div>
             </div>
-            <div style="font-size: 13px; color: #64748b;">Dạ cũng đang vào lứa thu hoạch ngon lắm chú ạ.</div>
-          </div>
-        </a>
+            <i class="fa-solid fa-circle-check" style="color: #cbd5e1; font-size: 20px;"></i>
+          </a>
 
-        <a href="28-tro-chuyen-ca-nhan.html?user=truong-giang" style="display: flex; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit;">
-          <div style="position: relative;">
-            <img src="../image/Trái cây/oi.jpg" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover;">
-          </div>
-          <div style="flex: 1;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-              <div style="font-weight: 800; font-size: 15px; color: #1e293b;">Trường Giang</div>
-              <span style="font-size: 11px; color: #94a3b8;">9:26 AM</span>
+          <!-- Item 5: Dương Mít -->
+          <a href="28-tro-chuyen-ca-nhan.html?user=duong-mit" style="display: flex; gap: 14px; align-items: center; text-decoration: none; color: inherit;">
+            <img src="../image/622f949df277af76c811644427ebcace.jpg" alt="Dương Mít" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 800; font-size: 16px; color: #111827; margin-bottom: 3px;">Dương Mít</div>
+              <div style="font-size: 14px; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                Lô mít này của tôi hỏn... · Thu
+              </div>
             </div>
-            <div style="font-size: 13px; color: #64748b;">Dạ xe bên em có bạt che kín nên nông sản an toàn...</div>
-          </div>
-        </a>
+            <i class="fa-solid fa-circle-check" style="color: #cbd5e1; font-size: 20px;"></i>
+          </a>
 
-        <a href="28-tro-chuyen-ca-nhan.html?user=thanh" style="display: flex; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit;">
-          <div style="position: relative;">
-            <img src="../image/Trái cây/sau rieng.jpg" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover;">
-            <span style="position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #22c55e; border: 2px solid #fff; border-radius: 50%;"></span>
-          </div>
-          <div style="flex: 1;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-              <div style="font-weight: 800; font-size: 15px; color: #1e293b;">Thanh</div>
-              <span style="font-size: 11px; color: #94a3b8;">Thứ 6</span>
-            </div>
-            <div style="font-size: 13px; color: #64748b;">Ok bạn nhé, tài xế sẽ gọi trước khi giao 15 phút.</div>
-          </div>
-        </a>
+        </div>
       </div>
 """ + get_bottom_nav("chat")
 with open(os.path.join(output_dir, "14-danh-sach-tro-chuyen.html"), "w", encoding="utf-8") as f:

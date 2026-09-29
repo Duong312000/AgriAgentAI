@@ -4,11 +4,11 @@ const CHAT_USERS = {
   "khang-xoai": {
     id: "khang-xoai",
     name: "Khang Xoài",
-    avatar: "../image/Trái cây/chom chom ban.jpg",
+    avatar: "../image/74acf8d5fc78215adb7b31123fc10cc7.jpg",
     status: "Đang hoạt động",
-    headerBg: "#769f2e",
-    headerColor: "#ffffff",
-    chatBg: "#f9f8ee",
+    headerBg: "#fde047",
+    headerColor: "#111827",
+    chatBg: "#FFFAD4",
     initialMessages: [
       { sender: "them", text: "Dạ em chào anh Thành! Xoài Cát loại 1 hôm nay mới hái bao ngọt tươi ngon luôn ạ.", time: "9:38 AM" },
       { sender: "me", text: "Xoài này bao nhiêu 1 kg vậy em?", time: "9:40 AM" },
@@ -24,11 +24,11 @@ const CHAT_USERS = {
   "duong-mit": {
     id: "duong-mit",
     name: "Dương Mít",
-    avatar: "../image/Trái cây/xoai.jpg",
+    avatar: "../image/622f949df277af76c811644427ebcace.jpg",
     status: "Đang hoạt động",
-    headerBg: "#769f2e",
-    headerColor: "#ffffff",
-    chatBg: "#f9f8ee",
+    headerBg: "#fde047",
+    headerColor: "#111827",
+    chatBg: "#FFFAD4",
     initialMessages: [
       { sender: "them", text: "Chào chú Thành, sầu riêng với mít vườn nhà chú đợt này trúng mùa quá!", time: "8:15 AM" },
       { sender: "me", text: "Cảm ơn cháu nhé, bưởi với xoài bên cháu thế nào?", time: "8:20 AM" },
@@ -43,11 +43,11 @@ const CHAT_USERS = {
   "truong-giang": {
     id: "truong-giang",
     name: "Trường Giang",
-    avatar: "../image/Trái cây/oi.jpg",
+    avatar: "../image/a28917e48c7907a6a465f308c3e68ba2.jpg",
     status: "Truy cập 5 phút trước",
-    headerBg: "#769f2e",
-    headerColor: "#ffffff",
-    chatBg: "#f9f8ee",
+    headerBg: "#fde047",
+    headerColor: "#111827",
+    chatBg: "#FFFAD4",
     initialMessages: [
       { sender: "them", text: "Dạ em nhận được thông báo đặt dưa hấu của anh rồi ạ.", time: "9:20 AM" },
       { sender: "me", text: "Anh cảm ơn nhé, trời mưa có giao kịp không em?", time: "9:25 AM" },
@@ -62,11 +62,11 @@ const CHAT_USERS = {
   "thanh": {
     id: "thanh",
     name: "Thanh",
-    avatar: "../image/Trái cây/sau rieng.jpg",
+    avatar: "../image/492be8585cfc89c15c16f933b6b71976.jpg",
     status: "Đang hoạt động",
-    headerBg: "#769f2e",
-    headerColor: "#ffffff",
-    chatBg: "#f9f8ee",
+    headerBg: "#fde047",
+    headerColor: "#111827",
+    chatBg: "#FFFAD4",
     initialMessages: [
       { sender: "them", text: "Mình xin xác nhận lại đơn hàng vú sữa và ổi cho bạn nhé.", time: "Thứ 6" },
       { sender: "me", text: "Cảm ơn Thanh, giao giúp mình trong buổi sáng nhé.", time: "Thứ 6" },
