@@ -43,46 +43,49 @@
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="font-size: 18px; font-weight: 800; color: #2d4612;">Loại trái cây</h3>
-          <a href="#" style="font-size: 14px; font-weight: 700; color: #64748b;">Xem tất cả</a>
+          <a href="#" data-category="all" style="font-size: 14px; font-weight: 700; color: #64748b;">Xem tất cả</a>
         </div>
         <div class="categories-horizontal-scroll" style="padding-left: 0; padding-right: 0;">
-          <a href="24-chi-tiet-san-pham.html?id=xoai" class="category-pill-card">
+          <div class="category-pill-card active" data-category="all">
+            <span class="category-pill-name" style="font-size: 15px;">🌟 Tất cả</span>
+          </div>
+          <div class="category-pill-card" data-category="xoai">
             <img src="../image/Trái cây/xoai.jpg" alt="Xoài" class="category-pill-img">
             <span class="category-pill-name">Xoài</span>
-          </a>
-          <a href="24-chi-tiet-san-pham.html?id=chom-chom" class="category-pill-card">
+          </div>
+          <div class="category-pill-card" data-category="chom-chom">
             <img src="../image/Trái cây/chom chom ban.jpg" alt="Chôm chôm" class="category-pill-img">
             <span class="category-pill-name">Chôm chôm</span>
-          </a>
-          <a href="24-chi-tiet-san-pham.html?id=oi" class="category-pill-card">
+          </div>
+          <div class="category-pill-card" data-category="oi">
             <img src="../image/Trái cây/oi.jpg" alt="Ổi" class="category-pill-img">
             <span class="category-pill-name">Ổi</span>
-          </a>
-          <a href="24-chi-tiet-san-pham.html?id=dua-hau" class="category-pill-card">
+          </div>
+          <div class="category-pill-card" data-category="dua-hau">
             <img src="../image/Trái cây/dua hau.jpg" alt="Dưa hấu" class="category-pill-img">
             <span class="category-pill-name">Dưa hấu</span>
-          </a>
-          <a href="24-chi-tiet-san-pham.html?id=sau-rieng" class="category-pill-card">
+          </div>
+          <div class="category-pill-card" data-category="sau-rieng">
             <img src="../image/Trái cây/sau rieng.jpg" alt="Sầu riêng" class="category-pill-img">
             <span class="category-pill-name">Sầu riêng</span>
-          </a>
-          <a href="24-chi-tiet-san-pham.html?id=vai" class="category-pill-card">
+          </div>
+          <div class="category-pill-card" data-category="vai">
             <img src="../image/Trái cây/vai.jpg" alt="Vải" class="category-pill-img">
             <span class="category-pill-name">Vải</span>
-          </a>
-          <a href="24-chi-tiet-san-pham.html?id=thanh-long" class="category-pill-card">
+          </div>
+          <div class="category-pill-card" data-category="thanh-long">
             <img src="../image/Trái cây/thanh long.jpg" alt="Thanh long" class="category-pill-img">
             <span class="category-pill-name">Thanh long</span>
-          </a>
+          </div>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="font-size: 16px; font-weight: 800; color: #2d4612;">Danh mục sản phẩm</h3>
-          <a href="#" style="font-size: 13px; font-weight: 700; color: #64748b;">Xem tất cả</a>
+          <a href="#" data-category="all" style="font-size: 13px; font-weight: 700; color: #64748b;">Xem tất cả</a>
         </div>
 
         <div class="product-grid">
-          <a href="24-chi-tiet-san-pham.html?id=vai" class="product-card">
+          <a href="24-chi-tiet-san-pham.html?id=vai" class="product-card" data-category="vai">
             <i class="fa-regular fa-heart" style="position: absolute; top: 10px; right: 10px; color: #ef4444; font-size: 16px;"></i>
             <img src="../image/Trái cây/vai.jpg" alt="Vải">
             <div class="name">Vải</div>
@@ -90,14 +93,57 @@
             <div class="price">27.000 VNĐ/kg</div>
           </a>
 
-          <a href="24-chi-tiet-san-pham.html?id=thanh-long" class="product-card">
+          <a href="24-chi-tiet-san-pham.html?id=thanh-long" class="product-card" data-category="thanh-long">
             <i class="fa-regular fa-heart" style="position: absolute; top: 10px; right: 10px; color: #ef4444; font-size: 16px;"></i>
             <img src="../image/Trái cây/thanh long.jpg" alt="Thanh long">
             <div class="name">Thanh long</div>
             <div style="font-size: 12px; color: #f59e0b; margin: 2px 0;"><i class="fa-solid fa-star"></i> 4.8 (62)</div>
             <div class="price">20.000 VNĐ/kg</div>
           </a>
+
+          <a href="24-chi-tiet-san-pham.html?id=dua-hau" class="product-card" data-category="dua-hau">
+            <i class="fa-regular fa-heart" style="position: absolute; top: 10px; right: 10px; color: #ef4444; font-size: 16px;"></i>
+            <img src="../image/Trái cây/dua hau.jpg" alt="Dưa hấu">
+            <div class="name">Dưa hấu</div>
+            <div style="font-size: 12px; color: #f59e0b; margin: 2px 0;"><i class="fa-solid fa-star"></i> 5 (81)</div>
+            <div class="price">20.000 VNĐ/kg</div>
+          </a>
+
+          <a href="24-chi-tiet-san-pham.html?id=sau-rieng" class="product-card" data-category="sau-rieng">
+            <i class="fa-regular fa-heart" style="position: absolute; top: 10px; right: 10px; color: #ef4444; font-size: 16px;"></i>
+            <img src="../image/Trái cây/sau rieng.jpg" alt="Sầu riêng">
+            <div class="name">Sầu riêng</div>
+            <div style="font-size: 12px; color: #f59e0b; margin: 2px 0;"><i class="fa-solid fa-star"></i> 4.5 (92)</div>
+            <div class="price">35.000 VNĐ/kg</div>
+          </a>
+
+          <a href="24-chi-tiet-san-pham.html?id=oi" class="product-card" data-category="oi">
+            <i class="fa-regular fa-heart" style="position: absolute; top: 10px; right: 10px; color: #ef4444; font-size: 16px;"></i>
+            <img src="../image/Trái cây/oi.jpg" alt="Ổi">
+            <div class="name">Ổi vú sữa</div>
+            <div style="font-size: 12px; color: #f59e0b; margin: 2px 0;"><i class="fa-solid fa-star"></i> 4.7 (120)</div>
+            <div class="price">25.000 VNĐ/kg</div>
+          </a>
+
+          <a href="24-chi-tiet-san-pham.html?id=xoai" class="product-card" data-category="xoai">
+            <i class="fa-regular fa-heart" style="position: absolute; top: 10px; right: 10px; color: #ef4444; font-size: 16px;"></i>
+            <img src="../image/Trái cây/xoai.jpg" alt="Xoài">
+            <div class="name">Xoài Cát</div>
+            <div style="font-size: 12px; color: #f59e0b; margin: 2px 0;"><i class="fa-solid fa-star"></i> 4.6 (210)</div>
+            <div class="price">30.000 VNĐ/kg</div>
+          </a>
+
+          <a href="24-chi-tiet-san-pham.html?id=chom-chom" class="product-card" data-category="chom-chom">
+            <i class="fa-regular fa-heart" style="position: absolute; top: 10px; right: 10px; color: #ef4444; font-size: 16px;"></i>
+            <img src="../image/Trái cây/chom chom ban.jpg" alt="Chôm chôm">
+            <div class="name">Chôm chôm</div>
+            <div style="font-size: 12px; color: #f59e0b; margin: 2px 0;"><i class="fa-solid fa-star"></i> 4.9 (180)</div>
+            <div class="price">34.000 VNĐ/kg</div>
+          </a>
         </div>
+      </div>
+      <script src="../js/products.js"></script>
+      <script>document.addEventListener('DOMContentLoaded', initCategoryFilter);</script>
       </div>
 <div class="bottom-nav">
   <a href="08-trang-chu-nong-dan.html" class="nav-item active">

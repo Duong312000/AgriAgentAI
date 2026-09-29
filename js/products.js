@@ -163,3 +163,58 @@ function initCheckoutPage() {
   }
   updateTotals();
 }
+
+// Function to handle interactive Category Filtering on Home Pages
+function initCategoryFilter() {
+  const categoryPills = document.querySelectorAll('.category-pill-card, [data-category-filter]');
+  const productCards = document.querySelectorAll('.product-card-item, .product-card');
+  const searchInput = document.querySelector('.search-box input, input[placeholder*="Tìm kiếm"]');
+
+  function filterProducts(category, query = '') {
+    const cleanQuery = query.trim().toLowerCase();
+    
+    productCards.forEach(card => {
+      const cardCategory = card.getAttribute('data-category') || '';
+      const cardText = card.textContent.toLowerCase();
+
+      const matchCategory = (category === 'all' || !category || cardCategory === category);
+      const matchQuery = !cleanQuery || cardText.includes(cleanQuery);
+
+      if (matchCategory && matchQuery) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  categoryPills.forEach(pill => {
+    pill.addEventListener('click', function (e) {
+      const selectedCategory = pill.getAttribute('data-category') || 'all';
+      
+      // If category pill clicked is currently active, toggle back to 'all'
+      const isAlreadyActive = pill.classList.contains('active');
+
+      categoryPills.forEach(p => p.classList.remove('active'));
+
+      let targetCategory = selectedCategory;
+      if (isAlreadyActive && selectedCategory !== 'all') {
+        targetCategory = 'all';
+      } else {
+        pill.classList.add('active');
+      }
+
+      const currentQuery = searchInput ? searchInput.value : '';
+      filterProducts(targetCategory, currentQuery);
+    });
+  });
+
+  if (searchInput) {
+    searchInput.addEventListener('input', function () {
+      const activePill = document.querySelector('.category-pill-card.active, [data-category-filter].active');
+      const activeCat = activePill ? activePill.getAttribute('data-category') : 'all';
+      filterProducts(activeCat, searchInput.value);
+    });
+  }
+}
+

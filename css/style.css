@@ -421,9 +421,14 @@ body {
   cursor: pointer;
 }
 
-.category-pill-card:hover {
-  transform: translateY(-2px);
-  background-color: #dfedd8;
+.category-pill-card.active {
+  background-color: #749c25 !important;
+  border-color: #587820 !important;
+  box-shadow: 0 4px 12px rgba(116, 156, 37, 0.35) !important;
+}
+
+.category-pill-card.active .category-pill-name {
+  color: #ffffff !important;
 }
 
 .category-pill-img {
