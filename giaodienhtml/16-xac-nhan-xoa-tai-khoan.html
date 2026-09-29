@@ -3,171 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Xóa tài khoản - Trang cá nhân</title>
+  <title>Xác nhận xóa tài khoản</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="web-container" style="background-color: #ffffff; position: relative;">
-    <div class="app-content" style="padding-bottom: 120px; background-color: #ffffff;">
+  <div class="web-container">
+    <div class="app-content">
 
-      <!-- Top Divider Line -->
-      <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 16px 20px 20px 20px;">
-
-      <!-- Profile Header -->
-      <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px 20px 20px;">
-        <h2 style="font-size: 24px; font-weight: 500; color: #2d3748; margin: 0;">Tiến Thành</h2>
-        <div style="width: 52px; height: 52px; background-color: #8c9e37; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffffff;">
-          <i class="fa-solid fa-user" style="font-size: 28px;"></i>
-        </div>
-      </div>
-
-      <!-- Divider Line -->
-      <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 0 20px 20px 20px;">
-
-      <!-- Quản lý đơn hàng Header -->
-      <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px 16px 20px;">
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <i class="fa-regular fa-file-lines" style="font-size: 22px; color: #2d3748;"></i>
-          <span style="font-size: 17px; font-weight: 500; color: #2d3748;">Quản lý đơn hàng</span>
-        </div>
-        <i class="fa-solid fa-chevron-right" style="font-size: 16px; color: #2d3748;"></i>
-      </div>
-
-      <!-- Divider Line -->
-      <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 0 20px 24px 20px;">
-
-      <!-- 6 Order Status Cards Grid -->
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 20px 30px 20px;">
-        
-        <!-- Card 1 -->
-        <div style="background: #ffffff; border: 1.5px solid #1c4b27; border-radius: 18px; padding: 16px 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 115px; box-sizing: border-box;">
-          <div style="position: relative; margin-bottom: 10px; display: inline-block;">
-            <i class="fa-solid fa-bag-shopping" style="font-size: 28px; color: #8c9e37;"></i>
-            <i class="fa-solid fa-pen" style="position: absolute; top: -2px; right: -6px; font-size: 10px; color: #8c9e37; background: #ffffff; padding: 1px; border-radius: 50%;"></i>
-          </div>
-          <div style="font-size: 14px; font-weight: 500; color: #2d3748; line-height: 1.3;">Xác nhận<br>đơn hàng</div>
+      <div style="padding: 24px; background-color: #64748b; min-height: 100vh; position: relative;">
+        <div style="opacity: 0.3;">
+          <h2 style="font-size: 24px; color: #ffffff;">Trang cá nhân</h2>
         </div>
 
-        <!-- Card 2 -->
-        <div style="background: #ffffff; border: 1.5px solid #1c4b27; border-radius: 18px; padding: 16px 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 115px; box-sizing: border-box;">
-          <div style="position: relative; margin-bottom: 10px; display: inline-block;">
-            <i class="fa-solid fa-bag-shopping" style="font-size: 28px; color: #8c9e37;"></i>
-            <i class="fa-solid fa-truck-fast" style="position: absolute; top: -2px; right: -7px; font-size: 10px; color: #8c9e37; background: #ffffff; padding: 1px; border-radius: 50%;"></i>
-          </div>
-          <div style="font-size: 14px; font-weight: 500; color: #2d3748; line-height: 1.3;">Theo dõi<br>đơn hàng</div>
-        </div>
+        <div class="modal-overlay">
+          <div class="modal-card" style="padding: 30px 20px;">
+            <h3 style="font-size: 22px; font-weight: 800; color: #1e293b; margin-bottom: 14px;">Xóa tài khoản</h3>
+            <p style="font-size: 16px; color: #475569; margin-bottom: 28px;">
+              Bạn có chắc chắn muốn xóa tài khoản?
+            </p>
 
-        <!-- Card 3 -->
-        <div style="background: #ffffff; border: 1.5px solid #1c4b27; border-radius: 18px; padding: 16px 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 115px; box-sizing: border-box;">
-          <div style="margin-bottom: 10px; display: inline-block;">
-            <i class="fa-solid fa-bag-shopping" style="font-size: 28px; color: #8c9e37;"></i>
-          </div>
-          <div style="font-size: 14px; font-weight: 500; color: #2d3748; line-height: 1.3;">Khuyến<br>mãi của tôi</div>
-        </div>
-
-        <!-- Card 4 -->
-        <div style="background: #ffffff; border: 1.5px solid #1c4b27; border-radius: 18px; padding: 16px 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 115px; box-sizing: border-box;">
-          <div style="position: relative; margin-bottom: 10px; display: inline-block;">
-            <i class="fa-solid fa-bag-shopping" style="font-size: 28px; color: #8c9e37;"></i>
-            <div style="position: absolute; bottom: -2px; right: -5px; background: #ffffff; border-radius: 50%; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center;">
-              <i class="fa-solid fa-rotate-left" style="font-size: 9px; color: #8c9e37;"></i>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid #e2e8f0; margin: 0 -20px -30px -20px;">
+              <a href="01-man-hinh-chao.html" style="padding: 16px; font-weight: 800; color: #dc2626; border-right: 1px solid #e2e8f0; text-decoration: none; font-size: 16px;">Xóa</a>
+              <a href="13-ca-nhan.html" style="padding: 16px; font-weight: 800; color: #1e293b; text-decoration: none; font-size: 16px;">Không xóa</a>
             </div>
           </div>
-          <div style="font-size: 14px; font-weight: 500; color: #2d3748; line-height: 1.3;">Trả hàng</div>
         </div>
-
-        <!-- Card 5 -->
-        <div style="background: #ffffff; border: 1.5px solid #1c4b27; border-radius: 18px; padding: 16px 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 115px; box-sizing: border-box;">
-          <div style="position: relative; margin-bottom: 10px; display: inline-block;">
-            <i class="fa-solid fa-bag-shopping" style="font-size: 28px; color: #8c9e37;"></i>
-            <div style="position: absolute; bottom: -2px; right: -5px; background: #ffffff; border-radius: 50%; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center;">
-              <i class="fa-solid fa-check" style="font-size: 10px; color: #8c9e37; font-weight: 900;"></i>
-            </div>
-          </div>
-          <div style="font-size: 14px; font-weight: 500; color: #2d3748; line-height: 1.3;">Đơn đã<br>hoàn thành</div>
-        </div>
-
-        <!-- Card 6 -->
-        <div style="background: #ffffff; border: 1.5px solid #1c4b27; border-radius: 18px; padding: 16px 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 115px; box-sizing: border-box;">
-          <div style="margin-bottom: 10px; display: inline-block;">
-            <i class="fa-solid fa-circle-xmark" style="font-size: 28px; color: #8c9e37;"></i>
-          </div>
-          <div style="font-size: 14px; font-weight: 500; color: #2d3748; line-height: 1.3;">Đơn đã hủy</div>
-        </div>
-
-      </div>
-
-      <!-- Divider Line -->
-      <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 0 20px 24px 20px;">
-
-      <!-- Menu Option List -->
-      <div style="display: flex; flex-direction: column; gap: 24px; padding: 0 20px 30px 20px;">
-        
-        <a href="27-thiet-lap-ho-so-ca-nhan.html" style="display: flex; justify-content: space-between; align-items: center; text-decoration: none;">
-          <div style="display: flex; align-items: center; gap: 14px;">
-            <i class="fa-regular fa-user" style="font-size: 22px; color: #8c9e37; width: 24px; text-align: center;"></i>
-            <span style="font-size: 16px; font-weight: 500; color: #2d3748;">Thông tin cá nhân</span>
-          </div>
-          <i class="fa-solid fa-chevron-right" style="font-size: 16px; color: #2d3748;"></i>
-        </a>
-
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <i class="fa-solid fa-phone" style="font-size: 20px; color: #8c9e37; width: 24px; text-align: center;"></i>
-          <span style="font-size: 16px; font-weight: 500; color: #2d3748;">Hỗ trợ</span>
-        </div>
-
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <i class="fa-regular fa-trash-can" style="font-size: 22px; color: #a83232; width: 24px; text-align: center;"></i>
-          <span style="font-size: 16px; font-weight: 500; color: #a83232;">Yêu cầu xóa tài khoản</span>
-        </div>
-
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <i class="fa-solid fa-right-from-bracket" style="font-size: 22px; color: #8c9e37; width: 24px; text-align: center;"></i>
-          <span style="font-size: 16px; font-weight: 500; color: #2d3748;">Đăng xuất</span>
-        </div>
-
-      </div>
-
-      <!-- Bottom Nav -->
-      <div class="bottom-nav">
-        <a href="#" class="nav-item">
-          <i class="fa-solid fa-house"></i>
-          <span>Trang chủ</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fa-regular fa-comment-dots"></i>
-          <span>Trò chuyện</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fa-regular fa-bell"></i>
-          <span>Thông Báo</span>
-        </a>
-        <a href="#" class="nav-item active">
-          <i class="fa-regular fa-user"></i>
-          <span>Cá nhân</span>
-        </a>
-      </div>
-
-      <!-- Modal Dark Overlay (phủ lên cả Bottom Nav) -->
-      <div id="delete-account-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(2px); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
-        
-        <!-- Modal Card -->
-        <div style="background: #ffffff; border-radius: 24px; width: 340px; max-width: 90%; box-shadow: 0 16px 32px rgba(0,0,0,0.25); text-align: center; overflow: hidden; padding-top: 28px;">
-          
-          <h3 style="font-size: 20px; font-weight: 700; color: #252536; margin: 0 20px 16px 20px;">Xóa tài khoản</h3>
-          
-          <p style="font-size: 16px; font-weight: 600; color: #252536; margin: 0 20px 28px 20px; line-height: 1.4;">
-            Bạn có chắc chắn muốn xóa<br>tài khoản?
-          </p>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; border-top: 1.5px solid #2e5420;">
-            <a href="01-man-hinh-chao.html" style="padding: 16px 10px; font-size: 16px; font-weight: 700; color: #e11d48; text-decoration: none; text-align: center; border-right: 1.5px solid #2e5420; background: #ffffff;">Xóa</a>
-            <a href="13-ca-nhan.html" style="padding: 16px 10px; font-size: 16px; font-weight: 700; color: #252536; text-decoration: none; text-align: center; background: #ffffff;">Không xóa</a>
-          </div>
-
-        </div>
-
       </div>
 
     </div>

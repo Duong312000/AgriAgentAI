@@ -174,7 +174,7 @@ page_03 = """
             <label style="display: block; font-size: 14px; font-weight: 700; color: #587820; margin-bottom: 8px;">Email hoặc tên đăng nhập (*):</label>
             <div style="position: relative;">
               <i class="fa-regular fa-user" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #769f2e; font-size: 18px;"></i>
-              <input type="text" value="Tiến Thành" style="width: 100%; height: 48px; border-radius: 14px; border: 1px solid #e2e8f0; padding-left: 48px; padding-right: 16px; font-size: 15px; font-weight: 600; color: #2d3748; outline: none; box-sizing: border-box;">
+              <input type="text" placeholder="Nhập email hoặc tên đăng nhập" style="width: 100%; height: 48px; border-radius: 14px; border: 1px solid #e2e8f0; padding-left: 48px; padding-right: 16px; font-size: 15px; font-weight: 600; color: #2d3748; outline: none; box-sizing: border-box;">
             </div>
           </div>
 
@@ -183,7 +183,7 @@ page_03 = """
             <label style="display: block; font-size: 14px; font-weight: 700; color: #587820; margin-bottom: 8px;">Mật khẩu:</label>
             <div style="position: relative;">
               <i class="fa-solid fa-lock" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #769f2e; font-size: 18px;"></i>
-              <input type="password" value="******" style="width: 100%; height: 48px; border-radius: 14px; border: 1px solid #e2e8f0; padding-left: 48px; padding-right: 48px; font-size: 15px; font-weight: 600; color: #2d3748; outline: none; box-sizing: border-box;">
+              <input type="password" placeholder="Nhập mật khẩu" style="width: 100%; height: 48px; border-radius: 14px; border: 1px solid #e2e8f0; padding-left: 48px; padding-right: 48px; font-size: 15px; font-weight: 600; color: #2d3748; outline: none; box-sizing: border-box;">
               <i class="fa-regular fa-eye" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #769f2e; font-size: 18px; cursor: pointer;"></i>
             </div>
           </div>
@@ -242,7 +242,7 @@ page_04 = """
           <label class="form-label" style="color: #475569; font-weight: 600;">Số điện thoại hoặc email khôi phục</label>
           <div style="position: relative;">
             <i class="fa-regular fa-envelope" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #769f2e; font-size: 18px;"></i>
-            <input type="email" class="form-input" value="anhttk24411@st.uel.edu.vn" style="padding-left: 48px; border-color: #bcd886; height: 50px;">
+            <input type="email" class="form-input" placeholder="Nhập số điện thoại hoặc email khôi phục" style="padding-left: 48px; border-color: #bcd886; height: 50px;">
           </div>
         </div>
 
@@ -273,10 +273,10 @@ page_05 = """
         <div style="margin-bottom: 32px; text-align: center;">
           <label style="display: block; font-size: 15px; font-weight: 700; color: #475569; margin-bottom: 16px;">Nhập mã xác thực:</label>
           <div style="display: flex; justify-content: center; gap: 12px;">
-            <input type="text" maxlength="1" value="5" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #334155; border-radius: 12px; outline: none;">
-            <input type="text" maxlength="1" value="5" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #334155; border-radius: 12px; outline: none;">
-            <input type="text" maxlength="1" value="5" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #334155; border-radius: 12px; outline: none;">
-            <input type="text" maxlength="1" value="5" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #334155; border-radius: 12px; outline: none;">
+            <input type="text" maxlength="1" placeholder="-" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #334155; border-radius: 12px; outline: none;">
+            <input type="text" maxlength="1" placeholder="-" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #334155; border-radius: 12px; outline: none;">
+            <input type="text" maxlength="1" placeholder="-" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #334155; border-radius: 12px; outline: none;">
+            <input type="text" maxlength="1" placeholder="-" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #334155; border-radius: 12px; outline: none;">
           </div>
         </div>
 
@@ -307,10 +307,10 @@ page_06 = """
         <div style="margin-bottom: 32px; text-align: center;">
           <label style="display: block; font-size: 15px; font-weight: 700; color: #475569; margin-bottom: 16px;">Nhập mã xác thực:</label>
           <div style="display: flex; justify-content: center; gap: 12px;">
-            <input type="text" maxlength="1" value="5" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #769f2e; background-color: #f4f8ec; border-radius: 12px; outline: none;">
-            <input type="text" maxlength="1" value="5" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #769f2e; background-color: #f4f8ec; border-radius: 12px; outline: none;">
-            <input type="text" maxlength="1" value="5" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #769f2e; background-color: #f4f8ec; border-radius: 12px; outline: none;">
-            <input type="text" maxlength="1" value="5" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #769f2e; background-color: #f4f8ec; border-radius: 12px; outline: none;">
+            <input type="text" maxlength="1" placeholder="-" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #769f2e; background-color: #f4f8ec; border-radius: 12px; outline: none;">
+            <input type="text" maxlength="1" placeholder="-" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #769f2e; background-color: #f4f8ec; border-radius: 12px; outline: none;">
+            <input type="text" maxlength="1" placeholder="-" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #769f2e; background-color: #f4f8ec; border-radius: 12px; outline: none;">
+            <input type="text" maxlength="1" placeholder="-" style="width: 54px; height: 58px; text-align: center; font-size: 24px; font-weight: 800; border: 2px solid #769f2e; background-color: #f4f8ec; border-radius: 12px; outline: none;">
           </div>
         </div>
 
@@ -333,9 +333,9 @@ page_07 = """
         </p>
 
         <div style="margin-bottom: 20px;">
-          <label style="display: block; font-size: 14px; font-weight: 700; color: #475569; margin-bottom: 8px;">Set new password</label>
+          <label style="display: block; font-size: 14px; font-weight: 700; color: #475569; margin-bottom: 8px;">Nhập mật khẩu mới</label>
           <div style="position: relative;">
-            <input type="password" id="pass1_py" value="••••••••••••" style="width: 100%; height: 48px; border-radius: 12px; border: 1px solid #cbd5e1; padding-left: 16px; padding-right: 48px; font-size: 15px; color: #1e293b; outline: none; box-sizing: border-box;">
+            <input type="password" id="pass1_py" placeholder="Nhập mật khẩu mới" style="width: 100%; height: 48px; border-radius: 12px; border: 1px solid #cbd5e1; padding-left: 16px; padding-right: 48px; font-size: 15px; color: #1e293b; outline: none; box-sizing: border-box;">
             <i class="fa-regular fa-eye-slash" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #64748b; font-size: 18px; cursor: pointer;"></i>
           </div>
         </div>
@@ -343,7 +343,7 @@ page_07 = """
         <div style="margin-bottom: 20px;">
           <label style="display: block; font-size: 14px; font-weight: 700; color: #475569; margin-bottom: 8px;">Xác nhận lại mật khẩu</label>
           <div style="position: relative;">
-            <input type="password" id="pass2_py" value="••••••••••••" style="width: 100%; height: 48px; border-radius: 12px; border: 1px solid #cbd5e1; padding-left: 16px; padding-right: 48px; font-size: 15px; color: #1e293b; outline: none; box-sizing: border-box;">
+            <input type="password" id="pass2_py" placeholder="Nhập lại mật khẩu mới" style="width: 100%; height: 48px; border-radius: 12px; border: 1px solid #cbd5e1; padding-left: 16px; padding-right: 48px; font-size: 15px; color: #1e293b; outline: none; box-sizing: border-box;">
             <i class="fa-regular fa-eye-slash" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #64748b; font-size: 18px; cursor: pointer;"></i>
           </div>
         </div>
@@ -422,34 +422,34 @@ page_08 = """
           <a href="#" style="font-size: 14px; font-weight: 700; color: #444444; text-decoration: underline;">Xem tất cả</a>
         </div>
         <div class="categories-horizontal-scroll">
-          <div class="category-pill-card">
-            <img src="../image/Trái cây/xoai.jpg" alt="Chuối" class="category-pill-img">
-            <span class="category-pill-name">Chuối</span>
-          </div>
-          <div class="category-pill-card">
-            <img src="../image/Trái cây/chom chom ban.jpg" alt="Mít" class="category-pill-img">
-            <span class="category-pill-name">Mít</span>
-          </div>
-          <div class="category-pill-card">
-            <img src="../image/Trái cây/oi.jpg" alt="Cam" class="category-pill-img">
-            <span class="category-pill-name">Cam</span>
-          </div>
-          <div class="category-pill-card">
+          <a href="24-chi-tiet-san-pham.html?id=xoai" class="category-pill-card">
+            <img src="../image/Trái cây/xoai.jpg" alt="Xoài" class="category-pill-img">
+            <span class="category-pill-name">Xoài</span>
+          </a>
+          <a href="24-chi-tiet-san-pham.html?id=chom-chom" class="category-pill-card">
+            <img src="../image/Trái cây/chom chom ban.jpg" alt="Chôm chôm" class="category-pill-img">
+            <span class="category-pill-name">Chôm chôm</span>
+          </a>
+          <a href="24-chi-tiet-san-pham.html?id=oi" class="category-pill-card">
+            <img src="../image/Trái cây/oi.jpg" alt="Ổi" class="category-pill-img">
+            <span class="category-pill-name">Ổi</span>
+          </a>
+          <a href="24-chi-tiet-san-pham.html?id=dua-hau" class="category-pill-card">
             <img src="../image/Trái cây/dua hau.jpg" alt="Dưa hấu" class="category-pill-img">
             <span class="category-pill-name">Dưa hấu</span>
-          </div>
-          <div class="category-pill-card">
+          </a>
+          <a href="24-chi-tiet-san-pham.html?id=sau-rieng" class="category-pill-card">
             <img src="../image/Trái cây/sau rieng.jpg" alt="Sầu riêng" class="category-pill-img">
             <span class="category-pill-name">Sầu riêng</span>
-          </div>
-          <div class="category-pill-card">
+          </a>
+          <a href="24-chi-tiet-san-pham.html?id=vai" class="category-pill-card">
             <img src="../image/Trái cây/vai.jpg" alt="Vải" class="category-pill-img">
             <span class="category-pill-name">Vải</span>
-          </div>
-          <div class="category-pill-card">
-            <img src="../image/Trái cây/thanh long.jpg" alt="Khác" class="category-pill-img">
-            <span class="category-pill-name">Khác</span>
-          </div>
+          </a>
+          <a href="24-chi-tiet-san-pham.html?id=thanh-long" class="category-pill-card">
+            <img src="../image/Trái cây/thanh long.jpg" alt="Thanh long" class="category-pill-img">
+            <span class="category-pill-name">Thanh long</span>
+          </a>
         </div>
 
         <!-- Mục Danh mục sản phẩm -->
@@ -460,7 +460,7 @@ page_08 = """
 
         <!-- Grid Sản phẩm -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0 20px;">
-          <a href="24-chi-tiet-san-pham.html" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
+          <a href="24-chi-tiet-san-pham.html?id=vai" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
             <div style="position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; background: #ffffff; border: 1px solid #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 13px;"><i class="fa-regular fa-heart"></i></div>
             <img src="../image/Trái cây/vai.jpg" alt="Vải" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; margin-top: 6px; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
             <div style="font-size: 15px; font-weight: 700; color: #333333; margin-bottom: 4px;">Vải</div>
@@ -468,7 +468,7 @@ page_08 = """
             <div style="font-size: 14px; font-weight: 800; color: #1c522a;">27.000 VNĐ/kg</div>
           </a>
 
-          <a href="24-chi-tiet-san-pham.html" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
+          <a href="24-chi-tiet-san-pham.html?id=thanh-long" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
             <div style="position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; background: #ffffff; border: 1px solid #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 13px;"><i class="fa-regular fa-heart"></i></div>
             <img src="../image/Trái cây/thanh long.jpg" alt="Thanh long" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; margin-top: 6px; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
             <div style="font-size: 15px; font-weight: 700; color: #333333; margin-bottom: 4px;">Thanh long</div>
@@ -476,7 +476,7 @@ page_08 = """
             <div style="font-size: 14px; font-weight: 800; color: #1c522a;">20.000 VNĐ/kg</div>
           </a>
 
-          <a href="24-chi-tiet-san-pham.html" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
+          <a href="24-chi-tiet-san-pham.html?id=dua-hau" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
             <div style="position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; background: #ffffff; border: 1px solid #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 13px;"><i class="fa-regular fa-heart"></i></div>
             <img src="../image/Trái cây/dua hau.jpg" alt="Dưa hấu" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; margin-top: 6px; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
             <div style="font-size: 15px; font-weight: 700; color: #333333; margin-bottom: 4px;">Dưa hấu</div>
@@ -484,7 +484,7 @@ page_08 = """
             <div style="font-size: 14px; font-weight: 800; color: #1c522a;">20.000 VNĐ/kg</div>
           </a>
 
-          <a href="24-chi-tiet-san-pham.html" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
+          <a href="24-chi-tiet-san-pham.html?id=sau-rieng" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
             <div style="position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; background: #ffffff; border: 1px solid #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 13px;"><i class="fa-regular fa-heart"></i></div>
             <img src="../image/Trái cây/sau rieng.jpg" alt="Sầu riêng" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; margin-top: 6px; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
             <div style="font-size: 15px; font-weight: 700; color: #333333; margin-bottom: 4px;">Sầu riêng</div>
@@ -492,7 +492,7 @@ page_08 = """
             <div style="font-size: 14px; font-weight: 800; color: #1c522a;">35.000 VNĐ/kg</div>
           </a>
 
-          <a href="24-chi-tiet-san-pham.html" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
+          <a href="24-chi-tiet-san-pham.html?id=oi" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
             <div style="position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; background: #ffffff; border: 1px solid #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 13px;"><i class="fa-regular fa-heart"></i></div>
             <img src="../image/Trái cây/oi.jpg" alt="Ổi" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; margin-top: 6px; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
             <div style="font-size: 15px; font-weight: 700; color: #333333; margin-bottom: 4px;">Ổi vú sữa</div>
@@ -500,7 +500,7 @@ page_08 = """
             <div style="font-size: 14px; font-weight: 800; color: #1c522a;">25.000 VNĐ/kg</div>
           </a>
 
-          <a href="24-chi-tiet-san-pham.html" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
+          <a href="24-chi-tiet-san-pham.html?id=xoai" style="background-color: #eaf4db; border-radius: 20px; padding: 14px 12px; text-align: center; position: relative; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; align-items: center;">
             <div style="position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; background: #ffffff; border: 1px solid #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 13px;"><i class="fa-regular fa-heart"></i></div>
             <img src="../image/Trái cây/xoai.jpg" alt="Xoài" style="width: 95px; height: 95px; border-radius: 50%; object-fit: cover; margin-top: 6px; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
             <div style="font-size: 15px; font-weight: 700; color: #333333; margin-bottom: 4px;">Xoài Cát</div>
@@ -554,34 +554,34 @@ page_09 = """
           <a href="#" style="font-size: 14px; font-weight: 700; color: #64748b;">Xem tất cả</a>
         </div>
         <div class="categories-horizontal-scroll" style="padding-left: 0; padding-right: 0;">
-          <div class="category-pill-card">
-            <img src="../image/Trái cây/xoai.jpg" alt="Chuối" class="category-pill-img">
-            <span class="category-pill-name">Chuối</span>
-          </div>
-          <div class="category-pill-card">
-            <img src="../image/Trái cây/chom chom ban.jpg" alt="Mít" class="category-pill-img">
-            <span class="category-pill-name">Mít</span>
-          </div>
-          <div class="category-pill-card">
-            <img src="../image/Trái cây/oi.jpg" alt="Cam" class="category-pill-img">
-            <span class="category-pill-name">Cam</span>
-          </div>
-          <div class="category-pill-card">
+          <a href="24-chi-tiet-san-pham.html?id=xoai" class="category-pill-card">
+            <img src="../image/Trái cây/xoai.jpg" alt="Xoài" class="category-pill-img">
+            <span class="category-pill-name">Xoài</span>
+          </a>
+          <a href="24-chi-tiet-san-pham.html?id=chom-chom" class="category-pill-card">
+            <img src="../image/Trái cây/chom chom ban.jpg" alt="Chôm chôm" class="category-pill-img">
+            <span class="category-pill-name">Chôm chôm</span>
+          </a>
+          <a href="24-chi-tiet-san-pham.html?id=oi" class="category-pill-card">
+            <img src="../image/Trái cây/oi.jpg" alt="Ổi" class="category-pill-img">
+            <span class="category-pill-name">Ổi</span>
+          </a>
+          <a href="24-chi-tiet-san-pham.html?id=dua-hau" class="category-pill-card">
             <img src="../image/Trái cây/dua hau.jpg" alt="Dưa hấu" class="category-pill-img">
             <span class="category-pill-name">Dưa hấu</span>
-          </div>
-          <div class="category-pill-card">
+          </a>
+          <a href="24-chi-tiet-san-pham.html?id=sau-rieng" class="category-pill-card">
             <img src="../image/Trái cây/sau rieng.jpg" alt="Sầu riêng" class="category-pill-img">
             <span class="category-pill-name">Sầu riêng</span>
-          </div>
-          <div class="category-pill-card">
+          </a>
+          <a href="24-chi-tiet-san-pham.html?id=vai" class="category-pill-card">
             <img src="../image/Trái cây/vai.jpg" alt="Vải" class="category-pill-img">
             <span class="category-pill-name">Vải</span>
-          </div>
-          <div class="category-pill-card">
-            <img src="../image/Trái cây/thanh long.jpg" alt="Khác" class="category-pill-img">
-            <span class="category-pill-name">Khác</span>
-          </div>
+          </a>
+          <a href="24-chi-tiet-san-pham.html?id=thanh-long" class="category-pill-card">
+            <img src="../image/Trái cây/thanh long.jpg" alt="Thanh long" class="category-pill-img">
+            <span class="category-pill-name">Thanh long</span>
+          </a>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
@@ -590,7 +590,7 @@ page_09 = """
         </div>
 
         <div class="product-grid">
-          <a href="24-chi-tiet-san-pham.html" class="product-card">
+          <a href="24-chi-tiet-san-pham.html?id=vai" class="product-card">
             <i class="fa-regular fa-heart" style="position: absolute; top: 10px; right: 10px; color: #ef4444; font-size: 16px;"></i>
             <img src="../image/Trái cây/vai.jpg" alt="Vải">
             <div class="name">Vải</div>
@@ -598,7 +598,7 @@ page_09 = """
             <div class="price">27.000 VNĐ/kg</div>
           </a>
 
-          <a href="24-chi-tiet-san-pham.html" class="product-card">
+          <a href="24-chi-tiet-san-pham.html?id=thanh-long" class="product-card">
             <i class="fa-regular fa-heart" style="position: absolute; top: 10px; right: 10px; color: #ef4444; font-size: 16px;"></i>
             <img src="../image/Trái cây/thanh long.jpg" alt="Thanh long">
             <div class="name">Thanh long</div>
@@ -916,49 +916,49 @@ page_15 = """
 
         <div class="form-group">
           <label class="form-label">Loại trái cây muốn bán</label>
-          <input type="text" class="form-input" value="Xoài">
+          <input type="text" class="form-input" placeholder="Nhập loại trái cây (ví dụ: Xoài, Chôm chôm...)">
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div class="form-group">
             <label class="form-label">Số điện thoại</label>
-            <input type="text" class="form-input" value="0914122980">
+            <input type="text" class="form-input" placeholder="Nhập số điện thoại">
           </div>
           <div class="form-group">
             <label class="form-label">Ngày thu hoạch</label>
-            <input type="text" class="form-input" value="20/10/2026">
+            <input type="text" class="form-input" placeholder="Nhập ngày thu hoạch (ví dụ: 20/10/2026)">
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div class="form-group">
             <label class="form-label">Sản lượng</label>
-            <input type="text" class="form-input" value="50kg">
+            <input type="text" class="form-input" placeholder="Nhập sản lượng (ví dụ: 50kg)">
           </div>
           <div class="form-group">
             <label class="form-label">Giá cả/ kg</label>
-            <input type="text" class="form-input" value="30.000 vnđ">
+            <input type="text" class="form-input" placeholder="Nhập giá bán (ví dụ: 30.000đ)">
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
           <div class="form-group">
             <label class="form-label">Ấp</label>
-            <input type="text" class="form-input" value="ấp Hòa">
+            <input type="text" class="form-input" placeholder="Nhập Ấp/Thôn">
           </div>
           <div class="form-group">
             <label class="form-label">Xã</label>
-            <input type="text" class="form-input" value="Vĩnh Kim">
+            <input type="text" class="form-input" placeholder="Nhập Xã/Phường">
           </div>
           <div class="form-group">
             <label class="form-label">Tỉnh</label>
-            <input type="text" class="form-input" value="Đồng Tháp">
+            <input type="text" class="form-input" placeholder="Nhập Tỉnh/Thành">
           </div>
         </div>
 
         <div class="form-group">
           <label class="form-label">Mô tả chi tiết sản phẩm</label>
-          <textarea class="form-input" rows="3">5 kg xoài cát loại 1, da nhẵn,...</textarea>
+          <textarea class="form-input" rows="3" placeholder="Nhập mô tả chi tiết sản phẩm..."></textarea>
         </div>
 
         <a href="20-chinh-sua-bai-dang.html" class="btn-primary" style="background-color: #8db837; margin-bottom: 20px;">
@@ -1167,26 +1167,26 @@ page_20 = """
 
         <div class="form-group">
           <label class="form-label">Tên sản phẩm</label>
-          <input type="text" class="form-input" value="Chôm chôm Thái">
+          <input type="text" class="form-input" placeholder="Nhập tên sản phẩm">
         </div>
 
         <div class="form-group">
           <label class="form-label">Giá bán (AI gợi ý)</label>
           <div style="position: relative;">
-            <input type="text" class="form-input" value="34.000đ/kg">
+            <input type="text" class="form-input" placeholder="Nhập giá bán (đ/kg)">
             <i class="fa-solid fa-pen" style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #64748b;"></i>
           </div>
         </div>
 
         <div class="form-group">
           <label class="form-label">Mô tả sản phẩm</label>
-          <textarea class="form-input" rows="3">Chôm chôm thái, trái to, ngọt, thơm. Thu hoạch tại vườn, đảm bảo chất lượng.</textarea>
-          <div style="text-align: right; font-size: 11px; color: #94a3b8; margin-top: 4px;">68/200</div>
+          <textarea class="form-input" rows="3" placeholder="Nhập mô tả sản phẩm..."></textarea>
+          <div style="text-align: right; font-size: 11px; color: #94a3b8; margin-top: 4px;">0/200</div>
         </div>
 
         <div class="form-group">
           <label class="form-label">Địa chỉ</label>
-          <input type="text" class="form-input" value="ấp Hòa, Xã Vĩnh Kim, tỉnh Đồng Tháp">
+          <input type="text" class="form-input" placeholder="Nhập địa chỉ (ấp/xã/tỉnh)...">
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px;">
@@ -1209,22 +1209,22 @@ page_21 = """
 
       <div style="padding: 16px; flex: 1;">
         <div class="card green-tint" style="display: flex; gap: 12px; align-items: center; border-radius: 16px; margin-bottom: 16px;">
-          <img src="../image/Trái cây/chom chom ban.jpg" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover;">
+          <img id="checkout-img" src="../image/Trái cây/chom chom ban.jpg" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover;">
           <div>
-            <div style="font-weight: 800; font-size: 15px;">Chôm chôm</div>
-            <div style="font-weight: 800; font-size: 14px; color: #4d7c0f;">34.000 VNĐ/kg</div>
-            <div style="font-size: 11px; color: #64748b;">ấp Hòa, Xã Vĩnh Kim, tỉnh Đồng Tháp</div>
+            <div id="checkout-name" style="font-weight: 800; font-size: 15px;">Chôm chôm</div>
+            <div id="checkout-price" style="font-weight: 800; font-size: 14px; color: #4d7c0f;">34.000 VNĐ/kg</div>
+            <div id="checkout-location" style="font-size: 11px; color: #64748b;">ấp Hòa, Xã Vĩnh Kim, tỉnh Đồng Tháp</div>
           </div>
         </div>
 
         <div style="font-weight: 800; font-size: 14px; color: #1e293b; margin-bottom: 10px;">Thông tin người nhận</div>
-        <div class="form-group"><input type="text" class="form-input" value="Nguyễn Văn A"></div>
-        <div class="form-group"><input type="text" class="form-input" value="0901234567"></div>
-        <div class="form-group"><input type="text" class="form-input" value="123 Nguyễn Huệ, Quận 1, TP.HCM"></div>
+        <div class="form-group"><input type="text" class="form-input" placeholder="Nhập họ và tên người nhận"></div>
+        <div class="form-group"><input type="text" class="form-input" placeholder="Nhập số điện thoại người nhận"></div>
+        <div class="form-group"><input type="text" class="form-input" placeholder="Nhập địa chỉ giao hàng cụ thể"></div>
 
         <div class="form-group">
           <label class="form-label">Số lượng đặt mua (kg)</label>
-          <input type="number" class="form-input" value="10">
+          <input id="checkout-qty" type="number" class="form-input" placeholder="Nhập số lượng (kg)" value="10">
         </div>
 
         <div style="font-weight: 800; font-size: 14px; color: #1e293b; margin-bottom: 10px;"><i class="fa-solid fa-truck"></i> Tùy chọn hình thức vận chuyển</div>
@@ -1254,7 +1254,7 @@ page_21 = """
         <div style="border-top: 1px solid #e2e8f0; padding-top: 14px; margin-bottom: 20px;">
           <div style="display: flex; justify-content: space-between; font-size: 14px; color: #64748b; margin-bottom: 6px;">
             <span>Tiền hàng:</span>
-            <span>340.000 đ</span>
+            <span id="checkout-subtotal">340.000 đ</span>
           </div>
           <div style="display: flex; justify-content: space-between; font-size: 14px; color: #64748b; margin-bottom: 10px;">
             <span>Phí vận chuyển:</span>
@@ -1262,7 +1262,7 @@ page_21 = """
           </div>
           <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 800; color: #1e293b;">
             <span>Tổng thanh toán:</span>
-            <span style="color: #2d4612;">355.000 đ</span>
+            <span id="checkout-total" style="color: #2d4612;">355.000 đ</span>
           </div>
         </div>
 
@@ -1270,6 +1270,8 @@ page_21 = """
           <i class="fa-solid fa-check"></i> Xác Nhận Đặt Hàng
         </a>
       </div>
+      <script src="../js/products.js"></script>
+      <script>document.addEventListener('DOMContentLoaded', initCheckoutPage);</script>
 """
 with open(os.path.join(output_dir, "21-xac-nhan-dat-hang.html"), "w", encoding="utf-8") as f:
     f.write(wrap_html("Xác nhận đặt hàng", page_21))
@@ -1337,20 +1339,20 @@ with open(os.path.join(output_dir, "23-thanh-toan-qr-that-bai.html"), "w", encod
 page_24 = """
       <div style="flex: 1; display: flex; flex-direction: column;">
         <div style="height: 240px; position: relative;">
-          <img src="../image/Trái cây/chom chom ban.jpg" style="width: 100%; height: 100%; object-fit: cover;">
-          <a href="08-trang-chu-nong-dan.html" style="position: absolute; top: 16px; left: 16px; width: 36px; height: 36px; background: rgba(255,255,255,0.8); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #1e293b; text-decoration: none;">
+          <img id="product-img" src="../image/Trái cây/chom chom ban.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+          <a href="javascript:history.back()" style="position: absolute; top: 16px; left: 16px; width: 36px; height: 36px; background: rgba(255,255,255,0.8); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #1e293b; text-decoration: none;">
             <i class="fa-solid fa-chevron-left"></i>
           </a>
         </div>
 
         <div style="padding: 16px; flex: 1; background: #f9f8ee;">
           <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
-            <div style="font-size: 26px; font-weight: 800; color: #769f2e;">34.000đ <span style="font-size: 14px; font-weight: 500; color: #64748b;">/ kg</span></div>
-            <span style="background: #eaf3d8; color: #4d7c0f; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700;">📦 Còn ~50 kg</span>
+            <div id="product-price" style="font-size: 26px; font-weight: 800; color: #769f2e;">34.000đ <span style="font-size: 14px; font-weight: 500; color: #64748b;">/ kg</span></div>
+            <span id="product-stock" style="background: #eaf3d8; color: #4d7c0f; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700;">📦 Còn ~50 kg</span>
           </div>
 
-          <h2 style="font-size: 22px; font-weight: 800; color: #1e293b; margin-bottom: 8px;">Chôm chôm Thái</h2>
-          <div style="font-size: 13px; color: #64748b; margin-bottom: 16px;"><i class="fa-solid fa-location-dot" style="color: #769f2e;"></i> Ấp Hòa, Xã Vĩnh Kim, Tỉnh Đồng Tháp</div>
+          <h2 id="product-name" style="font-size: 22px; font-weight: 800; color: #1e293b; margin-bottom: 8px;">Chôm chôm Thái</h2>
+          <div id="product-location" style="font-size: 13px; color: #64748b; margin-bottom: 16px;"><i class="fa-solid fa-location-dot" style="color: #769f2e;"></i> Ấp Hòa, Xã Vĩnh Kim, Tỉnh Đồng Tháp</div>
 
           <div class="card" style="display: flex; justify-content: space-between; align-items: center; border-radius: 16px; margin-bottom: 16px;">
             <div style="display: flex; gap: 12px; align-items: center;">
@@ -1358,7 +1360,7 @@ page_24 = """
                 <i class="fa-solid fa-user-nurse" style="font-size: 22px; color: #475569;"></i>
               </div>
               <div>
-                <div style="font-weight: 800; font-size: 14px; color: #1e293b;">Chú Thành Đồng Tháp <i class="fa-solid fa-circle-check" style="color: #769f2e;"></i></div>
+                <div id="product-farmer" style="font-weight: 800; font-size: 14px; color: #1e293b;">Chú Thành Đồng Tháp <i class="fa-solid fa-circle-check" style="color: #769f2e;"></i></div>
                 <div style="font-size: 11px; color: #64748b;">Đã xác minh hộ nông dân</div>
               </div>
             </div>
@@ -1367,10 +1369,10 @@ page_24 = """
 
           <div class="card" style="border-radius: 16px; margin-bottom: 20px;">
             <h3 style="font-size: 15px; font-weight: 800; color: #1e293b; margin-bottom: 8px;">Mô tả sản phẩm</h3>
-            <p style="font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 14px;">
+            <p id="product-desc" style="font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 14px;">
               Chôm chôm Thái chín cây, trái to, thơm ngọt tự nhiên. Thu hoạch trực tiếp tại vườn, đảm bảo nông sản sạch không qua trung gian. Bà con ủng hộ giúp vườn thu hoạch đúng lứa!
             </p>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <div id="product-tags" style="display: flex; gap: 8px; flex-wrap: wrap;">
               <span style="background: #f1f5f9; padding: 4px 10px; border-radius: 8px; font-size: 11px; font-weight: 700; color: #475569;">✓ Hái tại vườn</span>
               <span style="background: #f1f5f9; padding: 4px 10px; border-radius: 8px; font-size: 11px; font-weight: 700; color: #475569;">✓ Bao ăn 1 đổi 1</span>
               <span style="background: #f1f5f9; padding: 4px 10px; border-radius: 8px; font-size: 11px; font-weight: 700; color: #475569;">🚚 Hỗ trợ ghép chuyến</span>
@@ -1385,11 +1387,13 @@ page_24 = """
           <a href="tel:0901234567" style="width: 44px; height: 44px; border: 1.5px solid #cbd5e1; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #475569; text-decoration: none;">
             <i class="fa-solid fa-phone" style="font-size: 18px;"></i>
           </a>
-          <a href="21-xac-nhan-dat-hang.html" class="btn-primary" style="flex: 1; background-color: #2d4612;">
+          <a id="btn-buy-now" href="21-xac-nhan-dat-hang.html" class="btn-primary" style="flex: 1; background-color: #2d4612;">
             <i class="fa-solid fa-cart-shopping"></i> Giải cứu ngay
           </a>
         </div>
       </div>
+      <script src="../js/products.js"></script>
+      <script>document.addEventListener('DOMContentLoaded', initProductDetailPage);</script>
 """
 with open(os.path.join(output_dir, "24-chi-tiet-san-pham.html"), "w", encoding="utf-8") as f:
     f.write(wrap_html("Chi tiết sản phẩm", page_24))
