@@ -99,19 +99,19 @@ const CHAT_USERS = {
   },
   "support-staff": {
     id: "support-staff",
-    name: "Nhân viên hỗ trợ",
-    avatar: "../image/logo.png",
-    status: "Bộ phận chăm sóc khách hàng",
+    name: "Tiến Thành",
+    avatar: "../image/bf6893740faf9b9fd905b3094897788d.jpg",
+    status: "Nhân viên hỗ trợ CSKH",
     headerBg: "#f7d44c",
     headerColor: "#262626",
     chatBg: "#FFFAD4",
     initialMessages: [
-      { sender: "them", text: "Chào bạn, Trung tâm hỗ trợ AgriAgent AI xin nghe! Bạn đang cần hỗ trợ gì ạ? ❤️", time: "Vừa xong" }
+      { sender: "them", text: "Chào Thùy Anh, Trung tâm hỗ trợ AgriAgent AI xin nghe! Bạn đang cần hỗ trợ gì ạ? ❤️", time: "Vừa xong" }
     ],
     replies: [
-      "Dạ em chào anh/chị ạ! Bộ phận CSKH đã ghi nhận yêu cầu và sẽ xử lý ngay lập tức.",
-      "Anh/chị có thể kiểm tra tiến trình đơn hàng tại mục Theo dõi đơn hàng nhé!",
-      "Nếu cần hỗ trợ khẩn cấp, anh/chị có thể liên hệ tổng đài hỗ trợ nông dân 1900-xxxx ạ."
+      "Dạ em chào chị Thùy Anh ạ! Bộ phận CSKH đã ghi nhận yêu cầu và sẽ xử lý ngay lập tức.",
+      "Chị Thùy Anh có thể kiểm tra tiến trình đơn hàng tại mục Theo dõi đơn hàng nhé!",
+      "Nếu cần hỗ trợ khẩn cấp, chị Thùy Anh có thể liên hệ tổng đài 1900-xxxx ạ."
     ]
   }
 };
