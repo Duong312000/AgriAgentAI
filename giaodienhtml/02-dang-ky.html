@@ -28,13 +28,13 @@
         <div style="border: 1.5px solid #b8d67c; background-color: #f9faee; border-radius: 20px; padding: 18px 16px; margin-bottom: 16px; z-index: 2;">
           <div style="text-align: center; font-size: 16px; font-weight: 700; color: #587820; margin-bottom: 14px;">Vai trò</div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px;">
-            <div style="background: #ffffff; border: 1.5px solid #769f2e; border-radius: 16px; padding: 14px 8px; text-align: center; cursor: pointer;">
+            <div id="role-farmer" onclick="selectRole('farmer')" style="background: #ffffff; border: 2.5px solid #769f2e; border-radius: 16px; padding: 14px 8px; text-align: center; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(118, 159, 46, 0.25);">
               <img src="../image/4d6db1ad7275923ce24c19acbf3b0ad1.jpg" alt="Người nông dân" style="height: 44px; width: auto; margin-bottom: 6px; object-fit: contain;">
-              <div style="font-size: 14px; font-weight: 700; color: #2d4612;">Người nông dân</div>
+              <div style="font-size: 14px; font-weight: 800; color: #2d4612;">Người nông dân</div>
             </div>
-            <div style="background: #ffffff; border: 1.5px solid #b0c290; border-radius: 16px; padding: 14px 8px; text-align: center; cursor: pointer; opacity: 0.85;">
+            <div id="role-buyer" onclick="selectRole('buyer')" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 14px 8px; text-align: center; cursor: pointer; opacity: 0.65; transition: all 0.2s ease;">
               <img src="../image/buyer_icon.png" alt="Người mua hàng" style="height: 44px; width: auto; margin-bottom: 6px; object-fit: contain;">
-              <div style="font-size: 14px; font-weight: 700; color: #2d4612;">Người mua hàng</div>
+              <div style="font-size: 14px; font-weight: 800; color: #2d4612;">Người mua hàng</div>
             </div>
           </div>
 
@@ -65,7 +65,37 @@
         </div>
 
         <!-- Nút Đăng ký -->
-        <a href="03-dang-nhap.html" style="display: flex; align-items: center; justify-content: center; background-color: #88ad37; color: #ffffff; font-size: 18px; font-weight: 800; height: 48px; border-radius: 25px; text-decoration: none; box-shadow: 0 4px 12px rgba(136,173,55,0.3); margin-bottom: 16px; z-index: 2;">Đăng ký</a>
+        <a id="btn-register" href="08-trang-chu-nong-dan.html" style="display: flex; align-items: center; justify-content: center; background-color: #88ad37; color: #ffffff; font-size: 18px; font-weight: 800; height: 48px; border-radius: 25px; text-decoration: none; box-shadow: 0 4px 12px rgba(136,173,55,0.3); margin-bottom: 16px; z-index: 2;">Đăng ký</a>
+
+        <script>
+        function selectRole(role) {
+          const farmerBox = document.getElementById('role-farmer');
+          const buyerBox = document.getElementById('role-buyer');
+          const regBtn = document.getElementById('btn-register');
+
+          if (role === 'farmer') {
+            farmerBox.style.border = '2.5px solid #769f2e';
+            farmerBox.style.opacity = '1';
+            farmerBox.style.boxShadow = '0 4px 12px rgba(118, 159, 46, 0.25)';
+
+            buyerBox.style.border = '1.5px solid #cbd5e1';
+            buyerBox.style.opacity = '0.65';
+            buyerBox.style.boxShadow = 'none';
+
+            if (regBtn) regBtn.href = '08-trang-chu-nong-dan.html';
+          } else {
+            buyerBox.style.border = '2.5px solid #769f2e';
+            buyerBox.style.opacity = '1';
+            buyerBox.style.boxShadow = '0 4px 12px rgba(118, 159, 46, 0.25)';
+
+            farmerBox.style.border = '1.5px solid #cbd5e1';
+            farmerBox.style.opacity = '0.65';
+            farmerBox.style.boxShadow = 'none';
+
+            if (regBtn) regBtn.href = '09-trang-chu-nguoi-mua.html';
+          }
+        }
+        </script>
 
         <!-- Đã có tài khoản? -->
         <div style="text-align: center; font-size: 14px; color: #666666; margin-bottom: 16px; z-index: 2;">
