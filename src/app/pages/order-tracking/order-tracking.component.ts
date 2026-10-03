@@ -14,7 +14,7 @@ import { OrderService, Order } from '../../services/order.service';
         <a routerLink="/profile" class="header-back-btn">
           <i class="fa-solid fa-arrow-left"></i>
         </a>
-        <h2 class="header-title-text">Đang giao hàng</h2>
+        <h2 class="header-title-text">{{ order ? getStatusText(order.status) : 'Theo dõi đơn hàng' }}</h2>
         <div class="header-right-actions">
           <a routerLink="/chat-staff" class="action-icon-btn" title="Hỗ trợ">
             <i class="fa-solid fa-headset"></i>
@@ -25,175 +25,141 @@ import { OrderService, Order } from '../../services/order.service';
         </div>
       </div>
 
-      <!-- Live Map Visual Section -->
-      <div class="map-visual-container">
-        <!-- Animated / Detailed SVG Map Layout -->
-        <svg width="100%" height="100%" viewBox="0 0 400 280" preserveAspectRatio="none">
-          <!-- Background Zones in Soft #DFF1E6 Greens -->
-          <rect width="400" height="280" fill="#e4f2ea"/>
-          <path d="M 0,140 Q 70,120 110,160 T 180,260 L 0,260 Z" fill="#DFF1E6" opacity="0.9"/>
-          <rect x="240" y="60" width="140" height="100" rx="12" fill="#DFF1E6" opacity="0.9"/>
+      <!-- If Order Exists -->
+      <ng-container *ngIf="order; else emptyState">
+        <!-- Live Map Visual Section -->
+        <div class="map-visual-container">
+          <svg width="100%" height="100%" viewBox="0 0 400 280" preserveAspectRatio="none">
+            <rect width="400" height="280" fill="#e4f2ea"/>
+            <path d="M 0,140 Q 70,120 110,160 T 180,260 L 0,260 Z" fill="#DFF1E6" opacity="0.9"/>
+            <rect x="240" y="60" width="140" height="100" rx="12" fill="#DFF1E6" opacity="0.9"/>
 
-          <!-- Street Lines -->
-          <line x1="30" y1="0" x2="80" y2="280" stroke="#ffffff" stroke-width="10"/>
-          <text x="32" y="80" font-size="9" font-weight="bold" fill="#2d6a4f" transform="rotate(78 32 80)">Đ. Lũy Bán Bích</text>
+            <line x1="30" y1="0" x2="80" y2="280" stroke="#ffffff" stroke-width="10"/>
+            <text x="32" y="80" font-size="9" font-weight="bold" fill="#2d6a4f" transform="rotate(78 32 80)">Đ. Lũy Bán Bích</text>
 
-          <line x1="100" y1="0" x2="280" y2="280" stroke="#ffffff" stroke-width="14"/>
-          <text x="210" y="170" font-size="9" font-weight="bold" fill="#2d6a4f" transform="rotate(58 210 170)">Đ. Âu Cơ</text>
+            <line x1="100" y1="0" x2="280" y2="280" stroke="#ffffff" stroke-width="14"/>
+            <text x="210" y="170" font-size="9" font-weight="bold" fill="#2d6a4f" transform="rotate(58 210 170)">Đ. Âu Cơ</text>
 
-          <line x1="0" y1="210" x2="400" y2="190" stroke="#ffffff" stroke-width="8"/>
-          <text x="180" y="206" font-size="9" font-weight="bold" fill="#2d6a4f">Bình Thới</text>
+            <line x1="0" y1="210" x2="400" y2="190" stroke="#ffffff" stroke-width="8"/>
+            <text x="180" y="206" font-size="9" font-weight="bold" fill="#2d6a4f">Bình Thới</text>
 
-          <line x1="0" y1="90" x2="400" y2="70" stroke="#ffffff" stroke-width="7"/>
+            <line x1="0" y1="90" x2="400" y2="70" stroke="#ffffff" stroke-width="7"/>
 
-          <!-- District / Landmark Labels -->
-          <text x="20" y="180" font-size="10" font-weight="bold" fill="#1b4332">Đầm Sen 🌳</text>
-          <text x="255" y="105" font-size="10" font-weight="bold" fill="#1b4332">Sân vận động Phú Thọ 🏟️</text>
-          <text x="110" y="115" font-size="10" font-weight="600" fill="#52b788">HOÀ THẠNH</text>
-          <text x="260" y="35" font-size="10" font-weight="600" fill="#1b4332">Chợ Tân Bình 🏪</text>
+            <text x="20" y="180" font-size="10" font-weight="bold" fill="#1b4332">Đầm Sen 🌳</text>
+            <text x="255" y="105" font-size="10" font-weight="bold" fill="#1b4332">Sân vận động Phú Thọ 🏟️</text>
+            <text x="110" y="115" font-size="10" font-weight="600" fill="#52b788">HOÀ THẠNH</text>
+            <text x="260" y="35" font-size="10" font-weight="600" fill="#1b4332">Chợ Tân Bình 🏪</text>
 
-          <!-- Delivery Route Path -->
-          <path d="M 160,195 L 250,105 L 205,45 L 165,18" fill="none" stroke="#2d6a4f" stroke-dasharray="5 4" stroke-width="4" stroke-linecap="round"/>
+            <path d="M 160,195 L 250,105 L 205,45 L 165,18" fill="none" stroke="#2d6a4f" stroke-dasharray="5 4" stroke-width="4" stroke-linecap="round"/>
 
-          <!-- Destination Marker -->
-          <g transform="translate(160, 195)">
-            <circle cx="0" cy="0" r="14" fill="rgba(45,106,79,0.25)"/>
-            <circle cx="0" cy="0" r="7" fill="#1b4332"/>
-            <circle cx="0" cy="0" r="3" fill="#ffffff"/>
-          </g>
+            <g transform="translate(160, 195)">
+              <circle cx="0" cy="0" r="14" fill="rgba(45,106,79,0.25)"/>
+              <circle cx="0" cy="0" r="7" fill="#1b4332"/>
+              <circle cx="0" cy="0" r="3" fill="#ffffff"/>
+            </g>
 
-          <!-- Shipper Current Location Marker -->
-          <g transform="translate(205, 45)">
-            <circle cx="0" cy="0" r="16" fill="#2d6a4f"/>
-            <circle cx="0" cy="0" r="13" fill="#1b4332"/>
-            <path d="M-5,-4 L6,0 L-5,4 L-2,0 Z" fill="#ffffff"/>
-          </g>
-        </svg>
+            <g transform="translate(205, 45)">
+              <circle cx="0" cy="0" r="16" fill="#2d6a4f"/>
+              <circle cx="0" cy="0" r="13" fill="#1b4332"/>
+              <path d="M-5,-4 L6,0 L-5,4 L-2,0 Z" fill="#ffffff"/>
+            </g>
+          </svg>
 
-        <!-- Top Tooltip Floating Card -->
-        <div class="map-status-tooltip">
-          <i class="fa-solid fa-truck-fast text-success me-2"></i>
-          <span>Đơn hàng sắp được giao tới bạn</span>
-        </div>
-
-        <!-- Floating GPS Target Button -->
-        <button class="gps-target-btn" title="Định vị">
-          <i class="fa-solid fa-crosshairs"></i>
-        </button>
-      </div>
-
-      <!-- Main Tracking Content Cards -->
-      <div class="tracking-content-body">
-        
-        <!-- Estimated Delivery Date Card -->
-        <div class="bootstrap-card delivery-date-card">
-          <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068895/agriagent_ai/tr%C3%A1i_c%C3%A2y/vai.jpg" alt="Vải Thiều" class="product-thumb-img">
-          <div class="delivery-info">
-            <div class="info-label">Ngày nhận hàng dự kiến</div>
-            <div class="info-date-highlight">Hôm nay, {{todayDateString}}</div>
-            <div class="info-subtext">Vận chuyển bởi Nhanh - SPX Express (Nông Thương)</div>
+          <div class="map-status-tooltip">
+            <i class="fa-solid fa-truck-fast text-success me-2"></i>
+            <span>Đơn {{ order.orderCode }} {{ getStatusTooltip(order.status) }}</span>
           </div>
+
+          <button class="gps-target-btn" title="Định vị">
+            <i class="fa-solid fa-crosshairs"></i>
+          </button>
         </div>
 
-        <!-- Tracking Number & Inspection Card -->
-        <div class="bootstrap-card tracking-code-card">
-          <div class="code-row">
-            <span class="code-title">Mã vận đơn</span>
-            <div class="code-value-group">
-              <span class="code-number">SPXVN047140263024</span>
-              <button (click)="copyTrackingCode()" class="copy-badge-btn">
-                {{copied ? 'ĐÃ SAO CHÉP' : 'SAO CHÉP'}}
-              </button>
+        <!-- Main Tracking Content Cards -->
+        <div class="tracking-content-body">
+          
+          <!-- Product Summary Card -->
+          <div class="bootstrap-card delivery-date-card">
+            <img [src]="getProductImage(order)" [alt]="getProductName(order)" class="product-thumb-img">
+            <div class="delivery-info">
+              <div class="info-label">{{ getProductName(order) }}</div>
+              <div class="info-date-highlight">Tổng tiền: {{ order.totalAmount | number:'1.0-0' }}đ</div>
+              <div class="info-subtext">Đơn vị: AgriAgent-Express · Địa chỉ: {{ order.shippingAddress }}</div>
             </div>
           </div>
 
-          <div class="inspection-row">
-            <span class="dong-kiem-tag">
-              <i class="fa-solid fa-circle-check me-1"></i> ĐỒNG KIỂM
-            </span>
-            <span class="inspection-desc">Được đồng kiểm cùng shipper</span>
-            <a href="javascript:void(0)" class="inspection-link">Tìm hiểu thêm</a>
-          </div>
-        </div>
-
-        <!-- Order Timeline Progress Card -->
-        <div class="bootstrap-card timeline-card">
-          <div class="timeline-card-title">Tiến trình vận chuyển</div>
-
-          <div class="timeline-flex-wrapper">
-            <!-- Background Vertical Line perfectly centered through node column -->
-            <div class="timeline-continuous-v-line"></div>
-
-            <!-- Active Step: Đang giao hàng -->
-            <div class="timeline-flex-row">
-              <div class="time-col">
-                <span class="time-date">Hôm nay</span>
-                <strong class="time-hour active">08:18</strong>
+          <!-- Tracking Number & Inspection Card -->
+          <div class="bootstrap-card tracking-code-card">
+            <div class="code-row">
+              <span class="code-title">Mã vận đơn</span>
+              <div class="code-value-group">
+                <span class="code-number">{{ order.orderCode }}</span>
+                <button (click)="copyTrackingCode()" class="copy-badge-btn">
+                  {{copied ? 'ĐÃ SAO CHÉP' : 'SAO CHÉP'}}
+                </button>
               </div>
-              <div class="node-col">
-                <div class="active-truck-badge">
-                  <i class="fa-solid fa-truck"></i>
+            </div>
+
+            <div class="inspection-row">
+              <span class="dong-kiem-tag">
+                <i class="fa-solid fa-circle-check me-1"></i> ĐỒNG KIỂM
+              </span>
+              <span class="inspection-desc">Được đồng kiểm cùng shipper</span>
+            </div>
+          </div>
+
+          <!-- Order Timeline Progress Card -->
+          <div class="bootstrap-card timeline-card">
+            <div class="timeline-card-title">Tiến trình vận chuyển</div>
+
+            <div class="timeline-flex-wrapper">
+              <div class="timeline-continuous-v-line"></div>
+
+              <div *ngFor="let log of order.statusLogs; let isFirst = first" class="timeline-flex-row">
+                <div class="time-col">
+                  <span class="time-date">{{ log.timestamp | date:'dd/MM' }}</span>
+                  <strong [class.active]="isFirst" class="time-hour">{{ log.timestamp | date:'HH:mm' }}</strong>
+                </div>
+                <div class="node-col">
+                  <div [class.active-truck-badge]="isFirst" [class.dot-badge]="!isFirst">
+                    <i *ngIf="isFirst" class="fa-solid fa-truck"></i>
+                  </div>
+                </div>
+                <div class="content-col">
+                  <div [class.active]="isFirst" [class.status-title]="isFirst" [class.status-desc-normal]="!isFirst">
+                    {{ log.statusName }}
+                  </div>
+                  <div *ngIf="log.locationNote" class="status-desc">
+                    {{ log.locationNote }}
+                  </div>
                 </div>
               </div>
-              <div class="content-col">
-                <div class="status-title active">Đang giao hàng</div>
-                <div class="status-desc">
-                  Đơn hàng sẽ sớm được giao, vui lòng chú ý điện thoại. Tài xế Nguyễn Văn Hùng đang tới địa chỉ của bạn.
-                </div>
-              </div>
-            </div>
 
-            <!-- Step 2 -->
-            <div class="timeline-flex-row">
-              <div class="time-col">
-                <span class="time-date">Hôm nay</span>
-                <span class="time-hour">06:19</span>
-              </div>
-              <div class="node-col">
-                <div class="dot-badge"></div>
-              </div>
-              <div class="content-col">
-                <div class="status-desc-normal">Đơn hàng đã đến trạm giao hàng 51-HCM DTP/Âu Cơ</div>
-              </div>
             </div>
-
-            <!-- Step 3 -->
-            <div class="timeline-flex-row">
-              <div class="time-col">
-                <span class="time-date">Hôm qua</span>
-                <span class="time-hour">18:30</span>
-              </div>
-              <div class="node-col">
-                <div class="dot-badge"></div>
-              </div>
-              <div class="content-col">
-                <div class="status-desc-normal">Đơn hàng đã xuất kho Củ Chi SOC</div>
-              </div>
-            </div>
-
-            <!-- Step 4 -->
-            <div class="timeline-flex-row">
-              <div class="time-col">
-                <span class="time-date">02/10</span>
-                <span class="time-hour">14:15</span>
-              </div>
-              <div class="node-col">
-                <div class="dot-badge"></div>
-              </div>
-              <div class="content-col">
-                <div class="status-desc-normal">Nhà vườn Bác Hùng Bắc Giang đã bàn giao đơn hàng cho đơn vị vận chuyển</div>
-              </div>
-            </div>
-
           </div>
+
+          <a routerLink="/buyer-home" class="btn-return-home">
+            Trở Về Trang Chủ
+          </a>
+
         </div>
+      </ng-container>
 
-        <!-- Return Home Button -->
-        <a routerLink="/buyer-home" class="btn-return-home">
-          Trở Về Trang Chủ
-        </a>
-
-      </div>
+      <!-- Empty State Template -->
+      <ng-template #emptyState>
+        <div style="padding: 60px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
+          <div style="width: 88px; height: 88px; border-radius: 50%; background-color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.06);">
+            <i class="fa-solid fa-truck-ramp-box" style="font-size: 38px; color: #2d6a4f;"></i>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 800; color: #1b4332; margin: 0;">Chưa Có Đơn Hàng Đang Giao</h3>
+          <p style="font-size: 14px; color: #475569; max-width: 300px; line-height: 1.5; margin: 0;">
+            Bạn hiện chưa chọn hoặc chưa phát sinh đơn hàng nào cần theo dõi tiến trình vận chuyển.
+          </p>
+          <a routerLink="/buyer-home" class="btn-return-home" style="max-width: 260px; margin-top: 12px;">
+            Khám Phá Nông Sản Ngay
+          </a>
+        </div>
+      </ng-template>
     </div>
   `,
   styles: [`
@@ -207,7 +173,6 @@ import { OrderService, Order } from '../../services/order.service';
       font-family: inherit;
     }
 
-    /* Header Styling */
     .tracking-header {
       position: sticky;
       top: 0;
@@ -249,89 +214,83 @@ import { OrderService, Order } from '../../services/order.service';
     .header-right-actions {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 8px;
     }
 
     .action-icon-btn {
-      background: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: transparent;
       border: none;
-      color: #2d6a4f;
-      font-size: 18px;
-      cursor: pointer;
-      padding: 0;
-      text-decoration: none;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: #475569;
+      font-size: 18px;
+      text-decoration: none;
+      cursor: pointer;
     }
 
-    /* Map Visual Area */
     .map-visual-container {
       position: relative;
       width: 100%;
-      height: 270px;
-      background-color: #cce7d7;
+      height: 220px;
+      background-color: #e4f2ea;
       overflow: hidden;
-      border-bottom: 1px solid #b7dbca;
     }
 
     .map-status-tooltip {
       position: absolute;
-      top: 14px;
+      top: 12px;
       left: 50%;
       transform: translateX(-50%);
-      background-color: #ffffff;
-      padding: 8px 18px;
-      border-radius: 999px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-      border: 1.5px solid #52b788;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(6px);
+      padding: 8px 16px;
+      border-radius: 20px;
       font-size: 13px;
       font-weight: 700;
       color: #1b4332;
-      display: flex;
-      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       white-space: nowrap;
       z-index: 10;
     }
 
     .gps-target-btn {
       position: absolute;
-      bottom: 14px;
-      right: 14px;
+      bottom: 12px;
+      right: 12px;
       width: 38px;
       height: 38px;
       border-radius: 50%;
       background-color: #ffffff;
       border: none;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-      color: #1e293b;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      color: #2d6a4f;
       font-size: 16px;
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
+      z-index: 10;
     }
 
-    /* Content Body & Cards */
     .tracking-content-body {
-      padding: 14px 16px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      position: relative;
-      z-index: 20;
-      margin-top: -8px;
     }
 
     .bootstrap-card {
-      background-color: #ffffff;
+      background: #ffffff;
       border-radius: 16px;
       padding: 16px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-      border: 1px solid #e2f0e6;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e2e8f0;
     }
 
-    /* Delivery Date Card */
     .delivery-date-card {
       display: flex;
       align-items: center;
@@ -339,11 +298,11 @@ import { OrderService, Order } from '../../services/order.service';
     }
 
     .product-thumb-img {
-      width: 54px;
-      height: 54px;
+      width: 56px;
+      height: 56px;
       border-radius: 12px;
       object-fit: cover;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #cbd5e1;
     }
 
     .delivery-info {
@@ -351,36 +310,40 @@ import { OrderService, Order } from '../../services/order.service';
     }
 
     .info-label {
-      font-size: 12px;
-      font-weight: 600;
-      color: #64748b;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1e293b;
       margin-bottom: 2px;
     }
 
     .info-date-highlight {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
-      color: #1b4332;
+      color: #ee4d2d;
       margin-bottom: 2px;
     }
 
     .info-subtext {
-      font-size: 11.5px;
-      color: #64748b;
+      font-size: 11px;
+      color: #94a3b8;
     }
 
-    /* Tracking Code Card */
+    .tracking-code-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
     .code-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
     }
 
     .code-title {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #1e293b;
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 600;
     }
 
     .code-value-group {
@@ -390,143 +353,118 @@ import { OrderService, Order } from '../../services/order.service';
     }
 
     .code-number {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: #475569;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e293b;
+      letter-spacing: 0.5px;
     }
 
     .copy-badge-btn {
-      background: #eaf5ee;
-      border: 1px solid #52b788;
-      color: #2d6a4f;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 3px 9px;
+      background-color: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
       border-radius: 6px;
       cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .copy-badge-btn:hover {
-      background-color: #2d6a4f;
-      color: #ffffff;
     }
 
     .inspection-row {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding-top: 10px;
-      border-top: 1px solid #f1f5f9;
       font-size: 12px;
-      color: #334155;
+      padding-top: 8px;
+      border-top: 1px dashed #e2e8f0;
     }
 
     .dong-kiem-tag {
-      background-color: #2d6a4f;
-      color: #ffffff;
-      font-size: 10.5px;
-      font-weight: 700;
-      padding: 2px 8px;
+      background-color: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 10px;
+      padding: 2px 6px;
       border-radius: 4px;
-      display: inline-flex;
-      align-items: center;
     }
 
     .inspection-desc {
-      font-size: 11.5px;
-      color: #334155;
+      color: #475569;
+      flex: 1;
     }
 
-    .inspection-link {
-      margin-left: auto;
-      color: #2d6a4f;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 11.5px;
-    }
-
-    /* Timeline Card System */
     .timeline-card-title {
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 700;
       color: #1e293b;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .timeline-flex-wrapper {
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
     }
 
     .timeline-continuous-v-line {
       position: absolute;
-      top: 12px;
-      bottom: 12px;
-      left: 78px;
+      left: 71px;
+      top: 10px;
+      bottom: 10px;
       width: 2px;
       background-color: #cbd5e1;
       z-index: 1;
-      transform: translateX(-50%);
     }
 
     .timeline-flex-row {
       display: flex;
       align-items: flex-start;
-      position: relative;
       z-index: 2;
     }
 
     .time-col {
       width: 60px;
-      flex-shrink: 0;
-      text-align: right;
-      padding-right: 10px;
       display: flex;
       flex-direction: column;
-      font-size: 11px;
-      color: #64748b;
-      line-height: 1.35;
+      align-items: flex-end;
+      padding-right: 10px;
     }
 
     .time-date {
-      font-size: 11px;
-      color: #64748b;
+      font-size: 10px;
+      color: #94a3b8;
     }
 
     .time-hour {
-      font-size: 11px;
+      font-size: 12px;
       color: #64748b;
     }
 
     .time-hour.active {
-      color: #1b4332;
+      color: #2d6a4f;
       font-weight: 800;
-      font-size: 12px;
     }
 
     .node-col {
-      width: 36px;
-      flex-shrink: 0;
+      width: 24px;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      position: relative;
+      align-items: center;
+      padding-top: 2px;
     }
 
     .active-truck-badge {
-      width: 26px;
-      height: 26px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background-color: #2d6a4f;
       color: #ffffff;
-      font-size: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 0 4px #DFF1E6;
+      font-size: 10px;
+      box-shadow: 0 0 0 4px #dcfce7;
     }
 
     .dot-badge {
@@ -534,19 +472,21 @@ import { OrderService, Order } from '../../services/order.service';
       height: 10px;
       border-radius: 50%;
       background-color: #94a3b8;
-      margin-top: 4px;
     }
 
     .content-col {
       flex: 1;
-      padding-left: 6px;
+      padding-left: 10px;
+    }
+
+    .status-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1e293b;
     }
 
     .status-title.active {
-      font-size: 14px;
-      font-weight: 800;
       color: #2d6a4f;
-      margin-bottom: 3px;
     }
 
     .status-desc {
@@ -562,7 +502,6 @@ import { OrderService, Order } from '../../services/order.service';
       margin-top: 1px;
     }
 
-    /* Return Button */
     .btn-return-home {
       display: flex;
       align-items: center;
@@ -577,7 +516,6 @@ import { OrderService, Order } from '../../services/order.service';
       text-decoration: none;
       box-shadow: 0 4px 12px rgba(45, 106, 79, 0.25);
       transition: background-color 0.2s;
-      margin-top: 4px;
     }
 
     .btn-return-home:hover {
@@ -597,20 +535,29 @@ export class OrderTrackingComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      const code = params['code'] || 'AGRI-88421';
+      const code = params['code'];
       this.loadOrder(code);
     });
   }
 
-  loadOrder(code: string): void {
+  loadOrder(code?: string): void {
     this.orderService.getOrders().subscribe({
       next: (res) => {
         if (res.success && res.data.length > 0) {
-          const match = res.data.find(o => o.orderCode === code) || res.data[0];
-          this.order = match;
+          if (code) {
+            this.order = res.data.find(o => o.orderCode === code) || null;
+          } else {
+            // Find the most recent active/shipping order
+            this.order = res.data.find(o => o.status === 'SHIPPING' || o.status === 'PENDING' || o.status === 'CONFIRMED') || null;
+          }
+        } else {
+          this.order = null;
         }
       },
-      error: (err) => console.error('Lỗi khi tải thông tin đơn hàng:', err)
+      error: (err) => {
+        console.error('Lỗi khi tải thông tin đơn hàng:', err);
+        this.order = null;
+      }
     });
   }
 
@@ -650,14 +597,6 @@ export class OrderTrackingComponent implements OnInit {
       return first.productId.images[0];
     }
     return 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068891/agriagent_ai/tr%C3%A1i_c%C3%A2y/oi.jpg';
-  }
-
-  get todayDateString(): string {
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
-    return `${day} Tháng ${month} ${year}`;
   }
 
   copyTrackingCode(): void {
