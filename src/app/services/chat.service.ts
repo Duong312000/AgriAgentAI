@@ -9,7 +9,7 @@ export class ChatService {
     "khang-xoai": {
       id: "khang-xoai",
       name: "Khang Xoài",
-      avatar: "assets/image/74acf8d5fc78215adb7b31123fc10cc7.jpg",
+      avatar: "https://res.cloudinary.com/zdavpzw2/image/upload/v1791068873/agriagent_ai/74acf8d5fc78215adb7b31123fc10cc7.jpg",
       status: "Đang hoạt động",
       headerBg: "#fde047",
       headerColor: "#111827",
@@ -29,7 +29,7 @@ export class ChatService {
     "duong-mit": {
       id: "duong-mit",
       name: "Dương Mít",
-      avatar: "assets/image/622f949df277af76c811644427ebcace.jpg",
+      avatar: "https://res.cloudinary.com/zdavpzw2/image/upload/v1791068872/agriagent_ai/622f949df277af76c811644427ebcace.jpg",
       status: "Đang hoạt động",
       headerBg: "#fde047",
       headerColor: "#111827",
@@ -48,7 +48,7 @@ export class ChatService {
     "truong-giang": {
       id: "truong-giang",
       name: "Trường Giang",
-      avatar: "assets/image/a28917e48c7907a6a465f308c3e68ba2.jpg",
+      avatar: "https://res.cloudinary.com/zdavpzw2/image/upload/v1791068875/agriagent_ai/a28917e48c7907a6a465f308c3e68ba2.jpg",
       status: "Truy cập 5 phút trước",
       headerBg: "#fde047",
       headerColor: "#111827",
@@ -67,7 +67,7 @@ export class ChatService {
     "thanh": {
       id: "thanh",
       name: "Thanh",
-      avatar: "assets/image/492be8585cfc89c15c16f933b6b71976.jpg",
+      avatar: "https://res.cloudinary.com/zdavpzw2/image/upload/v1791068870/agriagent_ai/492be8585cfc89c15c16f933b6b71976.jpg",
       status: "Đang hoạt động",
       headerBg: "#fde047",
       headerColor: "#111827",
@@ -86,7 +86,7 @@ export class ChatService {
     "agri-ai": {
       id: "agri-ai",
       name: "AgriAgent AI",
-      avatar: "assets/image/logo.png",
+      avatar: "https://res.cloudinary.com/zdavpzw2/image/upload/v1791068883/agriagent_ai/logo.png",
       status: "Trợ lý AI trực tuyến 24/7",
       headerBg: "#fde047",
       headerColor: "#111827",
@@ -105,7 +105,7 @@ export class ChatService {
     "support-staff": {
       id: "support-staff",
       name: "Tiến Thành",
-      avatar: "assets/image/bf6893740faf9b9fd905b3094897788d.jpg",
+      avatar: "https://res.cloudinary.com/zdavpzw2/image/upload/v1791068876/agriagent_ai/bf6893740faf9b9fd905b3094897788d.jpg",
       status: "Nhân viên hỗ trợ CSKH",
       headerBg: "#f7d44c",
       headerColor: "#262626",
