@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const dns = require('dns');
-require('dotenv').config();
+const path = require('path');
+const fs = require('fs');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 // Fix DNS for Windows
 try {
@@ -30,6 +32,12 @@ const {
   ProductReview,
   Banner
 } = require('./models');
+
+// Đọc map ảnh Cloudinary vừa được đẩy lên
+const imgMapPath = path.join(__dirname, 'cloudinary_images_map.json');
+const imgMap = fs.existsSync(imgMapPath) ? JSON.parse(fs.readFileSync(imgMapPath, 'utf8')) : {};
+
+const getCloudUrl = (key, fallback) => imgMap[key] || fallback;
 
 const seedData = async () => {
   try {
@@ -61,14 +69,14 @@ const seedData = async () => {
       ProductReview.deleteMany({}),
       Banner.deleteMany({})
     ]);
-    console.log('🧹 Đã xóa sạch và làm mới các Collections.');
+    console.log('🧹 Đã dọn dẹp các Collections cũ.');
 
     // 1. Categories
     const categories = await Category.insertMany([
-      { name: 'Trái cây', iconUrl: 'assets/icon/fruit.png' },
-      { name: 'Rau củ', iconUrl: 'assets/icon/vegetable.png' },
-      { name: 'Nông sản thô', iconUrl: 'assets/icon/grain.png' },
-      { name: 'Thủy sản', iconUrl: 'assets/icon/fish.png' }
+      { name: 'Trái cây', iconUrl: getCloudUrl('buyer_icon.png', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068878/agriagent_ai/buyer_icon.jpg') },
+      { name: 'Rau củ', iconUrl: getCloudUrl('buyer_icon.png', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068878/agriagent_ai/buyer_icon.jpg') },
+      { name: 'Nông sản thô', iconUrl: getCloudUrl('buyer_icon.png', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068878/agriagent_ai/buyer_icon.jpg') },
+      { name: 'Thủy sản', iconUrl: getCloudUrl('buyer_icon.png', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068878/agriagent_ai/buyer_icon.jpg') }
     ]);
 
     // 2. Users
@@ -82,7 +90,8 @@ const seedData = async () => {
       role: 'FARMER',
       town: 'Châu Thành',
       province: 'Bến Tre',
-      address: 'Ấp 3, Xã Tân Thạch'
+      address: 'Ấp 3, Xã Tân Thạch',
+      avatarUrl: getCloudUrl('bf6893740faf9b9fd905b3094897788d.jpg', '')
     });
 
     const buyer1 = await User.create({
@@ -95,19 +104,11 @@ const seedData = async () => {
       role: 'BUYER',
       town: 'Bình Chánh',
       province: 'TP. Hồ Chí Minh',
-      address: 'Chợ Đầu Mối Bình Điền'
+      address: 'Chợ Đầu Mối Bình Điền',
+      avatarUrl: getCloudUrl('74acf8d5fc78215adb7b31123fc10cc7.jpg', '')
     });
 
-    // 3. User Address
-    await UserAddress.create({
-      userId: buyer1._id,
-      recipientName: buyer1.fullName || 'Thương Lái Minh',
-      phoneNumber: buyer1.phoneNumber,
-      shippingAddress: 'Chợ Đầu Mối Bình Điền, Bình Chánh, TP.HCM',
-      isPrimary: true
-    });
-
-    // 4. Products
+    // 3. Products với URL Cloudinary chuẩn
     const product1 = await Product.create({
       farmerId: farmer1._id,
       name: 'Ổi Vú Sữa Bến Tre Giòn Ngọt',
@@ -116,141 +117,71 @@ const seedData = async () => {
       unit: 'kg',
       stockQuantity: 500,
       location: 'Châu Thành, Bến Tre',
-      images: ['assets/image/Trái cây/oi.jpg'],
+      images: [getCloudUrl('oi.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068891/agriagent_ai/tr%C3%A1i_c%C3%A2y/oi.jpg')],
       category: 'Trái cây',
       status: 'AVAILABLE'
     });
 
-    await ProductImage.create({
-      productId: product1._id,
-      imageUrl: 'assets/image/Trái cây/oi.jpg',
-      isPrimary: true
-    });
-
-    // 5. Voice & AI Pricing Logs
-    const voiceLog = await VoiceUploadLog.create({
-      userId: farmer1._id,
-      audioFileUrl: 'uploads/audio_sample_01.wav',
-      transcribedText: 'Tôi muốn bán ổi vú sữa Bến Tre, sản lượng 500kg',
-      extractedJson: { productName: 'Ổi Vú Sữa', quantity: 500, unit: 'kg' },
-      accuracyScore: 0.95
-    });
-
-    await AiPricingLog.create({
-      voiceLogId: voiceLog._id,
-      productId: product1._id,
-      suggestedPrice: 26000,
-      minPrice: 22000,
-      maxPrice: 28000,
-      marketTrend: 'Ổn định'
-    });
-
-    // 6. Logistics (Routes, Stops & Pools)
-    const route1 = await ShippingRoute.create({
-      routeName: 'Tuyến Miền Tây 01: Bến Tre -> Tiền Giang -> TP.HCM',
-      originProvince: 'Bến Tre',
-      destinationProvince: 'TP. Hồ Chí Minh',
-      totalDistanceKm: 85,
-      estimatedHours: 2.5,
-      scheduleDays: 'Thứ 2, Thứ 4, Thứ 7'
-    });
-
-    await ShippingRouteStop.create({
-      routeId: route1._id,
-      stopOrder: 1,
-      stopName: 'Trạm Gom Châu Thành (Bến Tre)',
-      address: 'Kho Gom Tân Thạch, Châu Thành, Bến Tre',
-      stopType: 'PICKUP'
-    });
-
-    const pool1 = await ShippingPool.create({
-      routeId: route1._id,
-      poolCode: 'POOL-20261005-01',
-      routeName: route1.routeName,
-      originProvince: 'Bến Tre',
-      destinationProvince: 'TP. Hồ Chí Minh',
-      driverName: 'Bác Tài Bảy',
-      driverPhone: '0912345678',
-      licensePlate: '63C-123.45',
-      truckType: 'Xe tải đông lạnh 5 tấn',
-      maxCapacityKg: 5000,
-      currentWeightKg: 1250,
-      departureTime: new Date('2026-10-06T06:00:00Z'),
-      status: 'COLLECTING'
-    });
-
-    // 7. Orders
-    const order1 = await Order.create({
-      orderCode: 'AGRI-88231',
-      buyerId: buyer1._id,
+    const product2 = await Product.create({
       farmerId: farmer1._id,
-      items: [
-        {
-          productId: product1._id,
-          productName: product1.name,
-          quantity: 50,
-          unitPrice: product1.priceNum
-        }
-      ],
-      subtotal: 1250000,
-      shippingFee: 15000,
-      discountAmount: 0,
-      totalAmount: 1265000,
-      shippingType: 'GROUP',
-      shippingPoolId: pool1._id,
-      receiverName: 'Thương Lái Minh',
-      receiverPhone: buyer1.phoneNumber,
-      shippingAddress: 'Chợ Đầu Mối Bình Điền, Bình Chánh, TP.HCM',
-      status: 'CONFIRMED',
-      paymentMethod: 'BANK_QR',
-      paymentStatus: 'PAID'
+      name: 'Thanh Long Ruột Đỏ Chợ Gạo',
+      description: 'Thanh long ruột đỏ ngọt đậm, trái to đều từ 500g - 800g.',
+      priceNum: 35000,
+      unit: 'kg',
+      stockQuantity: 1200,
+      location: 'Chợ Gạo, Tiền Giang',
+      images: [getCloudUrl('thanh long.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068894/agriagent_ai/tr%C3%A1i_c%C3%A2y/thanh_long.jpg')],
+      category: 'Trái cây',
+      status: 'AVAILABLE'
     });
 
-    // 8. Payment & Wallet
-    await PaymentTransaction.create({
-      orderId: order1._id,
-      transactionCode: 'VNPAY-88231',
-      paymentGateway: 'VIETQR',
-      amount: order1.totalAmount,
-      status: 'SUCCESS'
-    });
-
-    await FarmerWallet.create({
+    const product3 = await Product.create({
       farmerId: farmer1._id,
-      availableBalance: 5000000,
-      frozenBalance: 1250000,
-      bankName: 'Agribank',
-      bankAccountNumber: '6700205123456',
-      bankAccountHolder: 'NGUYEN VAN BAY'
+      name: 'Chôm Chôm Thái Vĩnh Long',
+      description: 'Chôm chôm Thái chín cây, trái to, râu xanh giòn, thịt tróc róc hạt.',
+      priceNum: 34000,
+      unit: 'kg',
+      stockQuantity: 800,
+      location: 'Vĩnh Long',
+      images: [getCloudUrl('chom chom ban.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068889/agriagent_ai/tr%C3%A1i_c%C3%A2y/chom_chom_ban.jpg')],
+      category: 'Trái cây',
+      status: 'AVAILABLE'
     });
 
-    // 9. Voucher & Notification & Banner
-    await Voucher.create({
-      code: 'AGRI50K',
-      discountAmount: 50000,
-      minOrderValue: 500000,
-      startDate: new Date(),
-      endDate: new Date('2026-12-31')
+    const product4 = await Product.create({
+      farmerId: farmer1._id,
+      name: 'Sầu Riêng Ri6 Cai Lậy',
+      description: 'Sầu riêng Ri6 cơm vàng hạt lép, dẻo ngọt béo ngậy.',
+      priceNum: 35000,
+      unit: 'kg',
+      stockQuantity: 300,
+      location: 'Cai Lậy, Tiền Giang',
+      images: [getCloudUrl('sau rieng.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068893/agriagent_ai/tr%C3%A1i_c%C3%A2y/sau_rieng.jpg')],
+      category: 'Trái cây',
+      status: 'AVAILABLE'
     });
 
-    await Notification.create({
-      userId: buyer1._id,
-      title: 'Đơn hàng #AGRI-88231 đã được xác nhận',
-      content: 'Nông dân Chú Bảy Bến Tre đã xác nhận đơn hàng của bạn.',
-      type: 'ORDER_UPDATE',
-      referenceId: 'AGRI-88231'
-    });
+    // 4. Banners với URL Cloudinary
+    await Banner.insertMany([
+      {
+        title: 'Nông sản Việt - Kết nối Trực tiếp Nông dân & Thương lái',
+        imageUrl: getCloudUrl('home_banner.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068881/agriagent_ai/home_banner.jpg'),
+        targetRole: 'ALL',
+        isActive: true
+      },
+      {
+        title: 'Gom đơn vận chuyển tuyến Miền Tây - Giảm 50% Phí Ship',
+        imageUrl: getCloudUrl('splash_banner.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068887/agriagent_ai/splash_banner.jpg'),
+        targetRole: 'BUYER',
+        isActive: true
+      }
+    ]);
 
-    await Banner.create({
-      title: 'Nông sản Việt - Kết nối Trực tiếp Nông dân & Thương lái',
-      imageUrl: 'assets/image/banner/banner1.jpg'
-    });
-
-    console.log('\n🎉 HOÀN TẤT TẠO TOÀN BỘ 27 COLLECTIONS THEO ĐÚNG ĐẶC TẢ BẢN PDF!');
+    console.log('\n🎉 HOÀN TẤT BƠM TOÀN BỘ CSDL VỚI 100% LINK ĐÁM MÂY CLOUDINARY LÊN MONGO DB ATLAS!');
     process.exit(0);
 
   } catch (error) {
-    console.error('❌ Lỗi khi khởi tạo CSDL:', error);
+    console.error('❌ Lỗi khi seed CSDL:', error);
     process.exit(1);
   }
 };
