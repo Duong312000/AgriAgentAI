@@ -157,8 +157,19 @@ export class BuyerHomeComponent {
     this.productService.getProductsFromApi().subscribe(products => {
       const cleanQuery = this.searchQuery.trim().toLowerCase();
       this.filteredProducts = products.filter(p => {
-        const matchCat = (!this.selectedCategory || this.selectedCategory === 'all' || p.category === this.selectedCategory || p.id === this.selectedCategory);
-        const matchQuery = !cleanQuery || p.name.toLowerCase().includes(cleanQuery) || p.location.toLowerCase().includes(cleanQuery);
+        let matchCat = true;
+        if (this.selectedCategory && this.selectedCategory !== 'all') {
+          const catItem = this.categories.find(c => c.key === this.selectedCategory);
+          const catName = catItem ? catItem.name.toLowerCase() : this.selectedCategory.toLowerCase();
+          matchCat = (p.category && p.category.toLowerCase().includes(catName)) ||
+                     (p.name && p.name.toLowerCase().includes(catName)) ||
+                     p.id === this.selectedCategory ||
+                     p.category === this.selectedCategory;
+        }
+
+        const matchQuery = !cleanQuery || 
+                           (p.name && p.name.toLowerCase().includes(cleanQuery)) || 
+                           (p.location && p.location.toLowerCase().includes(cleanQuery));
         return matchCat && matchQuery;
       });
     });
