@@ -1,0 +1,20 @@
+<!-- Component 16: Hộp thoại xác nhận xóa tài khoản (Modal Overlay phủ toàn màn hình kể cả Bottom Nav) -->
+<div id="delete-account-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(2px); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+  
+  <!-- Modal Card -->
+  <div style="background: #ffffff; border-radius: 24px; width: 340px; max-width: 90%; box-shadow: 0 16px 32px rgba(0,0,0,0.25); text-align: center; overflow: hidden; padding-top: 28px; z-index: 10000;">
+    
+    <h3 style="font-size: 20px; font-weight: 700; color: #252536; margin: 0 20px 16px 20px;">Xóa tài khoản</h3>
+    
+    <p style="font-size: 16px; font-weight: 600; color: #252536; margin: 0 20px 28px 20px; line-height: 1.4;">
+      Bạn có chắc chắn muốn xóa<br>tài khoản?
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; border-top: 1.5px solid #2e5420;">
+      <a href="01-man-hinh-chao.html" style="padding: 16px 10px; font-size: 16px; font-weight: 700; color: #e11d48; text-decoration: none; text-align: center; border-right: 1.5px solid #2e5420; background: #ffffff;">Xóa</a>
+      <a href="13-ca-nhan.html" onclick="document.getElementById('delete-account-modal').style.display='none'; return false;" style="padding: 16px 10px; font-size: 16px; font-weight: 700; color: #252536; text-decoration: none; text-align: center; background: #ffffff;">Không xóa</a>
+    </div>
+
+  </div>
+
+</div>
