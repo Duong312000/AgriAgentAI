@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
       </div>
     </div>
 
-    <div style="padding: 16px; flex: 1; padding-bottom: 90px;">
+    <div style="padding: 16px; flex: 1; padding-bottom: 24px;">
       <div style="border: 2px dashed #f59e0b; background-color: #fffbeb; border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 16px;">
         <i class="fa-solid fa-camera" style="font-size: 36px; color: #334155; margin-bottom: 8px;"></i>
         <div style="font-size: 13px; font-weight: 700; color: #78350f;">Chụp ảnh hoặc tải hình ảnh lên</div>

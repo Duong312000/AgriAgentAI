@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   template: `
-    <div style="padding: 20px 20px 30px 20px; background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-sizing: border-box; overflow: hidden;">
+    <div style="padding: 20px 20px 30px 20px; background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-sizing: border-box; overflow-x: hidden; overflow-y: auto;">
       <img src="assets/image/logo.png" alt="Nông Thương Logo" style="position: absolute; top: 16px; left: 16px; height: 42px; width: auto; z-index: 2;">
       <img src="assets/image/bia.jpg" alt="Hoa văn bìa" style="position: absolute; top: 0; right: 0; width: 160px; height: auto; z-index: 1; pointer-events: none;">
 
@@ -53,6 +53,11 @@ import { AuthService } from '../../services/auth.service';
             <span style="font-size: 12px; font-weight: 500; color: #64748b; font-style: italic;">tài khoản dùng để đăng nhập</span>
           </label>
           <input type="text" id="reg-username-input" [(ngModel)]="username" name="username" style="width: 100%; height: 42px; background: #ffffff; border: 1px solid #d4e3b5; border-radius: 22px; padding: 0 16px; font-size: 14px; outline: none; box-sizing: border-box;" placeholder="Nhập tên đăng nhập">
+        </div>
+
+        <div style="margin-bottom: 12px;">
+          <label for="reg-phone-input" style="display: block; font-size: 14px; font-weight: 700; color: #587820; margin-bottom: 6px;">Số điện thoại(*):</label>
+          <input type="tel" id="reg-phone-input" [(ngModel)]="phone" name="phone" inputmode="tel" autocomplete="tel" style="width: 100%; height: 42px; background: #ffffff; border: 1px solid #d4e3b5; border-radius: 22px; padding: 0 16px; font-size: 14px; outline: none; box-sizing: border-box;" placeholder="Nhập số điện thoại">
         </div>
         
         <div style="margin-bottom: 12px;">
@@ -113,6 +118,7 @@ export class RegisterComponent {
   selectedRole: 'farmer' | 'buyer' = 'farmer';
   fullname = '';
   username = '';
+  phone = '';
   password = '';
   confirmPassword = '';
   showPassword = false;
@@ -141,11 +147,12 @@ export class RegisterComponent {
 
     const fullname = this.fullname.trim();
     const username = this.username.trim();
+    const phone = this.phone.trim();
     const password = this.password;
     const confirmPassword = this.confirmPassword;
 
     // 1. Kiểm tra điền đủ thông tin
-    if (!fullname || !username || !password || !confirmPassword) {
+    if (!fullname || !username || !phone || !password || !confirmPassword) {
       this.showAlert('Vui lòng điền đầy đủ thông tin!');
       return;
     }
@@ -165,6 +172,7 @@ export class RegisterComponent {
     const res = this.authService.register({
       fullname,
       username,
+      phone,
       password,
       role: this.selectedRole
     });
@@ -177,4 +185,3 @@ export class RegisterComponent {
     }
   }
 }
-
