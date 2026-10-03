@@ -20,7 +20,14 @@ export interface UserAccount {
 })
 export class AuthService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/api/auth';
+  private getBaseUrl(): string {
+    if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+      return window.location.origin + '/api/auth';
+    }
+    return 'http://localhost:3000/api/auth';
+  }
+
+  private get apiUrl() { return this.getBaseUrl(); }
   private readonly CURRENT_USER_KEY = 'currentUser';
 
   getCurrentUser(): UserAccount {

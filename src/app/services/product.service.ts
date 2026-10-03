@@ -8,8 +8,15 @@ import { Product } from '../models/product.model';
 })
 export class ProductService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/api/products';
-  private uploadUrl = 'http://localhost:3000/api/upload/product-image';
+  private getBaseUrl(): string {
+    if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+      return window.location.origin + '/api';
+    }
+    return 'http://localhost:3000/api';
+  }
+
+  private get apiUrl() { return `${this.getBaseUrl()}/products`; }
+  private get uploadUrl() { return `${this.getBaseUrl()}/upload/product-image`; }
 
   // Dữ liệu dự phòng nếu chưa bật server backend
   private fallbackProducts: Record<string, Product> = {
