@@ -1,9 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ProductService } from '../../services/product.service';
-import { AuthService } from '../../services/auth.service';
 import { Product } from '../../models/product.model';
 
 @Component({
@@ -11,120 +10,64 @@ import { Product } from '../../models/product.model';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   template: `
-    <div style="background-color: #f8f8f8; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 90px; box-sizing: border-box;">
-      <div class="app-header" style="justify-content: space-between;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068883/agriagent_ai/logo.png" style="height: 32px; width: auto;">
-          <span style="font-size: 20px; font-weight: 800; color: #587820;">NÔNG THƯƠNG</span>
-        </div>
-        <div style="display: flex; gap: 10px;">
-          <a routerLink="/notifications" style="width: 38px; height: 38px; background: #eaf3d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #587820; text-decoration: none;">
-            <i class="fa-regular fa-bell" style="font-size: 18px;"></i>
+    <div style="background-color: #f5f5f5; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 80px; box-sizing: border-box;">
+      <!-- Top Yellow Header Container (#fff7c5) -->
+      <section style="background-color: #fff7c5; padding: 14px 16px 16px 16px;">
+        <!-- Top Row Header -->
+        <header style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+          <!-- Logo + Brand Name -->
+          <a routerLink="/buyer-home" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
+            <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068883/agriagent_ai/logo.png" alt="Logo" style="height: 36px; width: auto;">
+            <span style="font-size: 20px; font-weight: 800; color: #587820;">NÔNG THƯƠNG</span>
           </a>
-          <div style="width: 38px; height: 38px; background: #eaf3d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #587820; cursor: pointer;">
-            <i class="fa-solid fa-sliders" style="font-size: 18px;"></i>
+
+          <!-- Stacked Right Action Buttons (Bell + Sliders) -->
+          <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+            <a routerLink="/notifications" style="width: 38px; height: 38px; background-color: #eaf3d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #587820; text-decoration: none;">
+              <i class="fa-regular fa-bell" style="font-size: 18px;"></i>
+            </a>
+            <button style="width: 38px; height: 38px; background-color: #eaf3d8; border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center; color: #587820; cursor: pointer;">
+              <i class="fa-solid fa-sliders" style="font-size: 18px;"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Big Gold Button: BÁN NÔNG SẢN NGAY -->
+        <a routerLink="/add-product-input" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 48px; background: linear-gradient(180deg, #fde047 0%, #eab308 100%); color: #584100; font-size: 16px; font-weight: 800; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 10px rgba(234, 179, 8, 0.35); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px;">
+          BÁN NÔNG SẢN NGAY
+        </a>
+
+        <!-- Horizontal Category Scroll Pills -->
+        <div style="display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px;">
+          <div *ngFor="let cat of categories" (click)="selectCategory(cat.key)" [style.border]="selectedCategory === cat.key ? '2px solid #769f2e' : '2px solid transparent'" style="width: 60px; height: 60px; min-width: 60px; background: #ffffff; border-radius: 14px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+            <img [src]="cat.image" [alt]="cat.name" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover;">
           </div>
         </div>
+      </section>
+
+      <!-- Market Hero Banner -->
+      <div style="width: 100%; height: 160px; overflow: hidden;">
+        <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068881/agriagent_ai/home_banner.jpg" alt="Chợ nông sản" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
 
-      <div style="padding: 0 16px 20px 16px; flex: 1;">
-        <form class="search-box" (ngSubmit)="onSearchChange()">
-          <i class="fa-solid fa-magnifying-glass" style="color: #94a3b8; font-size: 18px;"></i>
-          <input type="search" name="searchQuery" [(ngModel)]="searchQuery" (input)="onSearchChange()" placeholder="Tìm kiếm" aria-label="Tìm kiếm trái cây">
-          <button type="submit" style="border: 0; border-radius: 16px; padding: 5px 10px; background: #769f2e; color: #fff; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer;">Tìm</button>
-        </form>
-
-        <div class="welcome-banner" style="display: flex; justify-content: space-between; align-items: flex-end; padding-right: 10px;">
-          <div>
-            <div style="font-size: 18px; color: #2d4612; font-weight: 700;">Chào mừng bạn !</div>
-            <div class="tag" style="background-color: #0d9488;">{{currentUser.fullname}}</div>
-            <div style="font-size: 14px; color: #475569; font-weight: 600;">Một ngày vui vẻ nhé</div>
+      <!-- Product Grid 2 Columns -->
+      <div style="padding: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background-color: #f5f5f5;">
+        <a *ngFor="let p of filteredProducts" [routerLink]="['/product-detail', p.id]" style="background: #ffffff; border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; flex-direction: column;">
+          <img [src]="p.image" [alt]="p.name" style="width: 100%; aspect-ratio: 1/1; object-fit: cover;">
+          <div style="padding: 10px 12px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div style="font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 4px; line-height: 1.3;">{{ p.name }}</div>
+            <div style="font-size: 12px; color: #f59e0b; margin-bottom: 4px; font-weight: 600;">
+              <i class="fa-solid fa-star"></i> 4.5 <span style="color: #94a3b8; font-weight: 400;">(672)</span>
+            </div>
+            <div style="font-size: 14px; font-weight: 800; color: #1e293b;">{{ p.priceText }}</div>
           </div>
-          <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068886/agriagent_ai/nhanvat.png" alt="Nông dân" style="height: 120px; width: auto; object-fit: contain; margin-bottom: -10px;">
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="font-size: 18px; font-weight: 800; color: #2d4612;">Loại trái cây</h3>
-        </div>
-        <div class="categories-horizontal-scroll" style="padding-left: 0; padding-right: 0;">
-          <div class="category-pill-card" [class.active]="selectedCategory === 'all'" (click)="selectCategory('all')">
-            <span class="category-pill-img all-category-icon"><i class="fa-solid fa-leaf"></i></span>
-            <span class="category-pill-name">Tất cả</span>
-          </div>
-          <div *ngFor="let cat of categories" class="category-pill-card" [class.active]="selectedCategory === cat.key" (click)="selectCategory(cat.key)">
-            <img [src]="cat.image" [alt]="cat.name" class="category-pill-img">
-            <span class="category-pill-name">{{cat.name}}</span>
-          </div>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h3 style="font-size: 16px; font-weight: 800; color: #2d4612;">Danh mục sản phẩm</h3>
-        </div>
-
-        <div class="product-grid">
-          <a *ngFor="let p of filteredProducts" [routerLink]="['/product-detail', p.id]" class="product-card">
-            <i class="fa-regular fa-heart" style="position: absolute; top: 10px; right: 10px; color: #ef4444; font-size: 16px;"></i>
-            <img [src]="p.image" [alt]="p.name">
-            <div class="name">{{p.name}}</div>
-            <div style="font-size: 12px; color: #f59e0b; margin: 2px 0;"><i class="fa-solid fa-star"></i> 4.8 (120)</div>
-            <div class="price">{{p.priceText}}</div>
-          </a>
-        </div>
+        </a>
       </div>
     </div>
-  `,
-  styles: [`
-    .categories-horizontal-scroll {
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 12px;
-      scrollbar-width: none;
-    }
-
-    .categories-horizontal-scroll::-webkit-scrollbar {
-      display: none;
-    }
-
-    .category-pill-card {
-      width: 62px;
-      flex-basis: 62px;
-      gap: 4px;
-      font-size: 10px;
-    }
-
-    .category-pill-img {
-      display: flex;
-      width: 52px;
-      height: 52px;
-      flex: 0 0 52px;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid transparent;
-      border-radius: 11px;
-      object-fit: cover;
-      box-sizing: border-box;
-    }
-
-    .all-category-icon {
-      background: #fff;
-      color: #769f2e;
-      font-size: 18px;
-    }
-
-    .category-pill-card.active .category-pill-img {
-      border-color: #769f2e;
-    }
-
-    .category-pill-name {
-      font-size: 10px;
-      line-height: 1.2;
-    }
-  `]
+  `
 })
-export class BuyerHomeComponent {
+export class BuyerHomeComponent implements OnInit {
   private productService = inject(ProductService);
-  private authService = inject(AuthService);
-  currentUser = this.authService.getCurrentUser();
 
   selectedCategory = 'all';
   searchQuery = '';
@@ -140,16 +83,12 @@ export class BuyerHomeComponent {
     { key: 'thanh-long', name: 'Thanh long', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068894/agriagent_ai/tr%C3%A1i_c%C3%A2y/thanh_long.jpg' }
   ];
 
-  constructor() {
+  ngOnInit() {
     this.updateProducts();
   }
 
   selectCategory(key: string) {
     this.selectedCategory = (this.selectedCategory === key && key !== 'all') ? 'all' : key;
-    this.updateProducts();
-  }
-
-  onSearchChange() {
     this.updateProducts();
   }
 

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -10,436 +10,68 @@ import { Product } from '../../models/product.model';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   template: `
-    <div class="farmer-home">
-      <section class="home-top">
-        <header class="home-header">
-          <a routerLink="/farmer-home" class="brand" aria-label="Nông Thương - Trang chủ">
-            <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068883/agriagent_ai/logo.png" alt="">
-            <span>NÔNG THƯƠNG</span>
+    <div style="background-color: #f5f5f5; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 80px; box-sizing: border-box;">
+      <!-- Top Yellow Header Container (#fff7c5) -->
+      <section style="background-color: #fff7c5; padding: 14px 16px 16px 16px;">
+        <!-- Top Row Header -->
+        <header style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+          <!-- Logo + Brand Name -->
+          <a routerLink="/farmer-home" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
+            <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068883/agriagent_ai/logo.png" alt="Logo" style="height: 36px; width: auto;">
+            <span style="font-size: 20px; font-weight: 800; color: #587820;">NÔNG THƯƠNG</span>
           </a>
-          <div style="display: flex; gap: 8px; align-items: center;">
-            <a routerLink="/notifications" class="notification-button" aria-label="Thông báo">
-              <i class="fa-regular fa-bell"></i>
+
+          <!-- Stacked Right Action Buttons (Bell + Sliders) -->
+          <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+            <a routerLink="/notifications" style="width: 38px; height: 38px; background-color: #eaf3d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #587820; text-decoration: none;">
+              <i class="fa-regular fa-bell" style="font-size: 18px;"></i>
             </a>
-            <button class="notification-button" aria-label="Bộ lọc">
-              <i class="fa-solid fa-sliders"></i>
+            <button style="width: 38px; height: 38px; background-color: #eaf3d8; border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center; color: #587820; cursor: pointer;">
+              <i class="fa-solid fa-sliders" style="font-size: 18px;"></i>
             </button>
           </div>
         </header>
 
-        <a routerLink="/add-product-input" class="btn-sell-now">
+        <!-- Big Gold Button: BÁN NÔNG SẢN NGAY -->
+        <a routerLink="/add-product-input" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 48px; background: linear-gradient(180deg, #fde047 0%, #eab308 100%); color: #584100; font-size: 16px; font-weight: 800; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 10px rgba(234, 179, 8, 0.35); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px;">
           BÁN NÔNG SẢN NGAY
         </a>
 
-        <div class="category-scroll" aria-label="Lọc theo loại trái cây">
-          <button
-            type="button"
-            class="category-card all-category"
-            [class.selected]="selectedCategory === 'all'"
-            [attr.aria-pressed]="selectedCategory === 'all'"
-            (click)="selectCategory('all')">
-            <span class="category-image all-icon"><i class="fa-solid fa-leaf"></i></span>
-            <span>Tất cả</span>
-          </button>
-          <button
-            *ngFor="let cat of categories"
-            type="button"
-            class="category-card"
-            [class.selected]="selectedCategory === cat.key"
-            [attr.aria-pressed]="selectedCategory === cat.key"
-            (click)="selectCategory(cat.key)">
-            <img class="category-image" [src]="cat.image" [alt]="cat.name">
-            <span>{{cat.name}}</span>
-          </button>
+        <!-- Horizontal Category Scroll Pills -->
+        <div style="display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px;">
+          <div *ngFor="let cat of categories" (click)="selectCategory(cat.key)" [style.border]="selectedCategory === cat.key ? '2px solid #769f2e' : '2px solid transparent'" style="width: 60px; height: 60px; min-width: 60px; background: #ffffff; border-radius: 14px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+            <img [src]="cat.image" [alt]="cat.name" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover;">
+          </div>
         </div>
       </section>
 
-      <section class="home-main">
-        <div class="banner-carousel" aria-label="Banner quảng cáo">
-          <div
-            #bannerTrack
-            class="banner-track"
-            (scroll)="onBannerScroll()">
-            <div class="banner-slide" *ngFor="let banner of banners">
-              <img [src]="banner.image" [alt]="banner.alt">
-            </div>
-          </div>
-          <div class="banner-dots" aria-label="Chọn banner">
-            <button
-              *ngFor="let banner of banners; let i = index"
-              type="button"
-              [class.active]="activeBanner === i"
-              [attr.aria-label]="'Chuyển đến banner ' + (i + 1)"
-              [attr.aria-current]="activeBanner === i ? 'true' : null"
-              (click)="showBanner(i)">
-            </button>
-          </div>
-        </div>
+      <!-- Market Hero Banner -->
+      <div style="width: 100%; height: 160px; overflow: hidden;">
+        <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068881/agriagent_ai/home_banner.jpg" alt="Chợ nông sản" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
 
-        <div class="section-heading">
-          <div>
-            <h1>Trái cây tươi ngon</h1>
-            <p>Đặc sản từ những nhà vườn Việt Nam</p>
-          </div>
-        </div>
-
-        <div class="product-grid" *ngIf="filteredProducts.length; else noProducts">
-          <a
-            *ngFor="let p of filteredProducts"
-            [routerLink]="['/product-detail', p.id]"
-            class="product-card">
-            <img class="product-image" [src]="p.image" [alt]="p.name">
-            <div class="product-info">
-              <div class="product-name">{{p.name}}</div>
-              <div class="product-rating"><span>★</span> 4.8 <span class="rating-count">(120)</span></div>
-              <div class="product-price">{{p.priceText}}</div>
+      <!-- Product Grid 2 Columns -->
+      <div style="padding: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background-color: #f5f5f5;">
+        <a *ngFor="let p of filteredProducts" [routerLink]="['/product-detail', p.id]" style="background: #ffffff; border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; flex-direction: column;">
+          <img [src]="p.image" [alt]="p.name" style="width: 100%; aspect-ratio: 1/1; object-fit: cover;">
+          <div style="padding: 10px 12px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div style="font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 4px; line-height: 1.3;">{{ p.name }}</div>
+            <div style="font-size: 12px; color: #f59e0b; margin-bottom: 4px; font-weight: 600;">
+              <i class="fa-solid fa-star"></i> 4.5 <span style="color: #94a3b8; font-weight: 400;">(672)</span>
             </div>
-          </a>
-        </div>
-        <ng-template #noProducts>
-          <p class="empty-state">Không tìm thấy sản phẩm phù hợp.</p>
-        </ng-template>
-      </section>
+            <div style="font-size: 14px; font-weight: 800; color: #1e293b;">{{ p.priceText }}</div>
+          </div>
+        </a>
+      </div>
     </div>
-  `,
-  styles: [`
-    .farmer-home {
-      min-height: 100vh;
-      padding-bottom: 76px;
-      background: #f5f5f5;
-    }
-
-    .home-top {
-      padding: 12px 16px 14px;
-      background: #fff7c5;
-    }
-
-    .home-header,
-    .search-row,
-    .section-heading {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .home-header {
-      margin-bottom: 12px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: #587820;
-      font-size: 17px;
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    .brand img {
-      width: 30px;
-      height: 34px;
-      object-fit: contain;
-    }
-
-    .notification-button {
-      display: inline-flex;
-      width: 36px;
-      height: 36px;
-      align-items: center;
-      justify-content: center;
-      border: 0;
-      border-radius: 50%;
-      background: #eaf3d8;
-      color: #587820;
-      font-size: 16px;
-      text-decoration: none;
-    }
-
-    .search-row {
-      gap: 9px;
-      margin-bottom: 12px;
-    }
-
-    .search-box {
-      display: flex;
-      height: 38px;
-      flex: 1;
-      align-items: center;
-      gap: 9px;
-      padding: 0 12px;
-      margin: 0;
-      border-radius: 22px;
-      background: #fff;
-      color: #64748b;
-      box-shadow: none;
-      border: 0;
-    }
-
-    .search-box input {
-      width: 100%;
-      border: 0;
-      outline: 0;
-      background: transparent;
-      color: #334155;
-      font: inherit;
-      font-size: 13px;
-    }
-
-    .search-box input::-webkit-search-cancel-button {
-      cursor: pointer;
-    }
-
-    .search-button {
-      flex: 0 0 auto;
-      padding: 5px 10px;
-      border: 0;
-      border-radius: 16px;
-      background: #769f2e;
-      color: #fff;
-      cursor: pointer;
-      font: inherit;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .btn-sell-now {
-      display: flex;
-      width: 100%;
-      height: 48px;
-      align-items: center;
-      justify-content: center;
-      margin-top: 10px;
-      margin-bottom: 14px;
-      padding: 0 16px;
-      border: 0;
-      border-radius: 12px;
-      background: linear-gradient(180deg, #fce055 0%, #facc15 100%);
-      color: #61460b;
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      box-shadow: 0 4px 12px rgba(250, 204, 21, 0.4);
-      text-decoration: none;
-      box-sizing: border-box;
-    }
-
-    .btn-sell-now:hover {
-      background: linear-gradient(180deg, #facc15 0%, #eab308 100%);
-      color: #4a3406;
-    }
-
-    .category-scroll {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      margin: 0 -16px;
-      padding: 0 16px 2px;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .category-scroll::-webkit-scrollbar,
-    .banner-track::-webkit-scrollbar {
-      display: none;
-    }
-
-    .category-card {
-      display: flex;
-      width: 62px;
-      flex: 0 0 62px;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      color: #475569;
-      cursor: pointer;
-      font: inherit;
-      font-size: 10px;
-      line-height: 1.2;
-      text-align: center;
-    }
-
-    .category-image {
-      display: flex;
-      width: 52px;
-      height: 52px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 11px;
-      border: 2px solid transparent;
-      box-sizing: border-box;
-      object-fit: cover;
-      background: #fff;
-    }
-
-    .all-icon {
-      color: #769f2e;
-      font-size: 18px;
-    }
-
-    .category-card.selected .category-image {
-      border-color: #769f2e;
-    }
-
-    .category-card.selected {
-      color: #45651e;
-      font-weight: 700;
-    }
-
-    .home-main {
-      min-height: calc(100vh - 210px);
-      padding-bottom: 18px;
-      background: #f5f5f5;
-    }
-
-    .banner-carousel {
-      margin-bottom: 16px;
-    }
-
-    .banner-track {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .banner-slide {
-      width: 100%;
-      flex: 0 0 100%;
-      scroll-snap-align: start;
-    }
-
-    .banner-slide img {
-      display: block;
-      width: 100%;
-      height: 136px;
-      object-fit: cover;
-    }
-
-    .banner-dots {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      padding-top: 8px;
-    }
-
-    .banner-dots button {
-      width: 6px;
-      height: 6px;
-      padding: 0;
-      border: 0;
-      border-radius: 50%;
-      background: #cbd5c0;
-      cursor: pointer;
-    }
-
-    .banner-dots button.active {
-      width: 16px;
-      border-radius: 5px;
-      background: #769f2e;
-    }
-
-    .section-heading {
-      gap: 12px;
-      padding: 0 16px;
-      margin-bottom: 10px;
-    }
-
-    .section-heading h1 {
-      margin: 0;
-      color: #2d4612;
-      font-size: 17px;
-      font-weight: 800;
-    }
-
-    .section-heading p {
-      margin: 2px 0 0;
-      color: #64748b;
-      font-size: 11px;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 9px;
-      padding: 0 10px;
-    }
-
-    .product-card {
-      min-width: 0;
-      overflow: hidden;
-      border: 1px solid #e6e6e6;
-      border-radius: 9px;
-      background: #fff;
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .product-image {
-      display: block;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 1;
-      border-radius: 0;
-      box-shadow: none;
-      object-fit: cover;
-    }
-
-    .product-info {
-      padding: 5px 7px 7px;
-    }
-
-    .product-name {
-      overflow: hidden;
-      color: #333;
-      font-size: 11px;
-      line-height: 1.35;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .product-rating {
-      margin-top: 2px;
-      color: #555;
-      font-size: 10px;
-    }
-
-    .product-rating > span:first-child {
-      color: #f4b400;
-    }
-
-    .rating-count {
-      color: #888;
-    }
-
-    .product-price {
-      margin-top: 2px;
-      color: #222;
-      font-size: 10px;
-      font-weight: 700;
-    }
-
-    .empty-state {
-      padding: 20px 16px;
-      color: #64748b;
-      font-size: 14px;
-      text-align: center;
-    }
-  `]
+  `
 })
-export class FarmerHomeComponent {
+export class FarmerHomeComponent implements OnInit {
   private productService = inject(ProductService);
-
-  @ViewChild('bannerTrack') private bannerTrack?: ElementRef<HTMLDivElement>;
 
   selectedCategory = 'all';
   searchQuery = '';
   filteredProducts: Product[] = [];
-  activeBanner = 0;
 
   categories = [
     { key: 'xoai', name: 'Xoài', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068896/agriagent_ai/tr%C3%A1i_c%C3%A2y/xoai.jpg' },
@@ -451,43 +83,16 @@ export class FarmerHomeComponent {
     { key: 'thanh-long', name: 'Thanh long', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068894/agriagent_ai/tr%C3%A1i_c%C3%A2y/thanh_long.jpg' }
   ];
 
-  banners = [
-    { image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068881/agriagent_ai/home_banner.jpg', alt: 'Nông sản tươi tại chợ quê' },
-    { image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068880/agriagent_ai/co_ban_trai_cay_tren_thuyen.jpg', alt: 'Những trái cây tươi ngon từ nhà vườn' },
-    { image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068871/agriagent_ai/4d6db1ad7275923ce24c19acbf3b0ad1.jpg', alt: 'Thu hoạch nông sản sạch tại vườn' }
-  ];
-
-  constructor() {
+  ngOnInit() {
     this.updateProducts();
   }
 
-  selectCategory(key: string): void {
-    this.selectedCategory = key;
+  selectCategory(key: string) {
+    this.selectedCategory = (this.selectedCategory === key && key !== 'all') ? 'all' : key;
     this.updateProducts();
   }
 
-  onSearchChange(): void {
-    this.updateProducts();
-  }
-
-  onBannerScroll(): void {
-    const track = this.bannerTrack?.nativeElement;
-    if (track) {
-      this.activeBanner = Math.round(track.scrollLeft / track.clientWidth);
-    }
-  }
-
-  showBanner(index: number): void {
-    const track = this.bannerTrack?.nativeElement;
-    if (!track) {
-      return;
-    }
-
-    track.scrollTo({ left: index * track.clientWidth, behavior: 'smooth' });
-    this.activeBanner = index;
-  }
-
-  private updateProducts(): void {
+  private updateProducts() {
     this.productService.getProductsFromApi().subscribe(products => {
       const cleanQuery = this.searchQuery.trim().toLowerCase();
       this.filteredProducts = products.filter(p => {
