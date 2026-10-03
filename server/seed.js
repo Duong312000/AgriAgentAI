@@ -26,6 +26,7 @@ const {
   PaymentTransaction,
   FarmerWallet,
   ChatRoom,
+  ChatParticipant,
   ChatMessage,
   Voucher,
   Notification,
@@ -162,20 +163,23 @@ const seedData = async () => {
     });
 
     // 4. Banners với URL Cloudinary
-    await Banner.insertMany([
-      {
-        title: 'Nông sản Việt - Kết nối Trực tiếp Nông dân & Thương lái',
-        imageUrl: getCloudUrl('home_banner.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068881/agriagent_ai/home_banner.jpg'),
-        targetRole: 'ALL',
-        isActive: true
-      },
-      {
-        title: 'Gom đơn vận chuyển tuyến Miền Tây - Giảm 50% Phí Ship',
-        imageUrl: getCloudUrl('splash_banner.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068887/agriagent_ai/splash_banner.jpg'),
-        targetRole: 'BUYER',
-        isActive: true
-      }
-    ]);
+    // 5. Chat Rooms & Messages giữa Nông dân Chú Bảy và Thương Lái Minh
+    const room1 = await ChatRoom.create({ roomType: 'BUYER_FARMER' });
+    await ChatParticipant.create({ roomId: room1._id, userId: buyer1._id });
+    await ChatParticipant.create({ roomId: room1._id, userId: farmer1._id });
+
+    await ChatMessage.create({
+      roomId: room1._id,
+      senderId: buyer1._id,
+      content: 'Dạ em chào chú Bảy! Ổi vú sữa Bến Tre hôm nay chất lượng giòn ngọt thế nào chú?',
+      sentAt: new Date('2026-10-04T08:30:00Z')
+    });
+    await ChatMessage.create({
+      roomId: room1._id,
+      senderId: farmer1._id,
+      content: 'Chào cháu Minh! Ổi nhà chú thu hoạch tươi ngon bao giòn ngọt nghen.',
+      sentAt: new Date('2026-10-04T08:32:00Z')
+    });
 
     console.log('\n🎉 HOÀN TẤT BƠM TOÀN BỘ CSDL VỚI 100% LINK ĐÁM MÂY CLOUDINARY LÊN MONGO DB ATLAS!');
     process.exit(0);

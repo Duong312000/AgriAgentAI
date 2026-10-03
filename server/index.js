@@ -18,6 +18,7 @@ app.use('/api/upload', require('./routes/upload.routes'));
 app.use('/api/products', require('./routes/product.routes'));
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/orders', require('./routes/order.routes'));
+app.use('/api/chats', require('./routes/chat.routes'));
 
 // Test API Route
 app.get('/api/health', (req, res) => {
