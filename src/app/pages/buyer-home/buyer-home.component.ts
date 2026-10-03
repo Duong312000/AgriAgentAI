@@ -28,10 +28,11 @@ import { Product } from '../../models/product.model';
       </div>
 
       <div style="padding: 0 16px 20px 16px; flex: 1;">
-        <div class="search-box">
+        <form class="search-box" (ngSubmit)="onSearchChange()">
           <i class="fa-solid fa-magnifying-glass" style="color: #94a3b8; font-size: 18px;"></i>
-          <input type="text" [(ngModel)]="searchQuery" (input)="onSearchChange()" placeholder="Tìm kiếm">
-        </div>
+          <input type="search" name="searchQuery" [(ngModel)]="searchQuery" (input)="onSearchChange()" placeholder="Tìm kiếm" aria-label="Tìm kiếm trái cây">
+          <button type="submit" style="border: 0; border-radius: 16px; padding: 5px 10px; background: #769f2e; color: #fff; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer;">Tìm</button>
+        </form>
 
         <div class="welcome-banner" style="display: flex; justify-content: space-between; align-items: flex-end; padding-right: 10px;">
           <div>
@@ -39,16 +40,16 @@ import { Product } from '../../models/product.model';
             <div class="tag" style="background-color: #0d9488;">{{currentUser.fullname}}</div>
             <div style="font-size: 14px; color: #475569; font-weight: 600;">Một ngày vui vẻ nhé</div>
           </div>
-          <img src="assets/image/Thiết kế chưa có tên-Recovered.png" style="height: 120px; width: auto; object-fit: contain; margin-bottom: -10px;">
+          <img src="assets/image/nhanvat.png" alt="Nông dân" style="height: 120px; width: auto; object-fit: contain; margin-bottom: -10px;">
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="font-size: 18px; font-weight: 800; color: #2d4612;">Loại trái cây</h3>
-          <a (click)="selectCategory('all')" style="font-size: 14px; font-weight: 700; color: #64748b; cursor: pointer;">Xem tất cả</a>
         </div>
         <div class="categories-horizontal-scroll" style="padding-left: 0; padding-right: 0;">
           <div class="category-pill-card" [class.active]="selectedCategory === 'all'" (click)="selectCategory('all')">
-            <span class="category-pill-name" style="font-size: 15px;">🌟 Tất cả</span>
+            <span class="category-pill-img all-category-icon"><i class="fa-solid fa-leaf"></i></span>
+            <span class="category-pill-name">Tất cả</span>
           </div>
           <div *ngFor="let cat of categories" class="category-pill-card" [class.active]="selectedCategory === cat.key" (click)="selectCategory(cat.key)">
             <img [src]="cat.image" [alt]="cat.name" class="category-pill-img">
@@ -58,7 +59,6 @@ import { Product } from '../../models/product.model';
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <h3 style="font-size: 16px; font-weight: 800; color: #2d4612;">Danh mục sản phẩm</h3>
-          <a (click)="selectCategory('all')" style="font-size: 13px; font-weight: 700; color: #64748b; cursor: pointer;">Xem tất cả</a>
         </div>
 
         <div class="product-grid">
@@ -72,7 +72,54 @@ import { Product } from '../../models/product.model';
         </div>
       </div>
     </div>
-  `
+  `,
+  styles: [`
+    .categories-horizontal-scroll {
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scrollbar-width: none;
+    }
+
+    .categories-horizontal-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-pill-card {
+      width: 62px;
+      flex-basis: 62px;
+      gap: 4px;
+      font-size: 10px;
+    }
+
+    .category-pill-img {
+      display: flex;
+      width: 52px;
+      height: 52px;
+      flex: 0 0 52px;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid transparent;
+      border-radius: 11px;
+      object-fit: cover;
+      box-sizing: border-box;
+    }
+
+    .all-category-icon {
+      background: #fff;
+      color: #769f2e;
+      font-size: 18px;
+    }
+
+    .category-pill-card.active .category-pill-img {
+      border-color: #769f2e;
+    }
+
+    .category-pill-name {
+      font-size: 10px;
+      line-height: 1.2;
+    }
+  `]
 })
 export class BuyerHomeComponent {
   private productService = inject(ProductService);

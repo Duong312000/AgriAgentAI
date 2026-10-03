@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-bottom-nav',
@@ -8,7 +9,7 @@ import { Router, RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule],
   template: `
     <div class="bottom-nav">
-      <a routerLink="/farmer-home" routerLinkActive="active" class="nav-item">
+      <a [routerLink]="homeRoute" routerLinkActive="active" class="nav-item">
         <i class="fa-solid fa-house"></i>
         <span>Trang chủ</span>
       </a>
@@ -77,4 +78,7 @@ import { Router, RouterModule } from '@angular/router';
     }
   `]
 })
-export class BottomNavComponent {}
+export class BottomNavComponent {
+  private authService = inject(AuthService);
+  homeRoute = this.authService.getCurrentUser().role === 'buyer' ? '/buyer-home' : '/farmer-home';
+}

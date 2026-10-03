@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProductService } from '../../services/product.service';
+import { AuthService } from '../../services/auth.service';
 import { Product } from '../../models/product.model';
 
 @Component({
@@ -12,7 +13,7 @@ import { Product } from '../../models/product.model';
     <div style="flex: 1; display: flex; flex-direction: column;">
       <div style="height: 240px; position: relative;">
         <img [src]="product.image" style="width: 100%; height: 100%; object-fit: cover;">
-        <a routerLink="/buyer-home" style="position: absolute; top: 16px; left: 16px; width: 36px; height: 36px; background: rgba(255,255,255,0.8); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #1e293b; text-decoration: none;">
+        <a [routerLink]="homeRoute" style="position: absolute; top: 16px; left: 16px; width: 36px; height: 36px; background: rgba(255,255,255,0.8); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #1e293b; text-decoration: none;">
           <i class="fa-solid fa-chevron-left"></i>
         </a>
       </div>
@@ -36,7 +37,6 @@ import { Product } from '../../models/product.model';
               <div style="font-size: 11px; color: #64748b;">Đã xác minh hộ nông dân</div>
             </div>
           </div>
-          <button class="btn-secondary" style="width: auto; padding: 6px 12px; font-size: 12px;">Xem vườn</button>
         </div>
 
         <div class="card" style="border-radius: 16px; margin-bottom: 20px;">
@@ -67,7 +67,9 @@ import { Product } from '../../models/product.model';
 export class ProductDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private productService = inject(ProductService);
+  private authService = inject(AuthService);
 
+  homeRoute = this.authService.getCurrentUser().role === 'buyer' ? '/buyer-home' : '/farmer-home';
   productId = 'chom-chom';
   product!: Product;
 
