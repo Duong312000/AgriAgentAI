@@ -25,7 +25,8 @@ export class AppComponent {
       '/splash', '/register', '/login', '/forgot-password', '/enter-otp', 
       '/confirm-otp', '/reset-password-success', '/checkout', '/payment-success', 
       '/payment-failed', '/confirm-delete-account', '/order-tracking',
-      '/order-confirm-list', '/order-returns', '/order-completed', '/order-cancelled', '/my-vouchers'
+      '/order-confirm-list', '/order-returns', '/order-completed', '/order-cancelled', '/my-vouchers',
+      '/chat-user', '/chat-staff', '/chat-ai'
     ];
     return !hideOn.some(path => url.startsWith(path));
   }
