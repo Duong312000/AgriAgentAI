@@ -24,27 +24,27 @@ import { AuthService } from '../../services/auth.service';
       </div>
 
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 30px;">
-        <a routerLink="/order-confirm-list" style="border: 1.5px solid rgba(0, 0, 0, 0.7); border-radius: 16px; padding: 14px 8px; text-align: center; text-decoration: none;">
+        <a routerLink="/order-confirm-list" style="border: 1.5px solid rgba(0, 0, 0, 0.7); border-radius: 5%; padding: 14px 8px; text-align: center; text-decoration: none;">
           <i class="fa-solid fa-bag-shopping" style="font-size: 24px; color: rgba(0, 0, 0, 0.7); margin-bottom: 8px;"></i>
           <div style="font-size: 12px; font-weight: 700; color: rgba(0, 0, 0, 0.7); line-height: 1.3;">Xác nhận đơn hàng</div>
         </a>
-        <a routerLink="/order-tracking" style="border: 1.5px solid rgba(0, 0, 0, 0.7); border-radius: 16px; padding: 14px 8px; text-align: center; text-decoration: none;">
+        <a routerLink="/order-tracking" style="border: 1.5px solid rgba(0, 0, 0, 0.7); border-radius: 5%; padding: 14px 8px; text-align: center; text-decoration: none;">
           <i class="fa-solid fa-truck" style="font-size: 24px; color: rgba(0, 0, 0, 0.7); margin-bottom: 8px;"></i>
           <div style="font-size: 12px; font-weight: 700; color: rgba(0, 0, 0, 0.7); line-height: 1.3;">Theo dõi đơn hàng</div>
         </a>
-        <a routerLink="/my-vouchers" style="border: 1.5px solid rgba(0, 0, 0, 0.7); border-radius: 16px; padding: 14px 8px; text-align: center; text-decoration: none;">
+        <a routerLink="/my-vouchers" style="border: 1.5px solid rgba(0, 0, 0, 0.7); border-radius: 5%; padding: 14px 8px; text-align: center; text-decoration: none;">
           <i class="fa-solid fa-ticket" style="font-size: 24px; color: rgba(0, 0, 0, 0.7); margin-bottom: 8px;"></i>
           <div style="font-size: 12px; font-weight: 700; color: rgba(0, 0, 0, 0.7); line-height: 1.3;">Khuyến mãi của tôi</div>
         </a>
-        <a routerLink="/order-returns" style="border: 1.5px solid rgba(0, 0, 0, 0.7); border-radius: 16px; padding: 14px 8px; text-align: center; text-decoration: none;">
+        <a routerLink="/order-returns" style="border: 1.5px solid rgba(0, 0, 0, 0.7); border-radius: 5%; padding: 14px 8px; text-align: center; text-decoration: none;">
           <i class="fa-solid fa-rotate-left" style="font-size: 24px; color: rgba(0, 0, 0, 0.7); margin-bottom: 8px;"></i>
           <div style="font-size: 12px; font-weight: 700; color: rgba(0, 0, 0, 0.7); line-height: 1.3;">Trả hàng</div>
         </a>
-        <a routerLink="/order-completed" style="border: 1.5px solid rgba(0, 0, 0, 0.7); border-radius: 16px; padding: 14px 8px; text-align: center; text-decoration: none;">
+        <a routerLink="/order-completed" style="border: 1.5px solid rgba(0, 0, 0, 0.7); border-radius: 5%; padding: 14px 8px; text-align: center; text-decoration: none;">
           <i class="fa-solid fa-circle-check" style="font-size: 24px; color: rgba(0, 0, 0, 0.7); margin-bottom: 8px;"></i>
           <div style="font-size: 12px; font-weight: 700; color: rgba(0, 0, 0, 0.7); line-height: 1.3;">Đơn đã hoàn thành</div>
         </a>
-        <a routerLink="/order-cancelled" style="border: 1.5px solid rgba(0, 0, 0, 0.7); border-radius: 16px; padding: 14px 8px; text-align: center; text-decoration: none;">
+        <a routerLink="/order-cancelled" style="border: 1.5px solid rgba(0, 0, 0, 0.7); border-radius: 5%; padding: 14px 8px; text-align: center; text-decoration: none;">
           <i class="fa-solid fa-circle-xmark" style="font-size: 24px; color: rgba(0, 0, 0, 0.7); margin-bottom: 8px;"></i>
           <div style="font-size: 12px; font-weight: 700; color: rgba(0, 0, 0, 0.7); line-height: 1.3;">Đơn đã hủy</div>
         </a>
