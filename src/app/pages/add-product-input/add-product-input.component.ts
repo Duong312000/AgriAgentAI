@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -16,10 +16,19 @@ import { RouterModule } from '@angular/router';
     </div>
 
     <div style="padding: 16px; flex: 1; padding-bottom: 24px;">
-      <div style="border: 2px dashed #f59e0b; background-color: #fffbeb; border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 16px;">
-        <i class="fa-solid fa-camera" style="font-size: 36px; color: #334155; margin-bottom: 8px;"></i>
-        <div style="font-size: 13px; font-weight: 700; color: #78350f;">Chụp ảnh hoặc tải hình ảnh lên</div>
+      <button type="button" (click)="openCamera()" style="display: block; width: 100%; border: 2px dashed #f59e0b; background-color: #fffbeb; border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 10px; cursor: pointer;">
+        <img *ngIf="photoPreviewUrl; else cameraIcon" [src]="photoPreviewUrl" alt="Ảnh nông sản đã chụp" style="display: block; width: 100%; max-height: 220px; object-fit: contain; margin-bottom: 8px;">
+        <ng-template #cameraIcon><i class="fa-solid fa-camera" style="font-size: 36px; color: #334155; margin-bottom: 8px;"></i></ng-template>
+        <div style="font-size: 13px; font-weight: 700; color: #78350f;">{{photoPreviewUrl ? 'Chụp lại ảnh' : 'Chụp ảnh nông sản'}}</div>
+        <input #cameraInput type="file" accept="image/*" capture="environment" hidden (change)="onPhotoSelected($event)">
+      </button>
+      <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+        <button type="button" (click)="openGallery()" style="border: 0; background: transparent; color: #587820; font-size: 13px; font-weight: 700; cursor: pointer;">
+          <i class="fa-regular fa-image"></i> Chọn từ thư viện
+        </button>
+        <input #galleryInput type="file" accept="image/*" hidden (change)="onPhotoSelected($event)">
       </div>
+      <p *ngIf="photoError" role="alert" style="color: #b91c1c; font-size: 12px; margin: 0 0 12px;">{{photoError}}</p>
 
       <div style="font-size: 14px; font-weight: 800; color: #587820; margin-bottom: 8px;">Mô tả chi tiết sản phẩm</div>
 
@@ -81,4 +90,44 @@ import { RouterModule } from '@angular/router';
     </div>
   `
 })
-export class AddProductInputComponent {}
+export class AddProductInputComponent implements OnDestroy {
+  @ViewChild('cameraInput') private cameraInput?: ElementRef<HTMLInputElement>;
+  @ViewChild('galleryInput') private galleryInput?: ElementRef<HTMLInputElement>;
+
+  photoPreviewUrl: string | null = null;
+  photoError = '';
+
+  openCamera(): void {
+    this.cameraInput?.nativeElement.click();
+  }
+
+  openGallery(): void {
+    this.galleryInput?.nativeElement.click();
+  }
+
+  onPhotoSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const photo = input.files?.[0];
+    input.value = '';
+    this.photoError = '';
+
+    if (!photo) {
+      return;
+    }
+    if (!photo.type.startsWith('image/')) {
+      this.photoError = 'Vui lòng chọn một tệp hình ảnh.';
+      return;
+    }
+
+    if (this.photoPreviewUrl) {
+      URL.revokeObjectURL(this.photoPreviewUrl);
+    }
+    this.photoPreviewUrl = URL.createObjectURL(photo);
+  }
+
+  ngOnDestroy(): void {
+    if (this.photoPreviewUrl) {
+      URL.revokeObjectURL(this.photoPreviewUrl);
+    }
+  }
+}

@@ -23,18 +23,16 @@ import { Product } from '../../models/product.model';
         </header>
 
         <div class="search-row">
-          <label class="search-box">
+          <form class="search-box" (ngSubmit)="onSearchChange()">
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
             <input
               type="search"
               [(ngModel)]="searchQuery"
-              (input)="onSearchChange()"
+              name="searchQuery"
               placeholder="Tìm kiếm"
               aria-label="Tìm kiếm trái cây">
-          </label>
-          <button class="filter-button" type="button" aria-label="Bộ lọc">
-            <i class="fa-solid fa-sliders"></i>
-          </button>
+            <button class="search-button" type="submit">Tìm</button>
+          </form>
         </div>
 
         <a routerLink="/add-product-input" class="btn-sell-now">
@@ -91,7 +89,6 @@ import { Product } from '../../models/product.model';
             <h1>Trái cây tươi ngon</h1>
             <p>Đặc sản từ những nhà vườn Việt Nam</p>
           </div>
-          <button type="button" (click)="selectCategory('all')">Xem tất cả</button>
         </div>
 
         <div class="product-grid" *ngIf="filteredProducts.length; else noProducts">
@@ -153,8 +150,7 @@ import { Product } from '../../models/product.model';
       object-fit: contain;
     }
 
-    .notification-button,
-    .filter-button {
+    .notification-button {
       display: inline-flex;
       width: 36px;
       height: 36px;
@@ -185,6 +181,7 @@ import { Product } from '../../models/product.model';
       background: #fff;
       color: #64748b;
       box-shadow: none;
+      border: 0;
     }
 
     .search-box input {
@@ -201,8 +198,17 @@ import { Product } from '../../models/product.model';
       cursor: pointer;
     }
 
-    .filter-button {
+    .search-button {
+      flex: 0 0 auto;
+      padding: 5px 10px;
+      border: 0;
+      border-radius: 16px;
+      background: #769f2e;
+      color: #fff;
       cursor: pointer;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
     }
 
     .btn-sell-now {
@@ -274,6 +280,8 @@ import { Product } from '../../models/product.model';
       align-items: center;
       justify-content: center;
       border-radius: 11px;
+      border: 2px solid transparent;
+      box-sizing: border-box;
       object-fit: cover;
       background: #fff;
     }
@@ -284,8 +292,7 @@ import { Product } from '../../models/product.model';
     }
 
     .category-card.selected .category-image {
-      outline: 2px solid #769f2e;
-      outline-offset: 1px;
+      border-color: #769f2e;
     }
 
     .category-card.selected {
@@ -364,18 +371,6 @@ import { Product } from '../../models/product.model';
       margin: 2px 0 0;
       color: #64748b;
       font-size: 11px;
-    }
-
-    .section-heading button {
-      padding: 6px 0 6px 8px;
-      border: 0;
-      background: transparent;
-      color: #587820;
-      cursor: pointer;
-      font: inherit;
-      font-size: 12px;
-      font-weight: 700;
-      white-space: nowrap;
     }
 
     .product-grid {
