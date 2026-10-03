@@ -1,0 +1,62 @@
+import { Routes } from '@angular/router';
+import { SplashComponent } from './pages/splash/splash.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { EnterOtpComponent } from './pages/enter-otp/enter-otp.component';
+import { ConfirmOtpComponent } from './pages/confirm-otp/confirm-otp.component';
+import { ResetSuccessComponent } from './pages/reset-success/reset-success.component';
+import { FarmerHomeComponent } from './pages/farmer-home/farmer-home.component';
+import { BuyerHomeComponent } from './pages/buyer-home/buyer-home.component';
+import { NotificationListComponent } from './pages/notification-list/notification-list.component';
+import { NotificationDetailComponent } from './pages/notification-detail/notification-detail.component';
+import { AddProductVoiceComponent } from './pages/add-product-voice/add-product-voice.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ChatListComponent } from './pages/chat-list/chat-list.component';
+import { AddProductInputComponent } from './pages/add-product-input/add-product-input.component';
+import { ConfirmDeleteAccountComponent } from './pages/confirm-delete-account/confirm-delete-account.component';
+import { AiPricingComponent } from './pages/ai-pricing/ai-pricing.component';
+import { ChatAiComponent } from './pages/chat-ai/chat-ai.component';
+import { ChatStaffComponent } from './pages/chat-staff/chat-staff.component';
+import { EditProductComponent } from './pages/edit-product/edit-product.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
+import { PaymentFailedComponent } from './pages/payment-failed/payment-failed.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { ManageProductsComponent } from './pages/manage-products/manage-products.component';
+import { OrderTrackingComponent } from './pages/order-tracking/order-tracking.component';
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
+import { ChatUserComponent } from './pages/chat-user/chat-user.component';
+
+export const routes: Routes = [
+  { path: '', redirectTo: 'splash', pathMatch: 'full' },
+  { path: 'splash', component: SplashComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'enter-otp', component: EnterOtpComponent },
+  { path: 'confirm-otp', component: ConfirmOtpComponent },
+  { path: 'reset-password-success', component: ResetSuccessComponent },
+  { path: 'farmer-home', component: FarmerHomeComponent },
+  { path: 'buyer-home', component: BuyerHomeComponent },
+  { path: 'notifications', component: NotificationListComponent },
+  { path: 'notification-detail/:id', component: NotificationDetailComponent },
+  { path: 'add-product-voice', component: AddProductVoiceComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'chat-list', component: ChatListComponent },
+  { path: 'add-product-input', component: AddProductInputComponent },
+  { path: 'confirm-delete-account', component: ConfirmDeleteAccountComponent },
+  { path: 'ai-pricing', component: AiPricingComponent },
+  { path: 'chat-ai', component: ChatAiComponent },
+  { path: 'chat-staff', component: ChatStaffComponent },
+  { path: 'edit-product/:id', component: EditProductComponent },
+  { path: 'checkout/:id', component: CheckoutComponent },
+  { path: 'payment-success', component: PaymentSuccessComponent },
+  { path: 'payment-failed', component: PaymentFailedComponent },
+  { path: 'product-detail/:id', component: ProductDetailComponent },
+  { path: 'manage-products', component: ManageProductsComponent },
+  { path: 'order-tracking', component: OrderTrackingComponent },
+  { path: 'edit-profile', component: EditProfileComponent },
+  { path: 'chat-user/:userId', component: ChatUserComponent },
+  { path: '**', redirectTo: 'farmer-home' }
+];
