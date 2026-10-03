@@ -14,7 +14,7 @@ import { Product } from '../../models/product.model';
     <div style="background-color: #f8f8f8; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 90px; box-sizing: border-box;">
       <div class="app-header" style="justify-content: space-between;">
         <div style="display: flex; align-items: center; gap: 8px;">
-          <img src="assets/image/logo.png" style="height: 32px; width: auto;">
+          <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068883/agriagent_ai/logo.png" style="height: 32px; width: auto;">
           <span style="font-size: 20px; font-weight: 800; color: #587820;">NÔNG THƯƠNG</span>
         </div>
         <div style="display: flex; gap: 10px;">
@@ -40,7 +40,7 @@ import { Product } from '../../models/product.model';
             <div class="tag" style="background-color: #0d9488;">{{currentUser.fullname}}</div>
             <div style="font-size: 14px; color: #475569; font-weight: 600;">Một ngày vui vẻ nhé</div>
           </div>
-          <img src="assets/image/nhanvat.png" alt="Nông dân" style="height: 120px; width: auto; object-fit: contain; margin-bottom: -10px;">
+          <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068886/agriagent_ai/nhanvat.png" alt="Nông dân" style="height: 120px; width: auto; object-fit: contain; margin-bottom: -10px;">
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
@@ -131,13 +131,13 @@ export class BuyerHomeComponent {
   filteredProducts: Product[] = [];
 
   categories = [
-    { key: 'xoai', name: 'Xoài', image: 'assets/image/Trái cây/xoai.jpg' },
-    { key: 'chom-chom', name: 'Chôm chôm', image: 'assets/image/Trái cây/chom chom ban.jpg' },
-    { key: 'oi', name: 'Ổi', image: 'assets/image/Trái cây/oi.jpg' },
-    { key: 'dua-hau', name: 'Dưa hấu', image: 'assets/image/Trái cây/dua hau.jpg' },
-    { key: 'sau-rieng', name: 'Sầu riêng', image: 'assets/image/Trái cây/sau rieng.jpg' },
-    { key: 'vai', name: 'Vải', image: 'assets/image/Trái cây/vai.jpg' },
-    { key: 'thanh-long', name: 'Thanh long', image: 'assets/image/Trái cây/thanh long.jpg' }
+    { key: 'xoai', name: 'Xoài', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068896/agriagent_ai/tr%C3%A1i_c%C3%A2y/xoai.jpg' },
+    { key: 'chom-chom', name: 'Chôm chôm', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068889/agriagent_ai/tr%C3%A1i_c%C3%A2y/chom_chom_ban.jpg' },
+    { key: 'oi', name: 'Ổi', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068891/agriagent_ai/tr%C3%A1i_c%C3%A2y/oi.jpg' },
+    { key: 'dua-hau', name: 'Dưa hấu', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068890/agriagent_ai/tr%C3%A1i_c%C3%A2y/dua_hau.jpg' },
+    { key: 'sau-rieng', name: 'Sầu riêng', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068893/agriagent_ai/tr%C3%A1i_c%C3%A2y/sau_rieng.jpg' },
+    { key: 'vai', name: 'Vải', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068895/agriagent_ai/tr%C3%A1i_c%C3%A2y/vai.jpg' },
+    { key: 'thanh-long', name: 'Thanh long', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068894/agriagent_ai/tr%C3%A1i_c%C3%A2y/thanh_long.jpg' }
   ];
 
   constructor() {

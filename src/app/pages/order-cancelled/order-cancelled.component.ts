@@ -82,7 +82,7 @@ export class OrderCancelledComponent {
       id: 'CNC-201',
       farmer: 'Chú Sáu Long An',
       productName: 'Dưa Hấu Long An Ruột Đỏ Giải Nhiệt',
-      image: 'assets/image/Trái cây/dua hau.jpg',
+      image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068890/agriagent_ai/tr%C3%A1i_c%C3%A2y/dua_hau.jpg',
       weight: '15 kg',
       totalPrice: '315.000đ',
       cancelReason: 'Thay đổi nhu cầu đặt nông sản',

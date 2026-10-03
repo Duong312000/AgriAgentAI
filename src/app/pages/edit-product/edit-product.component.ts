@@ -18,7 +18,7 @@ import { Product } from '../../models/product.model';
     <div style="padding: 16px; flex: 1;">
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
         <div style="position: relative; height: 130px; border-radius: 16px; overflow: hidden;">
-          <img [src]="uploadedImageUrl || product?.image || 'assets/image/Trái cây/chom chom ban.jpg'" style="width: 100%; height: 100%; object-fit: cover;">
+          <img [src]="uploadedImageUrl || product?.image || 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068889/agriagent_ai/tr%C3%A1i_c%C3%A2y/chom_chom_ban.jpg'" style="width: 100%; height: 100%; object-fit: cover;">
           <button (click)="fileInput.click()" style="position: absolute; bottom: 8px; left: 8px; background: rgba(255,255,255,0.9); border: none; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">
             <i class="fa-solid fa-image"></i> {{isUploading ? 'Đang tải...' : 'Thay ảnh'}}
           </button>

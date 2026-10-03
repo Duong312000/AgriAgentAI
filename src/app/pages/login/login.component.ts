@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
   template: `
     <div style="background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-sizing: border-box;">
       <div style="height: 250px; position: relative; overflow: hidden; background-color: #e2e8f0;">
-        <img src="assets/image/nendangnhap.jpg" alt="Chợ nổi trái cây" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+        <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068884/agriagent_ai/nendangnhap.jpg" alt="Chợ nổi trái cây" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
         <svg style="position: absolute; bottom: -1px; left: 0; width: 100%; height: 75px; z-index: 2; pointer-events: none;" viewBox="0 0 500 100" preserveAspectRatio="none">
           <path d="M 0,100 L 0,55 C 35,15 110,-5 190,30 C 280,65 390,75 500,70 L 500,100 Z" fill="#ffffff"/>
         </svg>
@@ -19,7 +19,7 @@ import { AuthService } from '../../services/auth.service';
 
       <div style="padding: 10px 24px 30px 24px; flex: 1; display: flex; flex-direction: column; position: relative; z-index: 3;">
         <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 0px; margin-top: -25px; margin-bottom: 8px; margin-left: -130px;">
-          <img src="assets/image/logo.png" alt="Logo Nông Thương" style="height: 105px; width: auto; margin-right: -12px;">
+          <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068883/agriagent_ai/logo.png" alt="Logo Nông Thương" style="height: 105px; width: auto; margin-right: -12px;">
           <h2 style="font-size: 34px; font-weight: 800; color: #769f2e; text-align: center; margin: 0;">Đăng nhập</h2>
         </div>
         <p style="font-size: 14px; color: #555555; text-align: center; margin-top: 0; margin-bottom: 24px;">Đăng nhập tài khoản để tiếp tục hành trình của bạn</p>

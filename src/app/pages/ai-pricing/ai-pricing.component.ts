@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
 
     <div style="padding: 16px; flex: 1;">
       <div class="card yellow-tint" style="display: flex; gap: 14px; align-items: center; border-radius: 20px; padding: 16px; margin-bottom: 20px;">
-        <img src="assets/image/Trái cây/chom chom ban.jpg" style="width: 80px; height: 80px; border-radius: 14px; object-fit: cover;">
+        <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068889/agriagent_ai/tr%C3%A1i_c%C3%A2y/chom_chom_ban.jpg" style="width: 80px; height: 80px; border-radius: 14px; object-fit: cover;">
         <div>
           <h3 style="font-size: 16px; font-weight: 800; color: #1e293b; margin-bottom: 4px;">Chôm Chôm Vĩnh Long</h3>
           <div style="font-size: 18px; font-weight: 800; color: #4d7c0f;">32.000 - 36.000đ/kg</div>

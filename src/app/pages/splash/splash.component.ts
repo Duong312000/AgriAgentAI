@@ -7,9 +7,9 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <div style="background: url('assets/image/splash_banner.jpg') no-repeat center top / cover; min-height: 100vh; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; padding: 0 24px 40px 24px; box-sizing: border-box;">
+    <div style="background: url('https://res.cloudinary.com/zdavpzw2/image/upload/v1791068887/agriagent_ai/splash_banner.jpg') no-repeat center top / cover; min-height: 100vh; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; padding: 0 24px 40px 24px; box-sizing: border-box;">
       <div style="margin-top: 18vh; display: flex; flex-direction: column; align-items: center; width: 100%;">
-        <img src="assets/image/logo.png" alt="Nông Thương Logo" style="width: 350px; max-width: 88%; height: auto; margin-bottom: -10px; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.1));">
+        <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068883/agriagent_ai/logo.png" alt="Nông Thương Logo" style="width: 350px; max-width: 88%; height: auto; margin-bottom: -10px; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.1));">
         <h1 style="font-size: 36px; font-weight: 800; color: #1c522a; letter-spacing: 0.5px; margin-top: -26px; margin-bottom: 4px; text-shadow: 0 3px 6px rgba(0,0,0,0.25), 0 1px 2px rgba(255,255,255,0.8);">
           NÔNG THƯƠNG
         </h1>

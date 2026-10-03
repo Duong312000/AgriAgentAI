@@ -10,8 +10,8 @@ import { AuthService } from '../../services/auth.service';
   imports: [CommonModule, FormsModule, RouterModule],
   template: `
     <div style="padding: 20px 20px 30px 20px; background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-sizing: border-box; overflow-x: hidden; overflow-y: auto;">
-      <img src="assets/image/logo.png" alt="Nông Thương Logo" style="position: absolute; top: 16px; left: 16px; height: 42px; width: auto; z-index: 2;">
-      <img src="assets/image/bia.jpg" alt="Hoa văn bìa" style="position: absolute; top: 0; right: 0; width: 160px; height: auto; z-index: 1; pointer-events: none;">
+      <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068883/agriagent_ai/logo.png" alt="Nông Thương Logo" style="position: absolute; top: 16px; left: 16px; height: 42px; width: auto; z-index: 2;">
+      <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068877/agriagent_ai/bia.jpg" alt="Hoa văn bìa" style="position: absolute; top: 0; right: 0; width: 160px; height: auto; z-index: 1; pointer-events: none;">
 
       <div style="text-align: center; margin-top: 45px; margin-bottom: 18px; z-index: 2;">
         <h2 style="font-size: 30px; font-weight: 800; color: #769f2e; margin-bottom: 4px;">Đăng ký</h2>
@@ -26,7 +26,7 @@ import { AuthService } from '../../services/auth.service';
                [style.opacity]="selectedRole === 'farmer' ? '1' : '0.65'"
                [style.boxShadow]="selectedRole === 'farmer' ? '0 4px 12px rgba(118, 159, 46, 0.25)' : 'none'"
                style="background: #ffffff; border-radius: 16px; padding: 14px 8px; text-align: center; cursor: pointer; transition: all 0.2s ease;">
-            <img src="assets/image/4d6db1ad7275923ce24c19acbf3b0ad1.jpg" alt="Người nông dân" style="height: 44px; width: auto; margin-bottom: 6px; object-fit: contain;">
+            <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068871/agriagent_ai/4d6db1ad7275923ce24c19acbf3b0ad1.jpg" alt="Người nông dân" style="height: 44px; width: auto; margin-bottom: 6px; object-fit: contain;">
             <div style="font-size: 14px; font-weight: 800; color: #2d4612;">Người nông dân</div>
           </div>
           <div (click)="selectedRole = 'buyer'" 
@@ -34,7 +34,7 @@ import { AuthService } from '../../services/auth.service';
                [style.opacity]="selectedRole === 'buyer' ? '1' : '0.65'"
                [style.boxShadow]="selectedRole === 'buyer' ? '0 4px 12px rgba(118, 159, 46, 0.25)' : 'none'"
                style="background: #ffffff; border-radius: 16px; padding: 14px 8px; text-align: center; cursor: pointer; transition: all 0.2s ease;">
-            <img src="assets/image/nguoi mua.jpg" alt="Người mua hàng" style="height: 44px; width: auto; margin-bottom: 6px; object-fit: contain;">
+            <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068885/agriagent_ai/nguoi_mua.jpg" alt="Người mua hàng" style="height: 44px; width: auto; margin-bottom: 6px; object-fit: contain;">
             <div style="font-size: 14px; font-weight: 800; color: #2d4612;">Người mua hàng</div>
           </div>
         </div>

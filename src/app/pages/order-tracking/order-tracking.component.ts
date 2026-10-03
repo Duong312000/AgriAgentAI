@@ -86,7 +86,7 @@ import { RouterModule } from '@angular/router';
         
         <!-- Estimated Delivery Date Card -->
         <div class="bootstrap-card delivery-date-card">
-          <img src="assets/image/Trái cây/vai.jpg" alt="Vải Thiều" class="product-thumb-img">
+          <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068895/agriagent_ai/tr%C3%A1i_c%C3%A2y/vai.jpg" alt="Vải Thiều" class="product-thumb-img">
           <div class="delivery-info">
             <div class="info-label">Ngày nhận hàng dự kiến</div>
             <div class="info-date-highlight">Hôm nay, {{todayDateString}}</div>

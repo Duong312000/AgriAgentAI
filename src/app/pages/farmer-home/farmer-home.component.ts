@@ -14,7 +14,7 @@ import { Product } from '../../models/product.model';
       <section class="home-top">
         <header class="home-header">
           <a routerLink="/farmer-home" class="brand" aria-label="Nông Thương - Trang chủ">
-            <img src="assets/image/logo.png" alt="">
+            <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068883/agriagent_ai/logo.png" alt="">
             <span>NÔNG THƯƠNG</span>
           </a>
           <a routerLink="/notifications" class="notification-button" aria-label="Thông báo">
@@ -453,19 +453,19 @@ export class FarmerHomeComponent {
   activeBanner = 0;
 
   categories = [
-    { key: 'xoai', name: 'Xoài', image: 'assets/image/Trái cây/xoai.jpg' },
-    { key: 'chom-chom', name: 'Chôm chôm', image: 'assets/image/Trái cây/chom chom ban.jpg' },
-    { key: 'oi', name: 'Ổi', image: 'assets/image/Trái cây/oi.jpg' },
-    { key: 'dua-hau', name: 'Dưa hấu', image: 'assets/image/Trái cây/dua hau.jpg' },
-    { key: 'sau-rieng', name: 'Sầu riêng', image: 'assets/image/Trái cây/sau rieng.jpg' },
-    { key: 'vai', name: 'Vải', image: 'assets/image/Trái cây/vai.jpg' },
-    { key: 'thanh-long', name: 'Thanh long', image: 'assets/image/Trái cây/thanh long.jpg' }
+    { key: 'xoai', name: 'Xoài', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068896/agriagent_ai/tr%C3%A1i_c%C3%A2y/xoai.jpg' },
+    { key: 'chom-chom', name: 'Chôm chôm', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068889/agriagent_ai/tr%C3%A1i_c%C3%A2y/chom_chom_ban.jpg' },
+    { key: 'oi', name: 'Ổi', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068891/agriagent_ai/tr%C3%A1i_c%C3%A2y/oi.jpg' },
+    { key: 'dua-hau', name: 'Dưa hấu', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068890/agriagent_ai/tr%C3%A1i_c%C3%A2y/dua_hau.jpg' },
+    { key: 'sau-rieng', name: 'Sầu riêng', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068893/agriagent_ai/tr%C3%A1i_c%C3%A2y/sau_rieng.jpg' },
+    { key: 'vai', name: 'Vải', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068895/agriagent_ai/tr%C3%A1i_c%C3%A2y/vai.jpg' },
+    { key: 'thanh-long', name: 'Thanh long', image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068894/agriagent_ai/tr%C3%A1i_c%C3%A2y/thanh_long.jpg' }
   ];
 
   banners = [
-    { image: 'assets/image/banner.jpg', alt: 'Nông sản tươi tại chợ quê' },
-    { image: 'assets/image/co ban trai cay tren thuyen.jpg', alt: 'Những trái cây tươi ngon từ nhà vườn' },
-    { image: 'assets/image/4d6db1ad7275923ce24c19acbf3b0ad1.jpg', alt: 'Thu hoạch nông sản sạch tại vườn' }
+    { image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068881/agriagent_ai/home_banner.jpg', alt: 'Nông sản tươi tại chợ quê' },
+    { image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068880/agriagent_ai/co_ban_trai_cay_tren_thuyen.jpg', alt: 'Những trái cây tươi ngon từ nhà vườn' },
+    { image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068871/agriagent_ai/4d6db1ad7275923ce24c19acbf3b0ad1.jpg', alt: 'Thu hoạch nông sản sạch tại vườn' }
   ];
 
   constructor() {
