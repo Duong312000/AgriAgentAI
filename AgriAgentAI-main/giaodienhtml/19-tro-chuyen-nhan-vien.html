@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trò chuyện hỗ trợ</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="web-container">
+    <div class="app-content">
+
+      <!-- Header Top: Sunny Yellow, matching original sample -->
+      <div style="background-color: #f7d44c; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #eab308;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <a href="14-danh-sach-tro-chuyen.html" style="color: #262626; text-decoration: none; display: flex; align-items: center;">
+            <i class="fa-solid fa-chevron-left" style="font-size: 18px;"></i>
+          </a>
+          <img id="chat-header-avatar" src="../image/bf6893740faf9b9fd905b3094897788d.jpg" alt="Tiến Thành" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff;">
+          <div>
+            <div id="chat-header-name" style="font-size: 19px; font-weight: 700; color: #262626; margin: 0; line-height: 1.2;">Tiến Thành</div>
+            <div id="chat-header-status" style="font-size: 11px; color: #6b7a22; font-weight: 600;">Nhân viên hỗ trợ CSKH</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Chat Body -->
+      <div id="chat-messages-list" style="padding: 24px 18px; flex: 1; background-color: #FFFAD4; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box; overflow-y: auto;">
+        <!-- Messages rendered dynamically by js/chat.js -->
+      </div>
+
+      <!-- Bottom Chat Input Toolbar matching original sample -->
+      <div style="background-color: #f7d44c; padding: 10px 14px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #eab308;">
+        <i class="fa-solid fa-camera" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+        <i class="fa-regular fa-image" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+        <i class="fa-solid fa-microphone" style="font-size: 20px; color: #6b7a22; cursor: pointer;"></i>
+
+        <div style="flex: 1; display: flex; align-items: center; background-color: #ffffff; border-radius: 22px; padding: 6px 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+          <input id="chat-input" type="text" placeholder="Aa" style="width: 100%; border: none; outline: none; background: transparent; font-size: 15px; color: #262626;">
+          <i class="fa-regular fa-face-smile" style="font-size: 20px; color: #6b7a22; cursor: pointer; margin-left: 6px;"></i>
+        </div>
+
+        <button id="btn-send-chat" style="border: none; background: #6b7a22; color: #ffffff; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; flex-shrink: 0; box-shadow: 0 3px 8px rgba(107,122,34,0.3);">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+      <script src="../js/chat.js"></script>
+      <script>document.addEventListener('DOMContentLoaded', initChatPage);</script>
+
+    </div>
+  </div>
+</body>
+</html>

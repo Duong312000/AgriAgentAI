@@ -27,6 +27,11 @@ import { ManageProductsComponent } from './pages/manage-products/manage-products
 import { OrderTrackingComponent } from './pages/order-tracking/order-tracking.component';
 import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 import { ChatUserComponent } from './pages/chat-user/chat-user.component';
+import { OrderConfirmListComponent } from './pages/order-confirm-list/order-confirm-list.component';
+import { MyVouchersComponent } from './pages/my-vouchers/my-vouchers.component';
+import { OrderReturnsComponent } from './pages/order-returns/order-returns.component';
+import { OrderCompletedComponent } from './pages/order-completed/order-completed.component';
+import { OrderCancelledComponent } from './pages/order-cancelled/order-cancelled.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'splash', pathMatch: 'full' },
@@ -58,5 +63,11 @@ export const routes: Routes = [
   { path: 'order-tracking', component: OrderTrackingComponent },
   { path: 'edit-profile', component: EditProfileComponent },
   { path: 'chat-user/:userId', component: ChatUserComponent },
+  { path: 'order-confirm-list', component: OrderConfirmListComponent },
+  { path: 'my-vouchers', component: MyVouchersComponent },
+  { path: 'order-returns', component: OrderReturnsComponent },
+  { path: 'order-completed', component: OrderCompletedComponent },
+  { path: 'order-cancelled', component: OrderCancelledComponent },
   { path: '**', redirectTo: 'farmer-home' }
 ];
+
