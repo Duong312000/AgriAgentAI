@@ -64,4 +64,69 @@ router.post('/', async (req, res) => {
   }
 });
 
+// GET /api/orders/returns - Lấy danh sách yêu cầu trả hàng / hoàn tiền
+router.get('/returns', async (req, res) => {
+  try {
+    const returns = await OrderReturn.find()
+      .populate({
+        path: 'orderId',
+        populate: { path: 'items.productId farmerId buyerId' }
+      })
+      .sort({ createdAt: -1 });
+
+    res.json({ success: true, count: returns.length, data: returns });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// GET /api/orders/:id - Lấy chi tiết đơn hàng
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    let order;
+    if (id.startsWith('AGRI-')) {
+      order = await Order.findOne({ orderCode: id });
+    } else {
+      order = await Order.findById(id);
+    }
+
+    if (!order) {
+      return res.status(404).json({ success: false, message: 'Không tìm thấy đơn hàng' });
+    }
+
+    await order.populate('buyerId', 'fullName phoneNumber address');
+    await order.populate('farmerId', 'fullName phoneNumber address');
+    await order.populate('items.productId', 'name priceNum images unit');
+
+    res.json({ success: true, data: order });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// PUT /api/orders/:id/status - Cập nhật trạng thái đơn hàng
+router.put('/:id/status', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status, note } = req.body;
+
+    const order = await Order.findById(id);
+    if (!order) {
+      return res.status(404).json({ success: false, message: 'Không tìm thấy đơn hàng' });
+    }
+
+    order.status = status;
+    order.statusLogs.push({
+      statusName: `Cập nhật trạng thái: ${status}`,
+      locationNote: note || 'Hệ thống AgriAgentAI'
+    });
+
+    await order.save();
+    res.json({ success: true, message: 'Cập nhật trạng thái đơn hàng thành công!', data: order });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 module.exports = router;

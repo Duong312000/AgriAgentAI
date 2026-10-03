@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute } from '@angular/router';
+import { OrderService, Order } from '../../services/order.service';
 
 @Component({
   selector: 'app-order-tracking',
@@ -585,8 +586,71 @@ import { RouterModule } from '@angular/router';
     }
   `]
 })
-export class OrderTrackingComponent {
+export class OrderTrackingComponent implements OnInit {
   copied = false;
+  order: Order | null = null;
+
+  constructor(
+    private orderService: OrderService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const code = params['code'] || 'AGRI-88421';
+      this.loadOrder(code);
+    });
+  }
+
+  loadOrder(code: string): void {
+    this.orderService.getOrders().subscribe({
+      next: (res) => {
+        if (res.success && res.data.length > 0) {
+          const match = res.data.find(o => o.orderCode === code) || res.data[0];
+          this.order = match;
+        }
+      },
+      error: (err) => console.error('Lỗi khi tải thông tin đơn hàng:', err)
+    });
+  }
+
+  getStatusText(status?: string): string {
+    switch (status) {
+      case 'PENDING': return 'Chờ xác nhận đơn';
+      case 'CONFIRMED': return 'Đang chuẩn bị hàng';
+      case 'SHIPPING': return 'Đang giao hàng';
+      case 'DELIVERED': return 'Đã giao thành công';
+      case 'COMPLETED': return 'Đã hoàn thành';
+      case 'CANCELLED': return 'Đơn hàng đã hủy';
+      case 'RETURNED': return 'Đã trả hàng/Hoàn tiền';
+      default: return 'Theo dõi đơn hàng';
+    }
+  }
+
+  getStatusTooltip(status?: string): string {
+    if (status === 'SHIPPING') return 'sắp được giao tới bạn';
+    if (status === 'PENDING') return 'đang chờ nhà vườn xác nhận';
+    if (status === 'COMPLETED') return 'đã hoàn thành';
+    return 'đang được xử lý';
+  }
+
+  getProductName(order: Order | null): string {
+    if (!order || !order.items || order.items.length === 0) return 'Nông sản VietGAP';
+    const first = order.items[0];
+    if (typeof first.productId === 'object' && first.productId?.name) {
+      return first.productId.name;
+    }
+    return first.productName || 'Nông sản VietGAP';
+  }
+
+  getProductImage(order: Order | null): string {
+    if (!order || !order.items || order.items.length === 0) return 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068891/agriagent_ai/tr%C3%A1i_c%C3%A2y/oi.jpg';
+    const first = order.items[0];
+    if (typeof first.productId === 'object' && first.productId?.images?.length > 0) {
+      return first.productId.images[0];
+    }
+    return 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068891/agriagent_ai/tr%C3%A1i_c%C3%A2y/oi.jpg';
+  }
 
   get todayDateString(): string {
     const today = new Date();
