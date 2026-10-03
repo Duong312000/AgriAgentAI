@@ -119,60 +119,68 @@ import { RouterModule } from '@angular/router';
         <div class="bootstrap-card timeline-card">
           <div class="timeline-card-title">Tiến trình vận chuyển</div>
 
-          <div class="timeline-container">
-            <!-- Continuous Line behind nodes -->
-            <div class="timeline-line"></div>
+          <div class="timeline-flex-wrapper">
+            <!-- Background Vertical Line perfectly centered through node column -->
+            <div class="timeline-continuous-v-line"></div>
 
             <!-- Active Step: Đang giao hàng -->
-            <div class="timeline-item active">
-              <div class="timeline-time">
-                <span>Hôm nay</span>
-                <strong>08:18</strong>
+            <div class="timeline-flex-row">
+              <div class="time-col">
+                <span class="time-date">Hôm nay</span>
+                <strong class="time-hour active">08:18</strong>
               </div>
-              <div class="timeline-node active-node">
-                <i class="fa-solid fa-truck"></i>
+              <div class="node-col">
+                <div class="active-truck-badge">
+                  <i class="fa-solid fa-truck"></i>
+                </div>
               </div>
-              <div class="timeline-content">
-                <div class="timeline-title active-title">Đang giao hàng</div>
-                <div class="timeline-desc">
+              <div class="content-col">
+                <div class="status-title active">Đang giao hàng</div>
+                <div class="status-desc">
                   Đơn hàng sẽ sớm được giao, vui lòng chú ý điện thoại. Tài xế Nguyễn Văn Hùng đang tới địa chỉ của bạn.
                 </div>
               </div>
             </div>
 
             <!-- Step 2 -->
-            <div class="timeline-item">
-              <div class="timeline-time">
-                <span>Hôm nay</span>
-                <small>06:19</small>
+            <div class="timeline-flex-row">
+              <div class="time-col">
+                <span class="time-date">Hôm nay</span>
+                <span class="time-hour">06:19</span>
               </div>
-              <div class="timeline-node default-node"></div>
-              <div class="timeline-content">
-                <div class="timeline-desc-normal">Đơn hàng đã đến trạm giao hàng 51-HCM DTP/Âu Cơ</div>
+              <div class="node-col">
+                <div class="dot-badge"></div>
+              </div>
+              <div class="content-col">
+                <div class="status-desc-normal">Đơn hàng đã đến trạm giao hàng 51-HCM DTP/Âu Cơ</div>
               </div>
             </div>
 
             <!-- Step 3 -->
-            <div class="timeline-item">
-              <div class="timeline-time">
-                <span>Hôm qua</span>
-                <small>18:30</small>
+            <div class="timeline-flex-row">
+              <div class="time-col">
+                <span class="time-date">Hôm qua</span>
+                <span class="time-hour">18:30</span>
               </div>
-              <div class="timeline-node default-node"></div>
-              <div class="timeline-content">
-                <div class="timeline-desc-normal">Đơn hàng đã xuất kho Củ Chi SOC</div>
+              <div class="node-col">
+                <div class="dot-badge"></div>
+              </div>
+              <div class="content-col">
+                <div class="status-desc-normal">Đơn hàng đã xuất kho Củ Chi SOC</div>
               </div>
             </div>
 
             <!-- Step 4 -->
-            <div class="timeline-item">
-              <div class="timeline-time">
-                <span>02/10</span>
-                <small>14:15</small>
+            <div class="timeline-flex-row">
+              <div class="time-col">
+                <span class="time-date">02/10</span>
+                <span class="time-hour">14:15</span>
               </div>
-              <div class="timeline-node default-node"></div>
-              <div class="timeline-content">
-                <div class="timeline-desc-normal">Nhà vườn Bác Hùng Bắc Giang đã bàn giao đơn hàng cho đơn vị vận chuyển</div>
+              <div class="node-col">
+                <div class="dot-badge"></div>
+              </div>
+              <div class="content-col">
+                <div class="status-desc-normal">Nhà vườn Bác Hùng Bắc Giang đã bàn giao đơn hàng cho đơn vị vận chuyển</div>
               </div>
             </div>
 
@@ -408,7 +416,7 @@ import { RouterModule } from '@angular/router';
       align-items: center;
       gap: 8px;
       padding-top: 10px;
-      border-top: 1px stroke #f1f5f9;
+      border-top: 1px solid #f1f5f9;
       font-size: 12px;
       color: #334155;
     }
@@ -437,7 +445,7 @@ import { RouterModule } from '@angular/router';
       font-size: 11.5px;
     }
 
-    /* Timeline Card */
+    /* Timeline Card System */
     .timeline-card-title {
       font-size: 14px;
       font-weight: 800;
@@ -445,99 +453,112 @@ import { RouterModule } from '@angular/router';
       margin-bottom: 16px;
     }
 
-    .timeline-container {
+    .timeline-flex-wrapper {
       position: relative;
       display: flex;
       flex-direction: column;
       gap: 20px;
-      padding-left: 90px;
     }
 
-    .timeline-line {
+    .timeline-continuous-v-line {
       position: absolute;
-      left: 102px;
-      top: 10px;
-      bottom: 10px;
+      top: 12px;
+      bottom: 12px;
+      left: 78px;
       width: 2px;
       background-color: #cbd5e1;
       z-index: 1;
+      transform: translateX(-50%);
     }
 
-    .timeline-item {
-      position: relative;
+    .timeline-flex-row {
       display: flex;
       align-items: flex-start;
+      position: relative;
       z-index: 2;
     }
 
-    .timeline-time {
-      position: absolute;
-      left: -90px;
-      top: 0;
-      width: 65px;
+    .time-col {
+      width: 60px;
+      flex-shrink: 0;
       text-align: right;
+      padding-right: 10px;
       display: flex;
       flex-direction: column;
       font-size: 11px;
       color: #64748b;
-      line-height: 1.3;
+      line-height: 1.35;
     }
 
-    .timeline-time strong {
+    .time-date {
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    .time-hour {
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    .time-hour.active {
       color: #1b4332;
+      font-weight: 800;
       font-size: 12px;
     }
 
-    .timeline-node {
-      position: absolute;
-      left: -24px;
-      top: 0;
-      border-radius: 50%;
+    .node-col {
+      width: 36px;
+      flex-shrink: 0;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: flex-start;
+      position: relative;
     }
 
-    .active-node {
+    .active-truck-badge {
       width: 26px;
       height: 26px;
+      border-radius: 50%;
       background-color: #2d6a4f;
       color: #ffffff;
       font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       box-shadow: 0 0 0 4px #DFF1E6;
-      left: -27px;
-      top: -2px;
     }
 
-    .default-node {
+    .dot-badge {
       width: 10px;
       height: 10px;
+      border-radius: 50%;
       background-color: #94a3b8;
-      left: -19px;
-      top: 4px;
+      margin-top: 4px;
     }
 
-    .timeline-content {
+    .content-col {
       flex: 1;
+      padding-left: 6px;
     }
 
-    .active-title {
+    .status-title.active {
       font-size: 14px;
       font-weight: 800;
       color: #2d6a4f;
       margin-bottom: 3px;
     }
 
-    .timeline-desc {
+    .status-desc {
       font-size: 12px;
       color: #475569;
       line-height: 1.45;
     }
 
-    .timeline-desc-normal {
+    .status-desc-normal {
       font-size: 12px;
       color: #64748b;
       line-height: 1.4;
+      margin-top: 1px;
     }
 
     /* Return Button */
