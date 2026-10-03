@@ -1,9 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { ChatService } from '../../services/chat.service';
-import { ChatUser } from '../../models/chat.model';
+import { ChatService, ChatRoomData } from '../../services/chat.service';
 
 @Component({
   selector: 'app-chat-list',
@@ -20,6 +19,16 @@ import { ChatUser } from '../../models/chat.model';
         </div>
       </div>
 
+      <!-- Quick Action Shortcuts -->
+      <div style="padding: 0 20px 14px 20px; display: flex; gap: 10px;">
+        <a routerLink="/chat-ai" style="flex: 1; background: #e0f2fe; color: #0284c7; padding: 10px 12px; border-radius: 12px; font-size: 13px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <i class="fa-solid fa-robot"></i> Chat Trợ Lý AI
+        </a>
+        <a routerLink="/chat-staff" style="flex: 1; background: #fee2e2; color: #ef4444; padding: 10px 12px; border-radius: 12px; font-size: 13px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <i class="fa-solid fa-headset"></i> Hỗ Trợ CSKH
+        </a>
+      </div>
+
       <!-- Search Bar Capsule -->
       <div style="padding: 0 20px 14px 20px;">
         <div style="display: flex; align-items: center; gap: 10px; border: none; border-radius: 14px; padding: 10px 16px; background-color: rgba(0, 0, 0, 0.05);">
@@ -28,25 +37,20 @@ import { ChatUser } from '../../models/chat.model';
         </div>
       </div>
 
-      <!-- Top Horizontal Scrollable Active Avatars -->
-      <div style="display: flex; gap: 16px; overflow-x: auto; padding: 4px 20px 16px 20px; flex-shrink: 0; background-color: #f8f8f8;">
-        <a *ngFor="let user of chatUsers" [routerLink]="user.id === 'agri-ai' ? '/chat-ai' : user.id === 'support-staff' ? '/chat-staff' : ['/chat-user', user.id]" style="text-align: center; flex-shrink: 0; text-decoration: none;">
-          <div style="position: relative; width: 62px; height: 62px; margin: 0 auto 6px;">
-            <img [src]="user.avatar" [alt]="user.name" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-            <span style="position: absolute; bottom: 2px; right: 2px; width: 14px; height: 14px; background-color: #22c55e; border: 2.5px solid #ffffff; border-radius: 50%;"></span>
-          </div>
-          <div style="font-size: 12px; font-weight: 600; color: #000000; width: 64px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{user.name}}</div>
-        </a>
+      <!-- Empty State -->
+      <div *ngIf="rooms.length === 0" style="text-align: center; padding: 40px 20px; color: #888;">
+        <i class="fa-regular fa-comments" style="font-size: 48px; color: #ccc; margin-bottom: 12px;"></i>
+        <p style="font-size: 14px; font-weight: 600;">Chưa có đoạn chat nào trong cơ sở dữ liệu</p>
       </div>
 
-      <!-- Recent Chat List -->
+      <!-- Recent Chat List from MongoDB -->
       <div style="padding: 12px 18px; flex: 1; background-color: #f8f8f8; display: flex; flex-direction: column; gap: 16px;">
-        <a *ngFor="let user of chatUsers" [routerLink]="user.id === 'agri-ai' ? '/chat-ai' : user.id === 'support-staff' ? '/chat-staff' : ['/chat-user', user.id]" style="display: flex; gap: 14px; align-items: center; text-decoration: none; color: #000000;">
-          <img [src]="user.avatar" [alt]="user.name" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+        <a *ngFor="let room of rooms" [routerLink]="['/chat-user', room.id]" style="display: flex; gap: 14px; align-items: center; text-decoration: none; color: #000000; background: #ffffff; padding: 12px; border-radius: 14px; border: 1px solid #eeeeee; box-shadow: 0 1px 4px rgba(0,0,0,0.03);">
+          <img [src]="getPartnerAvatar(room)" [alt]="getPartnerName(room)" style="width: 54px; height: 54px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
           <div style="flex: 1; min-width: 0;">
-            <div style="font-weight: 800; font-size: 16px; color: #000000; margin-bottom: 3px;">{{user.name}}</div>
+            <div style="font-weight: 800; font-size: 16px; color: #000000; margin-bottom: 3px;">{{ getPartnerName(room) }}</div>
             <div style="font-size: 14px; color: #475569; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-              {{user.initialMessages && user.initialMessages.length > 0 ? user.initialMessages[user.initialMessages.length - 1].text : user.status}}
+              {{ room.latestMessage ? room.latestMessage.content : 'Nhấn để trò chuyện...' }}
             </div>
           </div>
           <i class="fa-solid fa-chevron-right" style="color: #cbd5e1; font-size: 14px;"></i>
@@ -55,10 +59,38 @@ import { ChatUser } from '../../models/chat.model';
     </div>
   `
 })
-export class ChatListComponent {
+export class ChatListComponent implements OnInit {
   private authService = inject(AuthService);
   private chatService = inject(ChatService);
 
   currentUser = this.authService.getCurrentUser();
-  chatUsers: ChatUser[] = this.chatService.getAllChatUsers();
+  rooms: ChatRoomData[] = [];
+
+  ngOnInit(): void {
+    this.chatService.getRooms().subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.rooms = res.data;
+        }
+      },
+      error: (err) => console.error('Lỗi khi tải danh sách cuộc trò chuyện:', err)
+    });
+  }
+
+  getPartnerName(room: ChatRoomData): string {
+    if (room.participants && room.participants.length > 0) {
+      const partner = room.participants.find(p => p.userId && p.userId._id !== this.currentUser.id) || room.participants[0];
+      if (partner?.userId?.fullName) return partner.userId.fullName;
+      if (partner?.userId?.firstName) return `${partner.userId.lastName || ''} ${partner.userId.firstName}`;
+    }
+    return room.roomType === 'USER_STAFF' ? 'Tổng đài CSKH AgriAgent' : 'Nông Dân Nông Thương';
+  }
+
+  getPartnerAvatar(room: ChatRoomData): string {
+    if (room.participants && room.participants.length > 0) {
+      const partner = room.participants.find(p => p.userId && p.userId._id !== this.currentUser.id) || room.participants[0];
+      if (partner?.userId?.avatarUrl) return partner.userId.avatarUrl;
+    }
+    return 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068876/agriagent_ai/bf6893740faf9b9fd905b3094897788d.jpg';
+  }
 }

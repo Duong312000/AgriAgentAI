@@ -2,8 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ChatService } from '../../services/chat.service';
-import { ChatUser, ChatMessage } from '../../models/chat.model';
 
 @Component({
   selector: 'app-chat-staff',
@@ -17,12 +15,12 @@ import { ChatUser, ChatMessage } from '../../models/chat.model';
           <a routerLink="/chat-list" style="color: #1e293b; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background-color: #f1f5f9;">
             <i class="fa-solid fa-chevron-left" style="font-size: 16px;"></i>
           </a>
-          <img [src]="user.avatar" alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid #e2e8f0;">
+          <img [src]="staffAvatar" alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid #e2e8f0;">
           <div>
-            <div style="font-size: 17px; font-weight: 800; color: #0f172a; margin: 0; line-height: 1.2;">{{user.name}}</div>
+            <div style="font-size: 17px; font-weight: 800; color: #0f172a; margin: 0; line-height: 1.2;">Tiến Thành (CSKH)</div>
             <div style="font-size: 11.5px; color: #16a34a; font-weight: 600; display: flex; align-items: center; gap: 4px;">
               <span style="width: 7px; height: 7px; background-color: #16a34a; border-radius: 50%; display: inline-block;"></span>
-              {{user.status}}
+              Nhân viên hỗ trợ CSKH
             </div>
           </div>
         </div>
@@ -42,7 +40,7 @@ import { ChatUser, ChatMessage } from '../../models/chat.model';
             <div style="font-size: 10px; opacity: 0.8; text-align: right; margin-top: 4px;">{{msg.time}}</div>
           </div>
           <div *ngIf="msg.sender === 'them'" style="display: flex; gap: 10px; align-items: flex-end;">
-            <img [src]="user.avatar" alt="Avatar" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; flex-shrink: 0; margin-bottom: 2px;">
+            <img [src]="staffAvatar" alt="Avatar" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; flex-shrink: 0; margin-bottom: 2px;">
             <div style="background-color: #ffffff; padding: 12px 16px; border-radius: 18px 18px 18px 4px; font-size: 14.5px; color: #1e293b; font-weight: 500; line-height: 1.45; border: 1px solid #e2e8f0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
               <div>{{msg.text}}</div>
               <div style="font-size: 10px; color: #94a3b8; text-align: right; margin-top: 4px;">{{msg.time}}</div>
@@ -76,14 +74,20 @@ import { ChatUser, ChatMessage } from '../../models/chat.model';
   `
 })
 export class ChatStaffComponent implements OnInit {
-  private chatService = inject(ChatService);
-  user!: ChatUser;
-  messages: ChatMessage[] = [];
+  staffAvatar = 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068876/agriagent_ai/bf6893740faf9b9fd905b3094897788d.jpg';
+  messages: { sender: 'me' | 'them'; text: string; time: string }[] = [];
   inputMessage = '';
 
+  replies = [
+    'Dạ em chào quý khách ạ! Bộ phận CSKH đã ghi nhận yêu cầu và sẽ xử lý ngay lập tức.',
+    'Quý khách có thể kiểm tra tiến trình đơn hàng tại mục Theo dõi đơn hàng nhé!',
+    'Nếu cần hỗ trợ khẩn cấp, quý khách có thể liên hệ tổng đài hotline 1900-xxxx ạ.'
+  ];
+
   ngOnInit() {
-    this.user = this.chatService.getChatUser('support-staff');
-    this.messages = [...this.user.initialMessages];
+    this.messages = [
+      { sender: 'them', text: 'Chào quý khách, Trung tâm hỗ trợ AgriAgent AI xin nghe! Bạn đang cần hỗ trợ gì ạ? ❤️', time: 'Vừa xong' }
+    ];
   }
 
   sendMessage() {
@@ -95,7 +99,7 @@ export class ChatStaffComponent implements OnInit {
     this.inputMessage = '';
 
     setTimeout(() => {
-      const reply = this.user.replies[Math.floor(Math.random() * this.user.replies.length)];
+      const reply = this.replies[Math.floor(Math.random() * this.replies.length)];
       this.messages.push({ sender: 'them', text: reply, time: timeStr });
     }, 1000);
   }
