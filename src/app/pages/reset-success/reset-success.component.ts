@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <div style="padding: 24px; background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-sizing: border-box;">
+    <div style="padding: 24px; background-color: #f8f8f8; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-sizing: border-box;">
       <h2 style="font-size: 26px; font-weight: 800; color: #587820; text-align: center; margin-top: 40px; margin-bottom: 12px;">Đặt lại mật khẩu mới</h2>
       <p style="font-size: 14px; color: #64748b; text-align: center; line-height: 1.5; margin-bottom: 32px; padding: 0 10px;">
         Hãy nhập mật khẩu mới của bạn vào bên dưới và xem gợi ý khi thiết lập mật khẩu.

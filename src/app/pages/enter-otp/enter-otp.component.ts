@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <div style="padding: 24px; background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column;">
+    <div style="padding: 24px; background-color: #f8f8f8; min-height: 100vh; display: flex; flex-direction: column;">
       <div style="margin-bottom: 40px;">
         <a routerLink="/forgot-password" class="btn-back"><i class="fa-solid fa-chevron-left"></i> Quay lại</a>
       </div>

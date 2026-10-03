@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <div style="background-color: #FFFAD4; flex: 1; display: flex; flex-direction: column; padding-bottom: 90px;">
+    <div style="background-color: #f8f8f8; flex: 1; display: flex; flex-direction: column; padding-bottom: 90px;">
       <!-- Top Header -->
       <div style="padding: 20px 20px 12px 20px; display: flex; align-items: center; gap: 14px;">
         <img src="assets/image/a28917e48c7907a6a465f308c3e68ba2.jpg" alt="Thùy Anh" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
@@ -23,7 +23,7 @@ import { RouterModule } from '@angular/router';
       </div>
 
       <!-- Top Horizontal Scrollable Active Avatars -->
-      <div style="display: flex; gap: 16px; overflow-x: auto; padding: 4px 20px 16px 20px; flex-shrink: 0; background-color: #FFFAD4;">
+      <div style="display: flex; gap: 16px; overflow-x: auto; padding: 4px 20px 16px 20px; flex-shrink: 0; background-color: #f8f8f8;">
         <a [routerLink]="['/chat-user', 'duong-mit']" style="text-align: center; flex-shrink: 0; text-decoration: none;">
           <div style="position: relative; width: 62px; height: 62px; margin: 0 auto 6px;">
             <img src="assets/image/622f949df277af76c811644427ebcace.jpg" alt="Dương Mít" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
@@ -66,7 +66,7 @@ import { RouterModule } from '@angular/router';
       </div>
 
       <!-- Recent Chat List -->
-      <div style="padding: 12px 18px; flex: 1; background-color: #FFFAD4; display: flex; flex-direction: column; gap: 16px;">
+      <div style="padding: 12px 18px; flex: 1; background-color: #f8f8f8; display: flex; flex-direction: column; gap: 16px;">
         <a [routerLink]="['/chat-user', 'khang-xoai']" style="display: flex; gap: 14px; align-items: center; text-decoration: none; color: inherit;">
           <img src="assets/image/74acf8d5fc78215adb7b31123fc10cc7.jpg" alt="Khang Xoài" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
           <div style="flex: 1; min-width: 0;">

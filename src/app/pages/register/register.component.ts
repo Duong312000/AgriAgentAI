@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   template: `
-    <div style="padding: 20px 20px 30px 20px; background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-sizing: border-box; overflow: hidden;">
+    <div style="padding: 20px 20px 30px 20px; background-color: #f8f8f8; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-sizing: border-box; overflow: hidden;">
       <img src="assets/image/logo.png" alt="Nông Thương Logo" style="position: absolute; top: 16px; left: 16px; height: 42px; width: auto; z-index: 2;">
       <img src="assets/image/bia.jpg" alt="Hoa văn bìa" style="position: absolute; top: 0; right: 0; width: 160px; height: auto; z-index: 1; pointer-events: none;">
 

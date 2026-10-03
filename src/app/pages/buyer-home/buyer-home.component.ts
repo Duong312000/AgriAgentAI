@@ -11,7 +11,7 @@ import { Product } from '../../models/product.model';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   template: `
-    <div style="background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 90px; box-sizing: border-box;">
+    <div style="background-color: #f8f8f8; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 90px; box-sizing: border-box;">
       <div class="app-header" style="justify-content: space-between;">
         <div style="display: flex; align-items: center; gap: 8px;">
           <img src="assets/image/logo.png" style="height: 32px; width: auto;">

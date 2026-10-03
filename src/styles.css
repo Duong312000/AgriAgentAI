@@ -10,7 +10,7 @@
   --primary-hover: #638825;
   --primary-light: #eaf3d8;
   --primary-dark: #2d4612;
-  --bg-cream: #FFFAD4;
+  --bg-cream: #f8f8f8;
   --bg-white: #ffffff;
   --text-dark: #1e293b;
   --text-muted: #64748b;
@@ -36,7 +36,7 @@
 
 body {
   font-family: var(--font-family);
-  background-color: #f1f5f9;
+  background-color: #f8f8f8;
   color: var(--text-dark);
   min-height: 100vh;
   line-height: 1.5;
@@ -50,7 +50,7 @@ body {
   max-width: 480px;
   margin: 0 auto;
   min-height: 100vh;
-  background-color: var(--bg-cream);
+  background-color: #f8f8f8;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -73,7 +73,7 @@ body {
   gap: 12px;
   position: sticky;
   top: 0;
-  background: var(--bg-cream);
+  background: #f8f8f8;
   z-index: 40;
 }
 

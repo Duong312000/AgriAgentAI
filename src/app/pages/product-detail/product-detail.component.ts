@@ -17,7 +17,7 @@ import { Product } from '../../models/product.model';
         </a>
       </div>
 
-      <div style="padding: 16px; flex: 1; background: #f9f8ee; padding-bottom: 80px;">
+      <div style="padding: 16px; flex: 1; background: #f8f8f8; padding-bottom: 80px;">
         <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
           <div style="font-size: 26px; font-weight: 800; color: #769f2e;">{{product.priceText}}</div>
           <span style="background: #eaf3d8; color: #4d7c0f; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700;">📦 Còn {{product.stock}}</span>

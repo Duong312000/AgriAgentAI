@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   template: `
-    <div style="background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-sizing: border-box;">
+    <div style="background-color: #f8f8f8; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-sizing: border-box;">
       <div style="height: 250px; position: relative; overflow: hidden; background-color: #e2e8f0;">
         <img src="assets/image/nendangnhap.jpg" alt="Chợ nổi trái cây" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
         <svg style="position: absolute; bottom: -1px; left: 0; width: 100%; height: 75px; z-index: 2; pointer-events: none;" viewBox="0 0 500 100" preserveAspectRatio="none">

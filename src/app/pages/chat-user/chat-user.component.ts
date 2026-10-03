@@ -23,7 +23,7 @@ import { ChatUser, ChatMessage } from '../../models/chat.model';
       </div>
     </div>
 
-    <div style="padding: 24px 18px; flex: 1; background-color: #FFFAD4; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box; overflow-y: auto;">
+    <div style="padding: 24px 18px; flex: 1; background-color: #f8f8f8; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box; overflow-y: auto;">
       <div *ngFor="let msg of messages" [style.alignSelf]="msg.sender === 'me' ? 'flex-end' : 'flex-start'" [style.maxWidth]="msg.sender === 'me' ? '82%' : '85%'" style="margin-bottom: 12px;">
         <div *ngIf="msg.sender === 'me'" style="background-color: #4f52ff; color: #ffffff; padding: 12px 18px; border-radius: 20px 20px 4px 20px; font-size: 15px; font-weight: 500; line-height: 1.4; box-shadow: 0 4px 12px rgba(79, 82, 255, 0.25);">
           <div>{{msg.text}}</div>
