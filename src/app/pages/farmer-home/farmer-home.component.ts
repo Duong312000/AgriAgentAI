@@ -17,23 +17,15 @@ import { Product } from '../../models/product.model';
             <img src="https://res.cloudinary.com/zdavpzw2/image/upload/v1791068883/agriagent_ai/logo.png" alt="">
             <span>NÔNG THƯƠNG</span>
           </a>
-          <a routerLink="/notifications" class="notification-button" aria-label="Thông báo">
-            <i class="fa-regular fa-bell"></i>
-          </a>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <a routerLink="/notifications" class="notification-button" aria-label="Thông báo">
+              <i class="fa-regular fa-bell"></i>
+            </a>
+            <button class="notification-button" aria-label="Bộ lọc">
+              <i class="fa-solid fa-sliders"></i>
+            </button>
+          </div>
         </header>
-
-        <div class="search-row">
-          <form class="search-box" (ngSubmit)="onSearchChange()">
-            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-            <input
-              type="search"
-              [(ngModel)]="searchQuery"
-              name="searchQuery"
-              placeholder="Tìm kiếm"
-              aria-label="Tìm kiếm trái cây">
-            <button class="search-button" type="submit">Tìm</button>
-          </form>
-        </div>
 
         <a routerLink="/add-product-input" class="btn-sell-now">
           BÁN NÔNG SẢN NGAY
@@ -214,30 +206,27 @@ import { Product } from '../../models/product.model';
     .btn-sell-now {
       display: flex;
       width: 100%;
-      max-width: none;
-      height: 42px;
-      min-height: 42px;
+      height: 48px;
       align-items: center;
       justify-content: center;
-      margin-bottom: 13px;
+      margin-top: 10px;
+      margin-bottom: 14px;
       padding: 0 16px;
       border: 0;
-      border-radius: 5px;
-      background: #ffdc54;
-      color: #76540a;
-      font-size: 13px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #fce055 0%, #facc15 100%);
+      color: #61460b;
+      font-size: 16px;
       font-weight: 800;
-      box-shadow: none;
-      filter: none;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(250, 204, 21, 0.4);
       text-decoration: none;
+      box-sizing: border-box;
     }
 
     .btn-sell-now:hover {
-      transform: none;
-      background: #ffdc54;
-      color: #76540a;
-      box-shadow: none;
-      filter: none;
+      background: linear-gradient(180deg, #facc15 0%, #eab308 100%);
+      color: #4a3406;
     }
 
     .category-scroll {

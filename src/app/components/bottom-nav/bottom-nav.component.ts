@@ -69,8 +69,9 @@ import { AuthService } from '../../services/auth.service';
     .nav-item.active {
       color: #769f2e;
       font-weight: 700;
-      background-color: transparent;
-      border: none;
+      background-color: #e6f0d9;
+      border: 1.5px solid #a3c267;
+      border-radius: 10px;
     }
 
     .nav-item i {
