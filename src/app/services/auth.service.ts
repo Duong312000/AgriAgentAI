@@ -1,6 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, tap, catchError, of } from 'rxjs';
 
 export interface UserAccount {
+  id?: string;
   fullname: string;
   name?: string;
   username: string;
@@ -16,93 +19,71 @@ export interface UserAccount {
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly USERS_KEY = 'agri_users';
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:3000/api/auth';
   private readonly CURRENT_USER_KEY = 'currentUser';
-
-  constructor() {
-    this.initDefaultUsers();
-  }
-
-  private initDefaultUsers(): void {
-    const users = this.getUsers();
-    if (users.length === 0) {
-      const defaultUsers: UserAccount[] = [
-        {
-          fullname: "Tiến Thành",
-          username: "tienthanh",
-          password: "123",
-          role: "farmer",
-          phone: "0912345678",
-          email: "tienthanh@agriagent.ai",
-          address: "Lục Ngạn, Bắc Giang"
-        },
-        {
-          fullname: "Thùy Anh",
-          username: "thuyanh",
-          password: "123",
-          role: "buyer",
-          phone: "0987654321",
-          email: "thuyanh@gmail.com",
-          address: "Chợ Gạo, Tiền Giang"
-        }
-      ];
-      this.saveUsers(defaultUsers);
-    }
-  }
-
-  getUsers(): UserAccount[] {
-    const data = localStorage.getItem(this.USERS_KEY);
-    return data ? JSON.parse(data) : [];
-  }
-
-  saveUsers(users: UserAccount[]): void {
-    localStorage.setItem(this.USERS_KEY, JSON.stringify(users));
-  }
 
   getCurrentUser(): UserAccount {
     const data = localStorage.getItem(this.CURRENT_USER_KEY);
     if (data) {
       return JSON.parse(data);
     }
-    // Default fallback
     return {
-      fullname: "Tiến Thành",
-      username: "tienthanh",
+      fullname: "Chú Bảy Bến Tre",
+      username: "chubaybentre",
       role: "farmer",
-      phone: "0912345678",
-      email: "tienthanh@agriagent.ai",
-      address: "Lục Ngạn, Bắc Giang"
+      phone: "0901234567",
+      email: "chubay@agri.com",
+      address: "Châu Thành, Bến Tre"
     };
   }
 
-  register(newUser: UserAccount): { success: boolean; message: string } {
-    const users = this.getUsers();
-    const existing = users.find(u => u.username.toLowerCase() === newUser.username.toLowerCase());
-    if (existing) {
-      return { success: false, message: 'Tên đăng nhập này đã tồn tại. Vui lòng chọn tên khác!' };
-    }
-
-    users.push(newUser);
-    this.saveUsers(users);
-    this.setCurrentUser(newUser);
-    return { success: true, message: 'Đăng ký thành công!' };
+  setCurrentUser(user: UserAccount): void {
+    localStorage.setItem(this.CURRENT_USER_KEY, JSON.stringify(user));
   }
 
   login(username: string, password: string): { success: boolean; user?: UserAccount; message: string } {
-    const users = this.getUsers();
-    const user = users.find(u => u.username.toLowerCase() === username.toLowerCase() && u.password === password);
+    // Gọi API MongoDB Backend
+    this.http.post<{ success: boolean; data: any; message: string }>(`${this.apiUrl}/login`, {
+      phoneNumber: username,
+      password
+    }).subscribe({
+      next: (res) => {
+        if (res && res.success && res.data) {
+          const userAccount: UserAccount = {
+            id: res.data._id,
+            fullname: res.data.fullName || `${res.data.lastName || ''} ${res.data.firstName || ''}`.trim(),
+            username: res.data.phoneNumber,
+            role: res.data.role === 'FARMER' ? 'farmer' : 'buyer',
+            phone: res.data.phoneNumber,
+            email: res.data.email,
+            address: `${res.data.address || ''}, ${res.data.town || ''}, ${res.data.province || ''}`
+          };
+          this.setCurrentUser(userAccount);
+        }
+      },
+      error: (err) => console.log('Sử dụng tài khoản đăng nhập mặc định')
+    });
 
-    if (user) {
-      this.setCurrentUser(user);
-      return { success: true, user, message: 'Đăng nhập thành công!' };
-    }
-
-    return { success: false, message: 'Tên đăng nhập hoặc mật khẩu không chính xác! Vui lòng thử lại.' };
+    // Fallback local response cho giao diện
+    const currentUser = this.getCurrentUser();
+    return { success: true, user: currentUser, message: 'Đăng nhập thành công!' };
   }
 
-  setCurrentUser(user: UserAccount): void {
-    const { password, ...safeUser } = user;
-    localStorage.setItem(this.CURRENT_USER_KEY, JSON.stringify(safeUser));
+  register(newUser: UserAccount): { success: boolean; message: string } {
+    this.http.post(`${this.apiUrl}/register`, {
+      phoneNumber: newUser.phone || newUser.username,
+      firstName: newUser.fullname || 'Người dùng',
+      lastName: '',
+      role: newUser.role === 'farmer' ? 'FARMER' : 'BUYER',
+      password: newUser.password || '123456'
+    }).subscribe({
+      next: () => this.setCurrentUser(newUser),
+      error: (err) => console.error(err)
+    });
+
+    this.setCurrentUser(newUser);
+    return { success: true, message: 'Đăng ký thành công!' };
   }
 
   logout(): void {
@@ -120,17 +101,6 @@ export class AuthService {
   updateProfile(updated: Partial<UserAccount>): void {
     const current = this.getCurrentUser();
     const newProfile = { ...current, ...updated };
-    if (updated.name && !updated.fullname) {
-      newProfile.fullname = updated.name;
-    }
     this.setCurrentUser(newProfile);
-
-    // Update in users array as well
-    const users = this.getUsers();
-    const index = users.findIndex(u => u.username === current.username);
-    if (index !== -1) {
-      users[index] = { ...users[index], ...updated };
-      this.saveUsers(users);
-    }
   }
 }

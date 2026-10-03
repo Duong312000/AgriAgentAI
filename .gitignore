@@ -5,3 +5,8 @@ scratch/
 node_modules/
 dist/
 .angular/
+
+# Environment files
+.env
+*.env
+server/.env

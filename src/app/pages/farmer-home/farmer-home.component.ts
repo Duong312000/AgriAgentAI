@@ -118,6 +118,13 @@ export class FarmerHomeComponent {
   }
 
   private updateProducts() {
-    this.filteredProducts = this.productService.filterProducts(this.selectedCategory, this.searchQuery);
+    this.productService.getProductsFromApi().subscribe(products => {
+      const cleanQuery = this.searchQuery.trim().toLowerCase();
+      this.filteredProducts = products.filter(p => {
+        const matchCat = (!this.selectedCategory || this.selectedCategory === 'all' || p.category === this.selectedCategory || p.id === this.selectedCategory);
+        const matchQuery = !cleanQuery || p.name.toLowerCase().includes(cleanQuery) || p.location.toLowerCase().includes(cleanQuery);
+        return matchCat && matchQuery;
+      });
+    });
   }
 }

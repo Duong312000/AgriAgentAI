@@ -1,11 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, catchError, of, map } from 'rxjs';
 import { Product } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private productsData: Record<string, Product> = {
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:3000/api/products';
+  private uploadUrl = 'http://localhost:3000/api/upload/product-image';
+
+  // Dữ liệu dự phòng nếu chưa bật server backend
+  private fallbackProducts: Record<string, Product> = {
     "vai": {
       id: "vai",
       name: "Vải Thiều Lục Ngạn",
@@ -16,51 +23,9 @@ export class ProductService {
       location: "Lục Ngạn, Tỉnh Bắc Giang",
       stock: "~120 kg",
       farmer: "Bác Hùng Bắc Giang",
-      desc: "Vải thiều Lục Ngạn chín đỏ mọng, vỏ mỏng hạt nhỏ, thịt dày mọng nước và ngọt thanh đậm đà. Được hái lứa đầu mùa tươi ngon, không hoá chất bảo quản.",
-      tags: ["✓ Thu hoạch trong ngày", "✓ Vải thiều chính gốc", "🚚 Giao nhanh toàn quốc"],
+      desc: "Vải thiều Lục Ngạn chín đỏ mọng, vỏ mỏng hạt nhỏ.",
+      tags: ["✓ Thu hoạch trong ngày", "✓ Vải thiều chính gốc"],
       category: "vai"
-    },
-    "thanh-long": {
-      id: "thanh-long",
-      name: "Thanh Long Ruột Đỏ",
-      priceText: "20.000đ / kg",
-      priceNum: 20000,
-      unit: "kg",
-      image: "assets/image/Trái cây/thanh long.jpg",
-      location: "Chợ Gạo, Tỉnh Tiền Giang",
-      stock: "~200 kg",
-      farmer: "Anh Tuấn Tiền Giang",
-      desc: "Thanh long ruột đỏ ngọt đậm, giàu vitamin và chất chống oxy hoá. Trái to tròn da căng bóng, thu hoạch tươi nguyên cành từ vườn Chợ Gạo.",
-      tags: ["✓ Ruột đỏ mọng nước", "✓ Chuẩn VietGAP", "🚚 Ghép chuyến giá rẻ"],
-      category: "thanh-long"
-    },
-    "dua-hau": {
-      id: "dua-hau",
-      name: "Dưa Hấu Long An",
-      priceText: "20.000đ / kg",
-      priceNum: 20000,
-      unit: "kg",
-      image: "assets/image/Trái cây/dua hau.jpg",
-      location: "Cần Đước, Tỉnh Long An",
-      stock: "~85 kg",
-      farmer: "Chú Sáu Long An",
-      desc: "Dưa hấu vỏ mỏng ruột đỏ tươi, ngọt lịm giải nhiệt ngày hè. Dưa chín cây rộ cần hỗ trợ nông dân thu hoạch và tiêu thụ gấp.",
-      tags: ["✓ Đỏ mọng ngọt lịm", "✓ Bao ăn bao đổi", "🚚 Giao ngay trong ngày"],
-      category: "dua-hau"
-    },
-    "sau-rieng": {
-      id: "sau-rieng",
-      name: "Sầu Riêng Ri6",
-      priceText: "35.000đ / kg",
-      priceNum: 35000,
-      unit: "kg",
-      image: "assets/image/Trái cây/sau rieng.jpg",
-      location: "Cai Lậy, Tỉnh Tiền Giang",
-      stock: "~40 kg",
-      farmer: "Cô Ba Cai Lậy",
-      desc: "Sầu riêng Ri6 cơm vàng hạt lép, múi dẻo quánh, vị ngọt béo ngậy tự nhiên. Hái rụng chín cây tỏa hương ngào ngạt.",
-      tags: ["✓ Cơm vàng hạt lép", "✓ Chín cây tự nhiên", "🚚 Đóng thùng bảo quản"],
-      category: "sau-rieng"
     },
     "oi": {
       id: "oi",
@@ -72,23 +37,9 @@ export class ProductService {
       location: "Châu Thành, Tỉnh Bến Tre",
       stock: "~60 kg",
       farmer: "Chú Bảy Bến Tre",
-      desc: "Ổi vú sữa giòn ngọt xốp, ruột ít hạt, giàu vitamin C. Được trồng sạch theo hướng sinh học an toàn cho sức khỏe.",
-      tags: ["✓ Trồng hữu cơ", "✓ Giòn ngọt đậm đà", "🚚 Giao hàng tận nơi"],
+      desc: "Ổi vú sữa giòn ngọt xốp, ruột ít hạt, giàu vitamin C.",
+      tags: ["✓ Trồng hữu cơ", "✓ Giòn ngọt đậm đà"],
       category: "oi"
-    },
-    "xoai": {
-      id: "xoai",
-      name: "Xoài Cát Hòa Lộc",
-      priceText: "30.000đ / kg",
-      priceNum: 30000,
-      unit: "kg",
-      image: "assets/image/Trái cây/xoai.jpg",
-      location: "Cao Lãnh, Tỉnh Đồng Tháp",
-      stock: "~90 kg",
-      farmer: "Anh Minh Cao Lãnh",
-      desc: "Xoài Cát Hòa Lộc loại 1 nổi tiếng miền Tây, da mịn vàng ươm, thịt ngọt đậm hương thơm nức lòng.",
-      tags: ["✓ Xoài Cát loại 1", "✓ Trái to ngọt đậm", "🚚 Hỗ trợ vận chuyển"],
-      category: "xoai"
     },
     "chom-chom": {
       id: "chom-chom",
@@ -97,21 +48,59 @@ export class ProductService {
       priceNum: 34000,
       unit: "kg",
       image: "assets/image/Trái cây/chom chom ban.jpg",
-      location: "Ấp Hòa, Xã Vĩnh Kim, Tỉnh Đồng Tháp",
+      location: "Vĩnh Long",
       stock: "~50 kg",
       farmer: "Chú Thành Đồng Tháp",
-      desc: "Chôm chôm Thái chín cây, trái to, râu xanh giòn, thịt tróc róc hạt, thơm ngọt tự nhiên. Thu hoạch trực tiếp tại vườn.",
-      tags: ["✓ Hái tại vườn", "✓ Bao ăn 1 đổi 1", "🚚 Hỗ trợ ghép chuyến"],
+      desc: "Chôm chôm Thái chín cây, trái to, râu xanh giòn.",
+      tags: ["✓ Hái tại vườn", "✓ Bao ăn 1 đổi 1"],
       category: "chom-chom"
     }
   };
 
+  // Lấy danh sách sản phẩm từ MongoDB API (hoặc fallback)
+  getProductsFromApi(): Observable<Product[]> {
+    return this.http.get<{ success: boolean; data: any[] }>(this.apiUrl).pipe(
+      map(res => {
+        if (res && res.success && res.data && res.data.length > 0) {
+          return res.data.map(p => ({
+            id: p._id,
+            name: p.name,
+            priceText: `${p.priceNum.toLocaleString('vi-VN')}đ / ${p.unit}`,
+            priceNum: p.priceNum,
+            unit: p.unit,
+            image: p.images && p.images.length > 0 ? p.images[0] : 'assets/image/Trái cây/chom chom ban.jpg',
+            location: p.location,
+            stock: `~${p.stockQuantity} ${p.unit}`,
+            farmer: p.farmerId ? p.farmerId.fullName : 'Chú Bảy Bến Tre',
+            desc: p.description,
+            tags: ["✓ Thu hoạch trong ngày", "✓ Chuẩn VietGAP"],
+            category: p.category
+          }));
+        }
+        return this.getAllProducts();
+      }),
+      catchError(() => of(this.getAllProducts()))
+    );
+  }
+
+  // Tải ảnh nông sản lên Cloudinary
+  uploadImageToCloudinary(file: File): Observable<{ success: boolean; imageUrl: string }> {
+    const formData = new FormData();
+    formData.append('image', file);
+    return this.http.post<{ success: boolean; imageUrl: string }>(this.uploadUrl, formData);
+  }
+
+  // Tạo sản phẩm nông sản mới lên MongoDB
+  createProduct(productData: any): Observable<any> {
+    return this.http.post(this.apiUrl, productData);
+  }
+
   getAllProducts(): Product[] {
-    return Object.values(this.productsData);
+    return Object.values(this.fallbackProducts);
   }
 
   getProductById(id: string): Product {
-    return this.productsData[id] || this.productsData['chom-chom'];
+    return this.fallbackProducts[id] || this.fallbackProducts['chom-chom'];
   }
 
   filterProducts(category: string, query: string): Product[] {

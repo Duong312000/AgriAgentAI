@@ -18,15 +18,16 @@ import { Product } from '../../models/product.model';
     <div style="padding: 16px; flex: 1;">
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
         <div style="position: relative; height: 130px; border-radius: 16px; overflow: hidden;">
-          <img [src]="product?.image || 'assets/image/Trái cây/chom chom ban.jpg'" style="width: 100%; height: 100%; object-fit: cover;">
-          <button style="position: absolute; bottom: 8px; left: 8px; background: rgba(255,255,255,0.9); border: none; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">
-            <i class="fa-solid fa-image"></i> Thay ảnh
+          <img [src]="uploadedImageUrl || product?.image || 'assets/image/Trái cây/chom chom ban.jpg'" style="width: 100%; height: 100%; object-fit: cover;">
+          <button (click)="fileInput.click()" style="position: absolute; bottom: 8px; left: 8px; background: rgba(255,255,255,0.9); border: none; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer;">
+            <i class="fa-solid fa-image"></i> {{isUploading ? 'Đang tải...' : 'Thay ảnh'}}
           </button>
         </div>
-        <div style="background: #fef08a; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 130px; border: 2px dashed #ca8a04; cursor: pointer;">
-          <i class="fa-solid fa-plus" style="font-size: 28px; color: #854d0e;"></i>
-          <span style="font-size: 11px; font-weight: 700; color: #854d0e; margin-top: 4px;">Thêm hình ảnh tại đây</span>
+        <div (click)="fileInput.click()" style="background: #fef08a; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 130px; border: 2px dashed #ca8a04; cursor: pointer;">
+          <i class="fa-solid fa-cloud-arrow-up" style="font-size: 28px; color: #854d0e;"></i>
+          <span style="font-size: 11px; font-weight: 700; color: #854d0e; margin-top: 4px;">{{isUploading ? 'Đang đẩy lên Cloudinary...' : 'Tải ảnh lên Cloudinary'}}</span>
         </div>
+        <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
       </div>
 
       <div class="form-group">
@@ -70,6 +71,8 @@ export class EditProductComponent implements OnInit {
   price = '';
   desc = '';
   location = '';
+  uploadedImageUrl = '';
+  isUploading = false;
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -82,5 +85,25 @@ export class EditProductComponent implements OnInit {
         this.location = this.product.location;
       }
     });
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files && event.target.files[0];
+    if (file) {
+      this.isUploading = true;
+      this.productService.uploadImageToCloudinary(file).subscribe({
+        next: (res) => {
+          this.isUploading = false;
+          if (res && res.imageUrl) {
+            this.uploadedImageUrl = res.imageUrl;
+            console.log('✅ Ảnh đã được tải thành công lên Cloudinary:', res.imageUrl);
+          }
+        },
+        error: (err) => {
+          this.isUploading = false;
+          console.error('❌ Lỗi upload ảnh:', err);
+        }
+      });
+    }
   }
 }
