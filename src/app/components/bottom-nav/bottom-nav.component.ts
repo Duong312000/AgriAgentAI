@@ -29,21 +29,21 @@ import { Router, RouterModule } from '@angular/router';
   styles: [`
     .bottom-nav {
       position: fixed;
-      bottom: 12px;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: calc(100% - 24px);
-      max-width: 345px;
-      height: 56px;
-      background-color: #fcebbd;
-      border: 1.5px solid #6b5a26;
-      border-radius: 32px;
+      width: 100%;
+      max-width: 480px;
+      height: 60px;
+      background-color: #ffffff;
+      border: none;
+      border-radius: 0;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: 4px 8px;
+      padding: 6px 12px;
       box-sizing: border-box;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.25);
       z-index: 1000;
     }
 
@@ -52,24 +52,28 @@ import { Router, RouterModule } from '@angular/router';
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 2px;
-      color: #7c8c2c;
+      gap: 3px;
+      color: #64748b;
       text-decoration: none;
       font-size: 11px;
       font-weight: 600;
-      padding: 4px 10px;
-      height: 46px;
-      border-radius: 14px;
+      padding: 4px 12px;
+      height: 100%;
+      border-radius: 8px;
       transition: all 0.2s ease;
-      min-width: 54px;
+      min-width: 60px;
       box-sizing: border-box;
     }
 
     .nav-item.active {
-      color: #4f5f0f;
-      background-color: #d6ca94;
-      border: 1.5px solid #8c7e47;
+      color: #769f2e;
       font-weight: 700;
+      background-color: transparent;
+      border: none;
+    }
+
+    .nav-item i {
+      font-size: 18px;
     }
   `]
 })
