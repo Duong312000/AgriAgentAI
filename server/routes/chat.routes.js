@@ -44,6 +44,38 @@ router.get('/rooms', async (req, res) => {
   }
 });
 
+// POST /api/chats/rooms - Tìm hoặc tạo mới phòng chat giữa 2 người dùng
+router.post('/rooms', async (req, res) => {
+  try {
+    const { user1Id, user2Id, roomType } = req.body;
+    if (!user1Id || !user2Id) {
+      return res.status(400).json({ success: false, message: 'Thiếu ID người tham gia' });
+    }
+
+    // Tìm các phòng mà user1Id tham gia
+    const user1Rooms = await ChatParticipant.find({ userId: user1Id }).distinct('roomId');
+    
+    // Tìm phòng mà user2Id cũng tham gia trong danh sách user1Rooms
+    const existingParticipation = await ChatParticipant.findOne({
+      roomId: { $in: user1Rooms },
+      userId: user2Id
+    });
+
+    if (existingParticipation) {
+      return res.json({ success: true, roomId: existingParticipation.roomId, isNew: false });
+    }
+
+    // Tạo phòng mới riêng biệt cho 2 người này
+    const newRoom = await ChatRoom.create({ roomType: roomType || 'BUYER_FARMER' });
+    await ChatParticipant.create({ roomId: newRoom._id, userId: user1Id });
+    await ChatParticipant.create({ roomId: newRoom._id, userId: user2Id });
+
+    res.status(201).json({ success: true, roomId: newRoom._id, isNew: true });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 // GET /api/chats/messages/:roomId - Lấy lịch sử tin nhắn trong 1 phòng chat
 router.get('/messages/:roomId', async (req, res) => {
   try {
