@@ -24,7 +24,8 @@ export class AppComponent {
     const hideOn = [
       '/splash', '/register', '/login', '/forgot-password', '/enter-otp', 
       '/confirm-otp', '/reset-password-success', '/checkout', '/payment-success', 
-      '/payment-failed', '/confirm-delete-account'
+      '/payment-failed', '/confirm-delete-account', '/order-tracking',
+      '/order-confirm-list', '/order-returns', '/order-completed', '/order-cancelled', '/my-vouchers'
     ];
     return !hideOn.some(path => url.startsWith(path));
   }

@@ -7,177 +7,562 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <div style="background-color: #DFF1E6; min-height: 100vh; padding-bottom: 80px;" class="d-flex flex-column position-relative">
-      <!-- Top Bar Header (Bootstrap Styled with #DFF1E6 Theme) -->
-      <div class="sticky-top bg-white border-bottom shadow-sm px-3 py-2 d-flex align-items-center justify-content-between" style="z-index: 100;">
-        <a routerLink="/profile" class="btn btn-light rounded-circle d-flex align-items-center justify-content-center p-0" style="width: 38px; height: 38px;">
-          <i class="fa-solid fa-arrow-left text-dark"></i>
+    <div class="tracking-page-container">
+      <!-- Top Navigation Header -->
+      <div class="tracking-header">
+        <a routerLink="/profile" class="header-back-btn">
+          <i class="fa-solid fa-arrow-left"></i>
         </a>
-        <h1 class="h6 fw-bold text-dark m-0">Đang giao hàng</h1>
-        <div class="d-flex align-items-center gap-3">
-          <a routerLink="/chat-staff" class="text-success fs-5 text-decoration-none"><i class="fa-solid fa-headset"></i></a>
-          <i class="fa-regular fa-circle-question text-success fs-5 cursor-pointer"></i>
+        <h2 class="header-title-text">Đang giao hàng</h2>
+        <div class="header-right-actions">
+          <a routerLink="/chat-staff" class="action-icon-btn" title="Hỗ trợ">
+            <i class="fa-solid fa-headset"></i>
+          </a>
+          <button class="action-icon-btn" title="Trợ giúp">
+            <i class="fa-regular fa-circle-question"></i>
+          </button>
         </div>
       </div>
 
-      <!-- Map Tracking Visual Area -->
-      <div class="position-relative overflow-hidden border-bottom" style="height: 310px; background: #cce7d7;">
-        <!-- Simulated Google Map SVG with Streets & DFF1E6 Theme -->
-        <svg width="100%" height="100%" viewBox="0 0 400 310" preserveAspectRatio="none" style="background: #e8f5ed;">
-          <!-- Map Background Features (Soft Green Areas) -->
-          <path d="M 0,160 Q 60,140 100,180 T 160,260 L 0,260 Z" fill="#DFF1E6" opacity="0.9"/>
-          <text x="30" y="210" font-size="11" font-weight="bold" fill="#1b4332" opacity="0.8">Đầm Sen</text>
-          
-          <rect x="250" y="80" width="130" height="90" rx="8" fill="#DFF1E6" opacity="0.9"/>
-          <text x="260" y="130" font-size="11" font-weight="bold" fill="#1b4332" opacity="0.8">Sân vận động Phú Thọ</text>
+      <!-- Live Map Visual Section -->
+      <div class="map-visual-container">
+        <!-- Animated / Detailed SVG Map Layout -->
+        <svg width="100%" height="100%" viewBox="0 0 400 280" preserveAspectRatio="none">
+          <!-- Background Zones in Soft #DFF1E6 Greens -->
+          <rect width="400" height="280" fill="#e4f2ea"/>
+          <path d="M 0,140 Q 70,120 110,160 T 180,260 L 0,260 Z" fill="#DFF1E6" opacity="0.9"/>
+          <rect x="240" y="60" width="140" height="100" rx="12" fill="#DFF1E6" opacity="0.9"/>
 
-          <!-- Grid Streets -->
-          <line x1="20" y1="0" x2="60" y2="310" stroke="#ffffff" stroke-width="8"/>
-          <text x="22" y="90" font-size="9" fill="#2d6a4f" transform="rotate(75 22 90)">Đ. Lũy Bán Bích</text>
+          <!-- Street Lines -->
+          <line x1="30" y1="0" x2="80" y2="280" stroke="#ffffff" stroke-width="10"/>
+          <text x="32" y="80" font-size="9" font-weight="bold" fill="#2d6a4f" transform="rotate(78 32 80)">Đ. Lũy Bán Bích</text>
 
-          <line x1="120" y1="0" x2="260" y2="310" stroke="#ffffff" stroke-width="12"/>
-          <text x="210" y="190" font-size="9" fill="#2d6a4f" transform="rotate(60 210 190)">Đ. Âu Cơ</text>
+          <line x1="100" y1="0" x2="280" y2="280" stroke="#ffffff" stroke-width="14"/>
+          <text x="210" y="170" font-size="9" font-weight="bold" fill="#2d6a4f" transform="rotate(58 210 170)">Đ. Âu Cơ</text>
 
-          <line x1="0" y1="230" x2="400" y2="210" stroke="#ffffff" stroke-width="8"/>
-          <text x="210" y="228" font-size="9" fill="#2d6a4f">Bình Thới</text>
+          <line x1="0" y1="210" x2="400" y2="190" stroke="#ffffff" stroke-width="8"/>
+          <text x="180" y="206" font-size="9" font-weight="bold" fill="#2d6a4f">Bình Thới</text>
 
-          <line x1="0" y1="110" x2="400" y2="90" stroke="#ffffff" stroke-width="6"/>
+          <line x1="0" y1="90" x2="400" y2="70" stroke="#ffffff" stroke-width="7"/>
 
-          <!-- District Labels -->
-          <text x="120" y="125" font-size="10" font-weight="bold" fill="#52b788">HOÀ THẠNH</text>
-          <text x="220" y="80" font-size="10" font-weight="bold" fill="#52b788">PHƯỜNG 10</text>
-          <text x="290" y="170" font-size="10" font-weight="bold" fill="#52b788">PHƯỜNG 9</text>
-          <text x="140" y="250" font-size="10" font-weight="bold" fill="#52b788">PHƯỜNG 3</text>
-          <text x="270" y="40" font-size="10" font-weight="bold" fill="#2d6a4f">Chợ Tân Bình 🏪</text>
+          <!-- District / Landmark Labels -->
+          <text x="20" y="180" font-size="10" font-weight="bold" fill="#1b4332">Đầm Sen 🌳</text>
+          <text x="255" y="105" font-size="10" font-weight="bold" fill="#1b4332">Sân vận động Phú Thọ 🏟️</text>
+          <text x="110" y="115" font-size="10" font-weight="600" fill="#52b788">HOÀ THẠNH</text>
+          <text x="260" y="35" font-size="10" font-weight="600" fill="#1b4332">Chợ Tân Bình 🏪</text>
 
-          <!-- Delivery Route Path Line -->
-          <path d="M 175,210 L 260,110 L 210,50 L 170,20" fill="none" stroke="#2d6a4f" stroke-dasharray="4 3" stroke-width="5" stroke-linecap="round"/>
+          <!-- Delivery Route Path -->
+          <path d="M 160,195 L 250,105 L 205,45 L 165,18" fill="none" stroke="#2d6a4f" stroke-dasharray="5 4" stroke-width="4" stroke-linecap="round"/>
 
-          <!-- Destination Point Pin Marker -->
-          <g transform="translate(175, 210)">
-            <circle cx="0" cy="0" r="14" fill="rgba(45,106,79,0.2)"/>
-            <circle cx="0" cy="0" r="6" fill="#1b4332"/>
+          <!-- Destination Marker -->
+          <g transform="translate(160, 195)">
+            <circle cx="0" cy="0" r="14" fill="rgba(45,106,79,0.25)"/>
+            <circle cx="0" cy="0" r="7" fill="#1b4332"/>
             <circle cx="0" cy="0" r="3" fill="#ffffff"/>
           </g>
 
-          <!-- Shipper Icon Position on Route -->
-          <g transform="translate(215, 60)">
+          <!-- Shipper Current Location Marker -->
+          <g transform="translate(205, 45)">
             <circle cx="0" cy="0" r="16" fill="#2d6a4f"/>
-            <path d="M-6,-4 L6,0 L-6,4 L-2,0 Z" fill="#ffffff"/>
+            <circle cx="0" cy="0" r="13" fill="#1b4332"/>
+            <path d="M-5,-4 L6,0 L-5,4 L-2,0 Z" fill="#ffffff"/>
           </g>
         </svg>
 
-        <!-- Shipper Callout Tooltip Bubble (Bootstrap Card style) -->
-        <div class="position-absolute top-0 start-50 translate-middle-x mt-3 bg-white px-3 py-2 rounded-pill shadow-sm border border-success d-flex align-items-center gap-2">
-          <span class="small fw-bold text-success">Đơn hàng sắp được giao tới bạn</span>
+        <!-- Top Tooltip Floating Card -->
+        <div class="map-status-tooltip">
+          <i class="fa-solid fa-truck-fast text-success me-2"></i>
+          <span>Đơn hàng sắp được giao tới bạn</span>
         </div>
 
-        <!-- Floating GPS Location Target Button -->
-        <button class="position-absolute bottom-0 end-0 m-3 btn btn-white bg-white rounded-circle shadow-sm p-0 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-          <i class="fa-solid fa-crosshairs text-dark"></i>
+        <!-- Floating GPS Target Button -->
+        <button class="gps-target-btn" title="Định vị">
+          <i class="fa-solid fa-crosshairs"></i>
         </button>
       </div>
 
-      <!-- Bottom Sheet Cards (Bootstrap styled with #DFF1E6 accent) -->
-      <div class="container-fluid px-3 pt-2 d-flex flex-direction-column gap-3 position-relative" style="z-index: 10; margin-top: -10px;">
-
+      <!-- Main Tracking Content Cards -->
+      <div class="tracking-content-body">
+        
         <!-- Estimated Delivery Date Card -->
-        <div class="card border-0 shadow-sm rounded-4 p-3 bg-white d-flex flex-row align-items-center gap-3">
-          <img src="assets/image/Trái cây/vai.jpg" alt="Sản phẩm" class="rounded-3 object-fit-cover border" style="width: 54px; height: 54px;">
-          <div class="flex-grow-1">
-            <div class="small fw-bold text-secondary mb-1">Ngày nhận hàng dự kiến</div>
-            <div class="fw-extrabold text-success mb-1" style="font-size: 15px;">Hôm nay, {{todayDateString}}</div>
-            <div class="small text-muted" style="font-size: 12px;">Vận chuyển bởi Nhanh - SPX Express (Nông Thương)</div>
+        <div class="bootstrap-card delivery-date-card">
+          <img src="assets/image/Trái cây/vai.jpg" alt="Vải Thiều" class="product-thumb-img">
+          <div class="delivery-info">
+            <div class="info-label">Ngày nhận hàng dự kiến</div>
+            <div class="info-date-highlight">Hôm nay, {{todayDateString}}</div>
+            <div class="info-subtext">Vận chuyển bởi Nhanh - SPX Express (Nông Thương)</div>
           </div>
         </div>
 
-        <!-- Tracking Number & Inspection Guarantee Card -->
-        <div class="card border-0 shadow-sm rounded-4 p-3 bg-white">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <span class="small fw-bold text-dark">Mã vận đơn</span>
-            <div class="d-flex align-items-center gap-2">
-              <span class="small fw-semibold text-secondary">SPXVN047140263024</span>
-              <button (click)="copyTrackingCode()" class="btn btn-link p-0 small fw-bold text-success text-decoration-none" style="font-size: 12px;">
+        <!-- Tracking Number & Inspection Card -->
+        <div class="bootstrap-card tracking-code-card">
+          <div class="code-row">
+            <span class="code-title">Mã vận đơn</span>
+            <div class="code-value-group">
+              <span class="code-number">SPXVN047140263024</span>
+              <button (click)="copyTrackingCode()" class="copy-badge-btn">
                 {{copied ? 'ĐÃ SAO CHÉP' : 'SAO CHÉP'}}
               </button>
             </div>
           </div>
 
-          <div class="d-flex align-items-center gap-2 pt-2 border-top text-dark" style="font-size: 12px;">
-            <span class="badge bg-success text-white px-2 py-1 rounded-2">
-              <i class="fa-solid fa-check me-1"></i> ĐỒNG KIỂM
+          <div class="inspection-row">
+            <span class="dong-kiem-tag">
+              <i class="fa-solid fa-circle-check me-1"></i> ĐỒNG KIỂM
             </span>
-            <span>Được đồng kiểm cùng shipper</span>
-            <a href="javascript:void(0)" class="text-success fw-semibold text-decoration-none ms-auto">Tìm hiểu thêm</a>
+            <span class="inspection-desc">Được đồng kiểm cùng shipper</span>
+            <a href="javascript:void(0)" class="inspection-link">Tìm hiểu thêm</a>
           </div>
         </div>
 
-        <!-- Live Status Timeline Steps Card -->
-        <div class="card border-0 shadow-sm rounded-4 p-3 bg-white">
-          <div class="fw-bold text-dark mb-3" style="font-size: 14px;">Tiến trình vận chuyển</div>
+        <!-- Order Timeline Progress Card -->
+        <div class="bootstrap-card timeline-card">
+          <div class="timeline-card-title">Tiến trình vận chuyển</div>
 
-          <div class="d-flex flex-column gap-3 position-relative" style="padding-left: 85px;">
-            <!-- Vertical Connecting Line -->
-            <div class="position-absolute bg-light-subtle" style="left: 104px; top: 12px; bottom: 12px; width: 2px; background-color: #cbd5e1;"></div>
+          <div class="timeline-container">
+            <!-- Continuous Line behind nodes -->
+            <div class="timeline-line"></div>
 
             <!-- Active Step: Đang giao hàng -->
-            <div class="d-flex gap-3 position-relative" style="z-index: 2;">
-              <div class="position-absolute text-end text-success fw-bold" style="left: -85px; top: 0; font-size: 11px; width: 60px; line-height: 1.3;">
-                Hôm nay<br>08:18
+            <div class="timeline-item active">
+              <div class="timeline-time">
+                <span>Hôm nay</span>
+                <strong>08:18</strong>
               </div>
-              <div class="position-absolute bg-success text-white rounded-circle d-flex align-items-center justify-content-center" style="left: -22px; top: 0; width: 20px; height: 20px; font-size: 10px; box-shadow: 0 0 0 3px #DFF1E6;">
+              <div class="timeline-node active-node">
                 <i class="fa-solid fa-truck"></i>
               </div>
-              <div class="flex-grow-1">
-                <div class="fw-bold text-success mb-1" style="font-size: 14px;">Đang giao hàng</div>
-                <div class="small text-secondary" style="line-height: 1.4;">
+              <div class="timeline-content">
+                <div class="timeline-title active-title">Đang giao hàng</div>
+                <div class="timeline-desc">
                   Đơn hàng sẽ sớm được giao, vui lòng chú ý điện thoại. Tài xế Nguyễn Văn Hùng đang tới địa chỉ của bạn.
                 </div>
               </div>
             </div>
 
-            <!-- Step 2: Đơn đã đến trạm giao -->
-            <div class="d-flex gap-3 position-relative" style="z-index: 2;">
-              <div class="position-absolute text-end text-muted" style="left: -85px; top: 0; font-size: 11px; width: 60px; line-height: 1.3;">
-                Hôm nay<br>06:19
+            <!-- Step 2 -->
+            <div class="timeline-item">
+              <div class="timeline-time">
+                <span>Hôm nay</span>
+                <small>06:19</small>
               </div>
-              <div class="position-absolute bg-secondary rounded-circle" style="left: -18px; top: 3px; width: 12px; height: 12px;"></div>
-              <div class="flex-grow-1">
-                <div class="small text-muted fw-medium">Đơn hàng đã đến trạm giao hàng 51-HCM DTP/Âu Cơ</div>
-              </div>
-            </div>
-
-            <!-- Step 3: Đơn đã xuất kho -->
-            <div class="d-flex gap-3 position-relative" style="z-index: 2;">
-              <div class="position-absolute text-end text-muted" style="left: -85px; top: 0; font-size: 11px; width: 60px; line-height: 1.3;">
-                Hôm qua<br>18:30
-              </div>
-              <div class="position-absolute bg-secondary rounded-circle" style="left: -18px; top: 3px; width: 12px; height: 12px;"></div>
-              <div class="flex-grow-1">
-                <div class="small text-muted fw-medium">Đơn hàng đã xuất kho Củ Chi SOC</div>
+              <div class="timeline-node default-node"></div>
+              <div class="timeline-content">
+                <div class="timeline-desc-normal">Đơn hàng đã đến trạm giao hàng 51-HCM DTP/Âu Cơ</div>
               </div>
             </div>
 
-            <!-- Step 4: Đã bàn giao cho SPX -->
-            <div class="d-flex gap-3 position-relative" style="z-index: 2;">
-              <div class="position-absolute text-end text-muted" style="left: -85px; top: 0; font-size: 11px; width: 60px; line-height: 1.3;">
-                02/10<br>14:15
+            <!-- Step 3 -->
+            <div class="timeline-item">
+              <div class="timeline-time">
+                <span>Hôm qua</span>
+                <small>18:30</small>
               </div>
-              <div class="position-absolute bg-secondary rounded-circle" style="left: -18px; top: 3px; width: 12px; height: 12px;"></div>
-              <div class="flex-grow-1">
-                <div class="small text-muted fw-medium">Nhà vườn Bác Hùng Bắc Giang đã bàn giao đơn hàng cho đơn vị vận chuyển</div>
+              <div class="timeline-node default-node"></div>
+              <div class="timeline-content">
+                <div class="timeline-desc-normal">Đơn hàng đã xuất kho Củ Chi SOC</div>
               </div>
             </div>
+
+            <!-- Step 4 -->
+            <div class="timeline-item">
+              <div class="timeline-time">
+                <span>02/10</span>
+                <small>14:15</small>
+              </div>
+              <div class="timeline-node default-node"></div>
+              <div class="timeline-content">
+                <div class="timeline-desc-normal">Nhà vườn Bác Hùng Bắc Giang đã bàn giao đơn hàng cho đơn vị vận chuyển</div>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <!-- Back to Home Button -->
-        <a routerLink="/buyer-home" class="btn btn-success w-100 rounded-4 py-2 fw-bold text-white shadow-sm" style="background-color: #2d6a4f; border: none; font-size: 15px;">
+        <!-- Return Home Button -->
+        <a routerLink="/buyer-home" class="btn-return-home">
           Trở Về Trang Chủ
         </a>
+
       </div>
     </div>
-  `
+  `,
+  styles: [`
+    .tracking-page-container {
+      background-color: #DFF1E6;
+      min-height: 100vh;
+      padding-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+
+    /* Header Styling */
+    .tracking-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: #ffffff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e0ebd4;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .header-back-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1e293b;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background-color 0.2s;
+    }
+
+    .header-back-btn:hover {
+      background-color: #e2e8f0;
+    }
+
+    .header-title-text {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1b4332;
+      margin: 0;
+    }
+
+    .header-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .action-icon-btn {
+      background: none;
+      border: none;
+      color: #2d6a4f;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 0;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Map Visual Area */
+    .map-visual-container {
+      position: relative;
+      width: 100%;
+      height: 270px;
+      background-color: #cce7d7;
+      overflow: hidden;
+      border-bottom: 1px solid #b7dbca;
+    }
+
+    .map-status-tooltip {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ffffff;
+      padding: 8px 18px;
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+      border: 1.5px solid #52b788;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1b4332;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      z-index: 10;
+    }
+
+    .gps-target-btn {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      border: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      color: #1e293b;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Content Body & Cards */
+    .tracking-content-body {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      z-index: 20;
+      margin-top: -8px;
+    }
+
+    .bootstrap-card {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e2f0e6;
+    }
+
+    /* Delivery Date Card */
+    .delivery-date-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .product-thumb-img {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1px solid #e2e8f0;
+    }
+
+    .delivery-info {
+      flex: 1;
+    }
+
+    .info-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    .info-date-highlight {
+      font-size: 15px;
+      font-weight: 800;
+      color: #1b4332;
+      margin-bottom: 2px;
+    }
+
+    .info-subtext {
+      font-size: 11.5px;
+      color: #64748b;
+    }
+
+    /* Tracking Code Card */
+    .code-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .code-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .code-value-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .code-number {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .copy-badge-btn {
+      background: #eaf5ee;
+      border: 1px solid #52b788;
+      color: #2d6a4f;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .copy-badge-btn:hover {
+      background-color: #2d6a4f;
+      color: #ffffff;
+    }
+
+    .inspection-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px stroke #f1f5f9;
+      font-size: 12px;
+      color: #334155;
+    }
+
+    .dong-kiem-tag {
+      background-color: #2d6a4f;
+      color: #ffffff;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .inspection-desc {
+      font-size: 11.5px;
+      color: #334155;
+    }
+
+    .inspection-link {
+      margin-left: auto;
+      color: #2d6a4f;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 11.5px;
+    }
+
+    /* Timeline Card */
+    .timeline-card-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 16px;
+    }
+
+    .timeline-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-left: 90px;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 102px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background-color: #cbd5e1;
+      z-index: 1;
+    }
+
+    .timeline-item {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      z-index: 2;
+    }
+
+    .timeline-time {
+      position: absolute;
+      left: -90px;
+      top: 0;
+      width: 65px;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.3;
+    }
+
+    .timeline-time strong {
+      color: #1b4332;
+      font-size: 12px;
+    }
+
+    .timeline-node {
+      position: absolute;
+      left: -24px;
+      top: 0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .active-node {
+      width: 26px;
+      height: 26px;
+      background-color: #2d6a4f;
+      color: #ffffff;
+      font-size: 12px;
+      box-shadow: 0 0 0 4px #DFF1E6;
+      left: -27px;
+      top: -2px;
+    }
+
+    .default-node {
+      width: 10px;
+      height: 10px;
+      background-color: #94a3b8;
+      left: -19px;
+      top: 4px;
+    }
+
+    .timeline-content {
+      flex: 1;
+    }
+
+    .active-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #2d6a4f;
+      margin-bottom: 3px;
+    }
+
+    .timeline-desc {
+      font-size: 12px;
+      color: #475569;
+      line-height: 1.45;
+    }
+
+    .timeline-desc-normal {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    /* Return Button */
+    .btn-return-home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      background-color: #2d6a4f;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px;
+      border-radius: 16px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(45, 106, 79, 0.25);
+      transition: background-color 0.2s;
+      margin-top: 4px;
+    }
+
+    .btn-return-home:hover {
+      background-color: #1b4332;
+      color: #ffffff;
+    }
+  `]
 })
 export class OrderTrackingComponent {
   copied = false;
