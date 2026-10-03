@@ -13,13 +13,13 @@ import { RouterModule } from '@angular/router';
     </div>
 
     <div style="padding: 20px; flex: 1;">
-      <div class="card" style="padding: 20px; border-radius: 20px;">
+      <div class="notif-detail-card">
         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-          <div style="width: 48px; height: 48px; background: #eaf3d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #769f2e;">
+          <div style="width: 48px; height: 48px; background: #eaf3d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #769f2e; flex-shrink: 0;">
             <i class="fa-solid fa-bell" style="font-size: 24px;"></i>
           </div>
           <div>
-            <h3 style="font-size: 18px; font-weight: 800; color: #1e293b;">Voucher Mua Mít Ưu Đãi</h3>
+            <h3 style="font-size: 18px; font-weight: 800; color: #1e293b; margin: 0 0 2px 0;">Voucher Mua Mít Ưu Đãi</h3>
             <span style="font-size: 12px; color: #94a3b8;">Hôm nay, 9 phút trước</span>
           </div>
         </div>
@@ -29,6 +29,15 @@ import { RouterModule } from '@angular/router';
         <a routerLink="/buyer-home" class="btn-primary" style="background-color: #88ad37;">Dùng ngay</a>
       </div>
     </div>
-  `
+  `,
+  styles: [`
+    .notif-detail-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      border: 1px solid #f1f5f9;
+    }
+  `]
 })
 export class NotificationDetailComponent {}
