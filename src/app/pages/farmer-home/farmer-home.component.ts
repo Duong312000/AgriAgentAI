@@ -481,17 +481,6 @@ export class FarmerHomeComponent {
     this.updateProducts();
   }
 
-<<<<<<< HEAD
-  private updateProducts() {
-    this.productService.getProductsFromApi().subscribe(products => {
-      const cleanQuery = this.searchQuery.trim().toLowerCase();
-      this.filteredProducts = products.filter(p => {
-        const matchCat = (!this.selectedCategory || this.selectedCategory === 'all' || p.category === this.selectedCategory || p.id === this.selectedCategory);
-        const matchQuery = !cleanQuery || p.name.toLowerCase().includes(cleanQuery) || p.location.toLowerCase().includes(cleanQuery);
-        return matchCat && matchQuery;
-      });
-    });
-=======
   onBannerScroll(): void {
     const track = this.bannerTrack?.nativeElement;
     if (track) {
@@ -510,7 +499,13 @@ export class FarmerHomeComponent {
   }
 
   private updateProducts(): void {
-    this.filteredProducts = this.productService.filterProducts(this.selectedCategory, this.searchQuery);
->>>>>>> 6d8312c78ec5abee60af7d63260515ef267bb55c
+    this.productService.getProductsFromApi().subscribe(products => {
+      const cleanQuery = this.searchQuery.trim().toLowerCase();
+      this.filteredProducts = products.filter(p => {
+        const matchCat = (!this.selectedCategory || this.selectedCategory === 'all' || p.category === this.selectedCategory || p.id === this.selectedCategory);
+        const matchQuery = !cleanQuery || p.name.toLowerCase().includes(cleanQuery) || p.location.toLowerCase().includes(cleanQuery);
+        return matchCat && matchQuery;
+      });
+    });
   }
 }
