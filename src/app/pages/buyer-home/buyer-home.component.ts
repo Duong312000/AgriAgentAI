@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ProductService } from '../../services/product.service';
+import { AuthService } from '../../services/auth.service';
 import { Product } from '../../models/product.model';
 
 @Component({
@@ -35,7 +36,7 @@ import { Product } from '../../models/product.model';
         <div class="welcome-banner" style="display: flex; justify-content: space-between; align-items: flex-end; padding-right: 10px;">
           <div>
             <div style="font-size: 18px; color: #2d4612; font-weight: 700;">Chào mừng bạn !</div>
-            <div class="tag" style="background-color: #0d9488;">thuyanh</div>
+            <div class="tag" style="background-color: #0d9488;">{{currentUser.fullname}}</div>
             <div style="font-size: 14px; color: #475569; font-weight: 600;">Một ngày vui vẻ nhé</div>
           </div>
           <img src="assets/image/Thiết kế chưa có tên-Recovered.png" style="height: 120px; width: auto; object-fit: contain; margin-bottom: -10px;">
@@ -75,6 +76,8 @@ import { Product } from '../../models/product.model';
 })
 export class BuyerHomeComponent {
   private productService = inject(ProductService);
+  private authService = inject(AuthService);
+  currentUser = this.authService.getCurrentUser();
 
   selectedCategory = 'all';
   searchQuery = '';

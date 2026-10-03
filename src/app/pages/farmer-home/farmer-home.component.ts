@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ProductService } from '../../services/product.service';
+import { AuthService } from '../../services/auth.service';
 import { Product } from '../../models/product.model';
 
 @Component({
@@ -39,7 +40,7 @@ import { Product } from '../../models/product.model';
 
         <div style="position: relative; z-index: 3; max-width: 65%; margin-left: 20px;">
           <div style="font-size: 24px; font-weight: 800; color: #1e5234; margin-bottom: 8px;">Chào mừng bạn !</div>
-          <div style="display: inline-block; background-color: #0d6847; color: #ffffff; font-size: 16px; font-weight: 700; padding: 6px 28px; border-radius: 4px; margin-bottom: 10px; clip-path: polygon(0 0, 100% 0, 92% 100%, 8% 100%);">Tiến Thành</div>
+          <div style="display: inline-block; background-color: #0d6847; color: #ffffff; font-size: 16px; font-weight: 700; padding: 6px 28px; border-radius: 4px; margin-bottom: 10px; clip-path: polygon(0 0, 100% 0, 92% 100%, 8% 100%);">{{currentUser.fullname}}</div>
           <div style="font-size: 16px; font-weight: 700; color: #92401d; margin-bottom: 14px;">Một ngày vui vẻ nhé</div>
         </div>
 
@@ -86,6 +87,8 @@ import { Product } from '../../models/product.model';
 })
 export class FarmerHomeComponent {
   private productService = inject(ProductService);
+  private authService = inject(AuthService);
+  currentUser = this.authService.getCurrentUser();
 
   selectedCategory = 'all';
   searchQuery = '';

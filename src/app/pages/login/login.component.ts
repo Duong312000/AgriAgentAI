@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   template: `
     <div style="background-color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-sizing: border-box;">
       <div style="height: 250px; position: relative; overflow: hidden; background-color: #e2e8f0;">
@@ -20,36 +22,43 @@ import { RouterModule } from '@angular/router';
           <img src="assets/image/logo.png" alt="Logo Nông Thương" style="height: 105px; width: auto; margin-right: -12px;">
           <h2 style="font-size: 34px; font-weight: 800; color: #769f2e; text-align: center; margin: 0;">Đăng nhập</h2>
         </div>
-        <p style="font-size: 14px; color: #555555; text-align: center; margin-top: 0; margin-bottom: 24px;">Đăng nhập tài khoản để tiếp tục hành trình của bạn</p>
+        <p style="font-size: 14px; color: #555555; text-align: center; margin-top: 0; margin-bottom: 20px;">Đăng nhập tài khoản để tiếp tục hành trình của bạn</p>
 
-        <div style="margin-bottom: 18px;">
-          <label style="display: block; font-size: 14px; font-weight: 700; color: #587820; margin-bottom: 8px;">Email hoặc tên đăng nhập (*):</label>
-          <div style="position: relative;">
-            <i class="fa-regular fa-user" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #769f2e; font-size: 18px;"></i>
-            <input type="text" placeholder="Nhập email hoặc tên đăng nhập" style="width: 100%; height: 48px; border-radius: 14px; border: 1px solid #e2e8f0; padding-left: 48px; padding-right: 16px; font-size: 15px; font-weight: 600; color: #2d3748; outline: none; box-sizing: border-box;">
+        <!-- Error Banner -->
+        <div *ngIf="errorMessage" style="background-color: #fee2e2; border: 1px solid #f87171; color: #991b1b; padding: 10px 14px; border-radius: 12px; font-size: 13px; font-weight: 600; margin-bottom: 16px;">
+          ⚠️ {{errorMessage}}
+        </div>
+
+        <form (ngSubmit)="handleLogin()">
+          <div style="margin-bottom: 18px;">
+            <label style="display: block; font-size: 14px; font-weight: 700; color: #587820; margin-bottom: 8px;">Email hoặc tên đăng nhập (*):</label>
+            <div style="position: relative;">
+              <i class="fa-regular fa-user" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #769f2e; font-size: 18px;"></i>
+              <input type="text" [(ngModel)]="username" name="username" placeholder="Nhập email hoặc tên đăng nhập" style="width: 100%; height: 48px; border-radius: 14px; border: 1px solid #e2e8f0; padding-left: 48px; padding-right: 16px; font-size: 15px; font-weight: 600; color: #2d3748; outline: none; box-sizing: border-box;">
+            </div>
           </div>
-        </div>
 
-        <div style="margin-bottom: 18px;">
-          <label style="display: block; font-size: 14px; font-weight: 700; color: #587820; margin-bottom: 8px;">Mật khẩu:</label>
-          <div style="position: relative;">
-            <i class="fa-solid fa-lock" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #769f2e; font-size: 18px;"></i>
-            <input [type]="showPassword ? 'text' : 'password'" placeholder="Nhập mật khẩu" style="width: 100%; height: 48px; border-radius: 14px; border: 1px solid #e2e8f0; padding-left: 48px; padding-right: 48px; font-size: 15px; font-weight: 600; color: #2d3748; outline: none; box-sizing: border-box;">
-            <i (click)="showPassword = !showPassword" [class]="showPassword ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye'" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #769f2e; font-size: 18px; cursor: pointer;"></i>
+          <div style="margin-bottom: 18px;">
+            <label style="display: block; font-size: 14px; font-weight: 700; color: #587820; margin-bottom: 8px;">Mật khẩu:</label>
+            <div style="position: relative;">
+              <i class="fa-solid fa-lock" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #769f2e; font-size: 18px;"></i>
+              <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" placeholder="Nhập mật khẩu" style="width: 100%; height: 48px; border-radius: 14px; border: 1px solid #e2e8f0; padding-left: 48px; padding-right: 48px; font-size: 15px; font-weight: 600; color: #2d3748; outline: none; box-sizing: border-box;">
+              <i (click)="showPassword = !showPassword" [class]="showPassword ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye'" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #769f2e; font-size: 18px; cursor: pointer;"></i>
+            </div>
           </div>
-        </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-          <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #555555; cursor: pointer;">
-            <input type="checkbox" style="width: 16px; height: 16px; accent-color: #769f2e; cursor: pointer;">
-            Ghi nhớ đăng nhập
-          </label>
-          <a routerLink="/forgot-password" style="font-size: 13px; font-weight: 700; color: #587820; text-decoration: none;">Quên mật khẩu?</a>
-        </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #555555; cursor: pointer;">
+              <input type="checkbox" style="width: 16px; height: 16px; accent-color: #769f2e; cursor: pointer;">
+              Ghi nhớ đăng nhập
+            </label>
+            <a routerLink="/forgot-password" style="font-size: 13px; font-weight: 700; color: #587820; text-decoration: none;">Quên mật khẩu?</a>
+          </div>
 
-        <a routerLink="/farmer-home" style="display: flex; align-items: center; justify-content: center; gap: 10px; background-color: #88ad37; color: #ffffff; font-size: 18px; font-weight: 800; height: 50px; border-radius: 25px; text-decoration: none; box-shadow: 0 4px 14px rgba(136,173,55,0.35); margin-bottom: 28px;">
-          Đăng nhập <i class="fa-solid fa-arrow-right"></i>
-        </a>
+          <button type="submit" style="display: flex; width: 100%; border: none; cursor: pointer; align-items: center; justify-content: center; gap: 10px; background-color: #88ad37; color: #ffffff; font-size: 18px; font-weight: 800; height: 50px; border-radius: 25px; box-shadow: 0 4px 14px rgba(136,173,55,0.35); margin-bottom: 28px;">
+            Đăng nhập <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
 
         <div style="text-align: center; position: relative; margin-bottom: 16px;">
           <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background-color: #e2e8f0; z-index: 1;"></div>
@@ -68,5 +77,27 @@ import { RouterModule } from '@angular/router';
   `
 })
 export class LoginComponent {
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
+  username = '';
+  password = '';
   showPassword = false;
+  errorMessage = '';
+
+  handleLogin() {
+    this.errorMessage = '';
+    if (!this.username.trim() || !this.password) {
+      this.errorMessage = 'Vui lòng nhập tên đăng nhập và mật khẩu!';
+      return;
+    }
+
+    const res = this.authService.login(this.username.trim(), this.password);
+    if (res.success && res.user) {
+      const target = res.user.role === 'farmer' ? '/farmer-home' : '/buyer-home';
+      this.router.navigateByUrl(target);
+    } else {
+      this.errorMessage = res.message;
+    }
+  }
 }

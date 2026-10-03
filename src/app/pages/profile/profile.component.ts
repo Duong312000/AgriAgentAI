@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
     <div style="padding: 24px 20px 20px 20px; flex: 1; padding-bottom: 90px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #e2e8f0;">
         <div>
-          <h2 style="font-size: 24px; font-weight: 800; color: #1e293b;">{{user.name}}</h2>
+          <h2 style="font-size: 24px; font-weight: 800; color: #1e293b;">{{user.fullname || user.name}}</h2>
         </div>
         <div style="width: 54px; height: 54px; background: #769f2e; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffffff;">
           <i class="fa-solid fa-user" style="font-size: 28px;"></i>
@@ -72,7 +72,7 @@ import { AuthService } from '../../services/auth.service';
           <span>Yêu cầu xóa tài khoản</span>
         </a>
 
-        <a routerLink="/login" style="display: flex; align-items: center; gap: 12px; font-weight: 700; color: #769f2e; text-decoration: none;">
+        <a (click)="handleLogout()" style="display: flex; align-items: center; gap: 12px; font-weight: 700; color: #769f2e; text-decoration: none; cursor: pointer;">
           <i class="fa-solid fa-arrow-right-from-bracket" style="font-size: 20px;"></i>
           <span>Đăng xuất</span>
         </a>
@@ -82,5 +82,11 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ProfileComponent {
   private authService = inject(AuthService);
-  user = this.authService.getUser();
+  private router = inject(Router);
+  user = this.authService.getCurrentUser();
+
+  handleLogout() {
+    this.authService.logout();
+    this.router.navigateByUrl('/login');
+  }
 }
