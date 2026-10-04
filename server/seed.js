@@ -34,10 +34,9 @@ const {
   Banner
 } = require('./models');
 
-// Đọc map ảnh Cloudinary vừa được đẩy lên
+// Map ảnh Cloudinary
 const imgMapPath = path.join(__dirname, 'cloudinary_images_map.json');
 const imgMap = fs.existsSync(imgMapPath) ? JSON.parse(fs.readFileSync(imgMapPath, 'utf8')) : {};
-
 const getCloudUrl = (key, fallback) => imgMap[key] || fallback;
 
 const seedData = async () => {
@@ -64,13 +63,14 @@ const seedData = async () => {
       PaymentTransaction.deleteMany({}),
       FarmerWallet.deleteMany({}),
       ChatRoom.deleteMany({}),
+      ChatParticipant.deleteMany({}),
       ChatMessage.deleteMany({}),
       Voucher.deleteMany({}),
       Notification.deleteMany({}),
       ProductReview.deleteMany({}),
       Banner.deleteMany({})
     ]);
-    console.log('🧹 Đã dọn dẹp các Collections cũ.');
+    console.log('🧹 Đã dọn dẹp toàn bộ Collections cũ.');
 
     // 1. Categories
     const categories = await Category.insertMany([
@@ -80,37 +80,86 @@ const seedData = async () => {
       { name: 'Thủy sản', iconUrl: getCloudUrl('buyer_icon.png', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068878/agriagent_ai/buyer_icon.jpg') }
     ]);
 
-    // 2. Users
+    // 2. TAO 5 NGƯỜI DÙNG ẢO (2 NGƯỜI BÁN - FARMER, 3 NGƯỜI MUA - BUYER)
+    // --- NGƯỜI BÁN 1 (User Đặc Biệt - Có Đầy Đủ Data Minh Họa) ---
     const farmer1 = await User.create({
       phoneNumber: '0901234567',
       email: 'chubay@agri.com',
       passwordHash: 'hashed_password_123',
-      firstName: 'Bảy',
-      lastName: 'Chú',
+      firstName: 'Nông',
+      lastName: 'Nguyễn Văn',
       userName: 'chubaybentre',
       role: 'FARMER',
       town: 'Châu Thành',
       province: 'Bến Tre',
       address: 'Ấp 3, Xã Tân Thạch',
-      avatarUrl: getCloudUrl('bf6893740faf9b9fd905b3094897788d.jpg', '')
+      avatarUrl: getCloudUrl('bf6893740faf9b9fd905b3094897788d.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068876/agriagent_ai/bf6893740faf9b9fd905b3094897788d.jpg')
     });
 
+    // --- NGƯỜI BÁN 2 ---
+    const farmer2 = await User.create({
+      phoneNumber: '0909876543',
+      email: 'covuon@dalat.com',
+      passwordHash: 'hashed_password_123',
+      firstName: 'Vườn',
+      lastName: 'Trần Thị',
+      userName: 'covuondalat',
+      role: 'FARMER',
+      town: 'Đức Trọng',
+      province: 'Lâm Đồng',
+      address: 'Thôn 2, Xã Hiệp An',
+      avatarUrl: getCloudUrl('co ban trai cay tren thuyen.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068880/agriagent_ai/co_ban_trai_cay_tren_thuyen.jpg')
+    });
+
+    // --- NGƯỜI MUA 1 (Thương Lái Chính Minh Họa) ---
     const buyer1 = await User.create({
       phoneNumber: '0988888888',
       email: 'thuonglai_minh@gmail.com',
       passwordHash: 'hashed_password_123',
-      firstName: 'Minh',
-      lastName: 'Thương Lái',
+      firstName: 'Thương',
+      lastName: 'Lê Văn',
       userName: 'thuonglaiminh',
       role: 'BUYER',
       town: 'Bình Chánh',
       province: 'TP. Hồ Chí Minh',
       address: 'Chợ Đầu Mối Bình Điền',
-      avatarUrl: getCloudUrl('74acf8d5fc78215adb7b31123fc10cc7.jpg', '')
+      avatarUrl: getCloudUrl('74acf8d5fc78215adb7b31123fc10cc7.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068873/agriagent_ai/74acf8d5fc78215adb7b31123fc10cc7.jpg')
     });
 
-    // 3. Products với URL Cloudinary chuẩn
-    const product1 = await Product.create({
+    // --- NGƯỜI MUA 2 ---
+    const buyer2 = await User.create({
+      phoneNumber: '0977112233',
+      email: 'chuvua_hanoi@gmail.com',
+      passwordHash: 'hashed_password_123',
+      firstName: 'Lái',
+      lastName: 'Phạm Minh',
+      userName: 'chuvuahanoi',
+      role: 'BUYER',
+      town: 'Hoàng Mai',
+      province: 'Hà Nội',
+      address: 'Chợ Nông Sản Đền Lừ',
+      avatarUrl: getCloudUrl('nguoi mua.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068885/agriagent_ai/nguoi_mua.jpg')
+    });
+
+    // --- NGƯỜI MUA 3 ---
+    const buyer3 = await User.create({
+      phoneNumber: '0966554433',
+      email: 'xnk_viet@agrigroup.vn',
+      passwordHash: 'hashed_password_123',
+      firstName: 'Vụ',
+      lastName: 'Hoàng Kim',
+      userName: 'hoangkimvu',
+      role: 'BUYER',
+      town: 'Thuận An',
+      province: 'Bình Dương',
+      address: 'KCN Việt Hương',
+      avatarUrl: getCloudUrl('89e2835624d9b5924a7d257483a8024b.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068874/agriagent_ai/89e2835624d9b5924a7d257483a8024b.jpg')
+    });
+
+    console.log('✅ Đã tạo 5 người dùng ảo (2 Người bán, 3 Người mua).');
+
+    // 3. SẢN PHẨM / BÀI ĐĂNG (Farmer 1 có 5 bài đăng đầy đủ, Farmer 2 có 2 bài đăng)
+    const p1_f1 = await Product.create({
       farmerId: farmer1._id,
       name: 'Ổi Vú Sữa Bến Tre Giòn Ngọt',
       description: 'Ổi giòn tươi thu hoạch tại vườn, chuẩn VietGAP không chất bảo quản.',
@@ -123,7 +172,7 @@ const seedData = async () => {
       status: 'AVAILABLE'
     });
 
-    const product2 = await Product.create({
+    const p2_f1 = await Product.create({
       farmerId: farmer1._id,
       name: 'Thanh Long Ruột Đỏ Chợ Gạo',
       description: 'Thanh long ruột đỏ ngọt đậm, trái to đều từ 500g - 800g.',
@@ -136,7 +185,7 @@ const seedData = async () => {
       status: 'AVAILABLE'
     });
 
-    const product3 = await Product.create({
+    const p3_f1 = await Product.create({
       farmerId: farmer1._id,
       name: 'Chôm Chôm Thái Vĩnh Long',
       description: 'Chôm chôm Thái chín cây, trái to, râu xanh giòn, thịt tróc róc hạt.',
@@ -149,7 +198,7 @@ const seedData = async () => {
       status: 'AVAILABLE'
     });
 
-    const product4 = await Product.create({
+    const p4_f1 = await Product.create({
       farmerId: farmer1._id,
       name: 'Sầu Riêng Ri6 Cai Lậy',
       description: 'Sầu riêng Ri6 cơm vàng hạt lép, dẻo ngọt béo ngậy.',
@@ -162,30 +211,72 @@ const seedData = async () => {
       status: 'AVAILABLE'
     });
 
-    // 4. Banners với URL Cloudinary
-    // 5. Orders & Status Logs
+    const p5_f1 = await Product.create({
+      farmerId: farmer1._id,
+      name: 'Xoài Cát Hòa Lộc Tiền Giang',
+      description: 'Xoài cát Hòa Lộc chính hiệu, thơm lừng ngọt lịm.',
+      priceNum: 45000,
+      unit: 'kg',
+      stockQuantity: 450,
+      location: 'Cái Bè, Tiền Giang',
+      images: [getCloudUrl('xoai.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068896/agriagent_ai/tr%C3%A1i_c%C3%A2y/xoai.jpg')],
+      category: 'Trái cây',
+      status: 'AVAILABLE'
+    });
+
+    // Farmer 2: 2 bài đăng
+    const p1_f2 = await Product.create({
+      farmerId: farmer2._id,
+      name: 'Vải Thiều U Hồng Chín Sớm',
+      description: 'Vải U Hồng mọng nước, vỏ đỏ tươi, ngọt mát chuẩn VietGAP.',
+      priceNum: 38000,
+      unit: 'kg',
+      stockQuantity: 600,
+      location: 'Đức Trọng, Lâm Đồng',
+      images: [getCloudUrl('vai.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068895/agriagent_ai/tr%C3%A1i_c%C3%A2y/vai.jpg')],
+      category: 'Trái cây',
+      status: 'AVAILABLE'
+    });
+
+    const p2_f2 = await Product.create({
+      farmerId: farmer2._id,
+      name: 'Dưa Hấu An Tiêm Long An',
+      description: 'Dưa hấu vỏ mỏng ruột đỏ tươi, độ đường cao, giải nhiệt cực tốt.',
+      priceNum: 15000,
+      unit: 'kg',
+      stockQuantity: 1500,
+      location: 'Đức Trọng, Lâm Đồng',
+      images: [getCloudUrl('dua hau.jpg', 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068890/agriagent_ai/tr%C3%A1i_c%C3%A2y/dua_hau.jpg')],
+      category: 'Trái cây',
+      status: 'AVAILABLE'
+    });
+
+    console.log('✅ Đã tạo các bài đăng sản phẩm cho 2 người bán.');
+
+    // 4. ĐƠN HÀNG (Mỗi người mua có từ 1 đến 4 đơn hàng)
+    // --- Đơn hàng của Farmer 1 & Buyer 1 (Đơn hàng mẫu đầy đủ trạng thái) ---
     const order1 = await Order.create({
       orderCode: 'AGRI-88421',
       buyerId: buyer1._id,
       farmerId: farmer1._id,
       items: [{
-        productId: product1._id,
-        productName: product1.name,
+        productId: p1_f1._id,
+        productName: p1_f1.name,
         quantity: 10,
-        unitPrice: product1.priceNum
+        unitPrice: p1_f1.priceNum
       }],
       subtotal: 250000,
       shippingFee: 15000,
       totalAmount: 265000,
       shippingType: 'EXPRESS',
-      receiverName: 'Nguyễn Văn Minh',
+      receiverName: 'Lê Văn Thương',
       receiverPhone: '0988888888',
       shippingAddress: 'Chợ Đầu Mối Bình Điền, Bình Chánh, TP. Hồ Chí Minh',
       status: 'SHIPPING',
       paymentMethod: 'COD',
       statusLogs: [
         { statusName: 'Đơn hàng đã được tạo', locationNote: 'Hệ thống AgriAgentAI', timestamp: new Date('2026-10-02T14:15:00Z') },
-        { statusName: 'Nhà vườn Bác Hùng Bắc Giang đã bàn giao đơn hàng cho đơn vị vận chuyển', locationNote: 'Kho Bến Tre', timestamp: new Date('2026-10-02T16:30:00Z') },
+        { statusName: 'Nhà vườn Nông Văn Bảy đã bàn giao đơn hàng cho nhà xe gom', locationNote: 'Kho Bến Tre', timestamp: new Date('2026-10-02T16:30:00Z') },
         { statusName: 'Đơn hàng đã xuất kho Củ Chi SOC', locationNote: 'Củ Chi SOC', timestamp: new Date('2026-10-03T18:30:00Z') },
         { statusName: 'Đơn hàng đã đến trạm giao hàng 51-HCM DTP/Âu Cơ', locationNote: 'Trạm Âu Cơ', timestamp: new Date('2026-10-04T06:19:00Z') },
         { statusName: 'Đang giao hàng', locationNote: 'Tài xế Nguyễn Văn Hùng đang tới địa chỉ của bạn', timestamp: new Date('2026-10-04T08:18:00Z') }
@@ -197,16 +288,16 @@ const seedData = async () => {
       buyerId: buyer1._id,
       farmerId: farmer1._id,
       items: [{
-        productId: product3._id,
-        productName: product3.name,
+        productId: p3_f1._id,
+        productName: p3_f1.name,
         quantity: 5,
-        unitPrice: product3.priceNum
+        unitPrice: p3_f1.priceNum
       }],
       subtotal: 170000,
       shippingFee: 15000,
       totalAmount: 185000,
       shippingType: 'EXPRESS',
-      receiverName: 'Nguyễn Văn Minh',
+      receiverName: 'Lê Văn Thương',
       receiverPhone: '0988888888',
       shippingAddress: 'Chợ Đầu Mối Bình Điền, Bình Chánh, TP. Hồ Chí Minh',
       status: 'PENDING',
@@ -221,16 +312,16 @@ const seedData = async () => {
       buyerId: buyer1._id,
       farmerId: farmer1._id,
       items: [{
-        productId: product4._id,
-        productName: product4.name,
+        productId: p4_f1._id,
+        productName: p4_f1.name,
         quantity: 8,
-        unitPrice: product4.priceNum
+        unitPrice: p4_f1.priceNum
       }],
       subtotal: 280000,
       shippingFee: 15000,
       totalAmount: 295000,
       shippingType: 'GROUP',
-      receiverName: 'Nguyễn Văn Minh',
+      receiverName: 'Lê Văn Thương',
       receiverPhone: '0988888888',
       shippingAddress: 'Chợ Đầu Mối Bình Điền, Bình Chánh, TP. Hồ Chí Minh',
       status: 'COMPLETED',
@@ -241,31 +332,156 @@ const seedData = async () => {
       ]
     });
 
-    const order4 = await Order.create({
-      orderCode: 'AGRI-77112',
-      buyerId: buyer1._id,
+    // --- Đơn hàng của Buyer 2 (Phạm Minh Lái - Chủ vựa Hà Nội đặt 2 đơn) ---
+    await Order.create({
+      orderCode: 'AGRI-44312',
+      buyerId: buyer2._id,
       farmerId: farmer1._id,
       items: [{
-        productId: product2._id,
-        productName: product2.name,
-        quantity: 20,
-        unitPrice: product2.priceNum
+        productId: p4_f1._id,
+        productName: p4_f1.name,
+        quantity: 50,
+        unitPrice: p4_f1.priceNum
       }],
-      subtotal: 700000,
-      shippingFee: 20000,
-      totalAmount: 720000,
-      shippingType: 'EXPRESS',
-      receiverName: 'Nguyễn Văn Minh',
-      receiverPhone: '0988888888',
-      shippingAddress: 'Chợ Đầu Mối Bình Điền, Bình Chánh, TP. Hồ Chí Minh',
-      status: 'CANCELLED',
-      paymentMethod: 'COD',
-      statusLogs: [
-        { statusName: 'Đã hủy đơn hàng do đổi ý', locationNote: 'Người mua tự hủy', timestamp: new Date('2026-09-25T15:00:00Z') }
-      ]
+      subtotal: 1750000,
+      shippingFee: 120000,
+      totalAmount: 1870000,
+      shippingType: 'GROUP',
+      receiverName: 'Phạm Minh Lái',
+      receiverPhone: '0977112233',
+      shippingAddress: 'Chợ Nông Sản Đền Lừ, Hoàng Mai, Hà Nội',
+      status: 'CONFIRMED',
+      paymentMethod: 'BANK_QR',
+      paymentStatus: 'PAID'
     });
 
-    // 6. Order Returns
+    await Order.create({
+      orderCode: 'AGRI-55412',
+      buyerId: buyer2._id,
+      farmerId: farmer2._id,
+      items: [{
+        productId: p1_f2._id,
+        productName: p1_f2.name,
+        quantity: 30,
+        unitPrice: p1_f2.priceNum
+      }],
+      subtotal: 1140000,
+      shippingFee: 85000,
+      totalAmount: 1225000,
+      shippingType: 'EXPRESS',
+      receiverName: 'Phạm Minh Lái',
+      receiverPhone: '0977112233',
+      shippingAddress: 'Chợ Nông Sản Đền Lừ, Hoàng Mai, Hà Nội',
+      status: 'SHIPPING',
+      paymentMethod: 'COD'
+    });
+
+    // --- Đơn hàng của Buyer 3 (Hoàng Kim Vụ đặt 1 đơn lớn) ---
+    await Order.create({
+      orderCode: 'AGRI-66789',
+      buyerId: buyer3._id,
+      farmerId: farmer1._id,
+      items: [{
+        productId: p2_f1._id,
+        productName: p2_f1.name,
+        quantity: 100,
+        unitPrice: p2_f1.priceNum
+      }],
+      subtotal: 3500000,
+      shippingFee: 150000,
+      totalAmount: 3650000,
+      shippingType: 'GROUP',
+      receiverName: 'Hoàng Kim Vụ',
+      receiverPhone: '0966554433',
+      shippingAddress: 'KCN Việt Hương, Thuận An, Bình Dương',
+      status: 'COMPLETED',
+      paymentMethod: 'BANK_QR',
+      paymentStatus: 'PAID'
+    });
+
+    console.log('✅ Đã tạo đủ các đơn hàng cho 3 người mua.');
+
+    // 5. TRÒ CHUYỆN (CHAT ROOMS) - ĐẢM BẢO MỖI NGƯỜI CHỈ CHAT VỚI 3 HOẶC 4 NGƯỜI CÒN LẠI
+    // Sơ đồ kết nối Chat:
+    // User 1 (Farmer1): Chat với User 2, User 3, User 4, User 5 (4 chats)
+    // User 2 (Farmer2): Chat với User 1, User 3, User 4 (3 chats)
+    // User 3 (Buyer1) : Chat với User 1, User 2, User 4, User 5 (4 chats)
+    // User 4 (Buyer2) : Chat với User 1, User 2, User 3, User 5 (4 chats)
+    // User 5 (Buyer3) : Chat với User 1, User 3, User 4 (3 chats)
+
+    const createRoomWithMessages = async (uA, uB, messages) => {
+      const room = await ChatRoom.create({ roomType: 'BUYER_FARMER' });
+      await ChatParticipant.create({ roomId: room._id, userId: uA._id });
+      await ChatParticipant.create({ roomId: room._id, userId: uB._id });
+      for (const msg of messages) {
+        await ChatMessage.create({
+          roomId: room._id,
+          senderId: msg.sender._id,
+          content: msg.text,
+          sentAt: msg.time || new Date()
+        });
+      }
+      return room;
+    };
+
+    // Chat 1: Farmer 1 & Buyer 1
+    await createRoomWithMessages(farmer1, buyer1, [
+      { sender: buyer1, text: 'Dạ em chào chú Bảy! Ổi vú sữa Bến Tre hôm nay chất lượng giòn ngọt thế nào chú?' },
+      { sender: farmer1, text: 'Chào cháu Thương! Ổi nhà chú mới hái sáng nay tươi ngon bao giòn ngọt nghen.' },
+      { sender: buyer1, text: 'Dạ em lấy trước 10kg giao qua Bình Chánh nha chú.' }
+    ]);
+
+    // Chat 2: Farmer 1 & Farmer 2
+    await createRoomWithMessages(farmer1, farmer2, [
+      { sender: farmer2, text: 'Anh Bảy ơi, vụ ổi mùa này giá thu mua dưới Bến Tre ổn không anh?' },
+      { sender: farmer1, text: 'Giá tầm 25k/kg cô Vườn ơi, thương lái đang đặt gom nhiều lắm.' }
+    ]);
+
+    // Chat 3: Farmer 1 & Buyer 2
+    await createRoomWithMessages(farmer1, buyer2, [
+      { sender: buyer2, text: 'Chú Bảy cho cháu hỏi Sầu Riêng Ri6 đợt này chuyển ra Hà Nội đi đường gom mất mấy ngày ạ?' },
+      { sender: farmer1, text: 'Tầm 2 ngày rưỡi ra tới nơi nghen cháu Lái. Cơm vàng hạt lép đóng thùng xốp kỹ lắm.' }
+    ]);
+
+    // Chat 4: Farmer 1 & Buyer 5
+    await createRoomWithMessages(farmer1, buyer3, [
+      { sender: buyer3, text: 'Chào chú Bảy, công ty em muốn nhập 100kg Thanh Long Ruột Đỏ đóng công xuất khẩu.' },
+      { sender: farmer1, text: 'Dạ chú sẵn sàng hàng đẹp 600g trở lên nghen cháu Vụ.' }
+    ]);
+
+    // Chat 5: Farmer 2 & Buyer 1
+    await createRoomWithMessages(farmer2, buyer1, [
+      { sender: buyer1, text: 'Chị Vườn ơi dưa hấu An Tiêm Long An đợt này độ đường bao nhiêu ạ?' },
+      { sender: farmer2, text: 'Dưa ngọt đậm độ brix 12-13 luôn em Thương ơi.' }
+    ]);
+
+    // Chat 6: Farmer 2 & Buyer 2
+    await createRoomWithMessages(farmer2, buyer2, [
+      { sender: buyer2, text: 'Chị Vườn gửi giúp em 30kg Vải Thiều ra Hà Nội nhé.' },
+      { sender: farmer2, text: 'Ok em Lái, chị đã gửi nhà xe rồi nhé.' }
+    ]);
+
+    // Chat 7: Buyer 1 & Buyer 2
+    await createRoomWithMessages(buyer1, buyer2, [
+      { sender: buyer1, text: 'Anh Lái đợt này gom chuyến ra miền Bắc có dư tải cho em gửi ké vài thùng sầu riêng không?' },
+      { sender: buyer2, text: 'Có nhé Thương ơi, tối nay xe anh ghé Chợ Bình Điền bốc hàng luôn.' }
+    ]);
+
+    // Chat 8: Buyer 1 & Buyer 3
+    await createRoomWithMessages(buyer1, buyer3, [
+      { sender: buyer3, text: 'Anh Thương có biết mối nào cung cấp xoài cát Hòa Lộc sỉ số lượng lớn không?' },
+      { sender: buyer1, text: 'Có chú Bảy Bến Tre chuyên hàng chuẩn VietGAP đó em, anh gửi thông tin chú qua nhé.' }
+    ]);
+
+    // Chat 9: Buyer 2 & Buyer 3
+    await createRoomWithMessages(buyer2, buyer3, [
+      { sender: buyer2, text: 'Chào bên XNK Việt, đợt này có chuyến gom hàng nông sản ra phía Bắc không ạ?' },
+      { sender: buyer3, text: 'Dạ có anh Lái ơi, bên em chạy tuyến Bình Dương - Hà Nội hàng tuần.' }
+    ]);
+
+    console.log('✅ Đã tạo các phòng chat (Mỗi người chat đúng 3 hoặc 4 người còn lại).');
+
+    // 6. THÔNG BÁO, VÍ TIỀN & ĐƠN TRẢ HÀNG CHO USER 1 (ĐẠI DIỆN MINH HỌA)
     await OrderReturn.create({
       returnCode: 'RET-8821',
       orderId: order1._id,
@@ -276,53 +492,43 @@ const seedData = async () => {
       adminNote: 'Đang kiểm tra ảnh chụp từ phía đơn vị vận chuyển'
     });
 
-    // 7. Notifications
     await Notification.create({
-      userId: buyer1._id,
-      title: 'Đơn hàng đang trên đường giao! 🚚',
-      content: 'Đơn hàng mã AGRI-88421 (Ổi Vú Sữa Bến Tre) của bạn đang được tài xế Nguyễn Văn Hùng giao tới địa chỉ Chợ Đầu Mối Bình Điền.',
+      userId: farmer1._id,
+      title: 'Đơn hàng mới mã AGRI-88421 🚚',
+      content: 'Thương lái Lê Văn Thương vừa đặt 10kg Ổi Vú Sữa Bến Tre. Vui lòng chuẩn bị hàng!',
       type: 'ORDER_UPDATE',
       referenceId: order1._id.toString(),
       isRead: false
     });
 
     await Notification.create({
-      userId: buyer1._id,
+      userId: farmer1._id,
       title: 'Cập nhật giá nông sản hôm nay 📈',
-      content: 'Giá Sầu Riêng Ri6 tại Cai Lậy tăng 5% hôm nay, đạt 35.000đ/kg. Đặt mua ngay!',
+      content: 'Giá Sầu Riêng Ri6 tại Cai Lậy tăng 5% hôm nay, đạt 35.000đ/kg.',
       type: 'PRICE_ALERT',
-      referenceId: product4._id.toString(),
+      referenceId: p4_f1._id.toString(),
       isRead: true
     });
 
     await Notification.create({
       userId: buyer1._id,
       title: 'Voucher giảm giá 20k Vận Chuyển 🎟️',
-      content: 'Bạn vừa nhận được Voucher FREESHIP20K áp dụng cho các đơn gom chuyến đường dài.',
+      content: 'Bạn vừa nhận được Voucher FREESHIP20K áp dụng cho các đơn gom chuyến.',
       type: 'SYSTEM',
       referenceId: '',
       isRead: false
     });
 
-    // 8. Chat Rooms & Messages giữa Nông dân Chú Bảy và Thương Lái Minh
-    const room1 = await ChatRoom.create({ roomType: 'BUYER_FARMER' });
-    await ChatParticipant.create({ roomId: room1._id, userId: buyer1._id });
-    await ChatParticipant.create({ roomId: room1._id, userId: farmer1._id });
-
-    await ChatMessage.create({
-      roomId: room1._id,
-      senderId: buyer1._id,
-      content: 'Dạ em chào chú Bảy! Ổi vú sữa Bến Tre hôm nay chất lượng giòn ngọt thế nào chú?',
-      sentAt: new Date('2026-10-04T08:30:00Z')
-    });
-    await ChatMessage.create({
-      roomId: room1._id,
-      senderId: farmer1._id,
-      content: 'Chào cháu Minh! Ổi nhà chú thu hoạch tươi ngon bao giòn ngọt nghen.',
-      sentAt: new Date('2026-10-04T08:32:00Z')
+    await FarmerWallet.create({
+      farmerId: farmer1._id,
+      balance: 12450000,
+      pendingBalance: 2650000,
+      bankName: 'Vietcombank',
+      bankAccountNumber: '0071000123456',
+      bankAccountName: 'NGUYEN VAN NONG'
     });
 
-    console.log('\n🎉 HOÀN TẤT BƠM TOÀN BỘ CSDL VỚI 100% LINK ĐÁM MÂY CLOUDINARY LÊN MONGO DB ATLAS!');
+    console.log('\n🎉 HOÀN TẤT SEED TOÀN BỘ CSDL VỚI 5 NGƯỜI DÙNG ẢO VÀ DỮ LIỆU ĐẦY ĐỦ VÀO MONGO DB ATLAS!');
     process.exit(0);
 
   } catch (error) {

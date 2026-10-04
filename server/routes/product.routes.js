@@ -37,17 +37,22 @@ router.get('/:id', async (req, res) => {
 // POST /api/products - Thêm sản phẩm mới
 router.post('/', async (req, res) => {
   try {
-    const { farmerId, name, description, priceNum, unit, stockQuantity, location, images, category, status } = req.body;
+    let { farmerId, name, description, priceNum, unit, stockQuantity, location, images, category, status } = req.body;
     
+    if (!farmerId) {
+      const defaultFarmer = await User.findOne({ role: 'FARMER' });
+      if (defaultFarmer) farmerId = defaultFarmer._id;
+    }
+
     const newProduct = await Product.create({
       farmerId,
-      name,
-      description,
-      priceNum,
+      name: name || 'Nông sản mới',
+      description: description || 'Nông sản tươi ngon vừa thu hoạch tại vườn.',
+      priceNum: priceNum ? Number(priceNum) : 30000,
       unit: unit || 'kg',
-      stockQuantity: stockQuantity || 100,
-      location,
-      images: images || [],
+      stockQuantity: stockQuantity ? Number(stockQuantity) : 100,
+      location: location || 'Châu Thành, Bến Tre',
+      images: images && images.length > 0 ? images : ['https://res.cloudinary.com/zdavpzw2/image/upload/v1791068889/agriagent_ai/tr%C3%A1i_c%C3%A2y/chom_chom_ban.jpg'],
       category: category || 'Trái cây',
       status: status || 'AVAILABLE'
     });

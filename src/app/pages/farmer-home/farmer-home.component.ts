@@ -21,7 +21,7 @@ import { Product } from '../../models/product.model';
             <span style="font-size: 24px; font-weight: 900; color: #587820; letter-spacing: 0.5px;">NÔNG THƯƠNG</span>
           </a>
 
-          <!-- Right Action Buttons: Bell + Cart (Replacing Sliders with Shopping Cart) -->
+          <!-- Right Action Buttons: Bell + Cart -->
           <div style="display: flex; gap: 8px; align-items: center;">
             <a routerLink="/notifications" style="width: 40px; height: 40px; background-color: #eaf3d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #587820; text-decoration: none; font-size: 18px;">
               <i class="fa-regular fa-bell"></i>
@@ -66,19 +66,19 @@ import { Product } from '../../models/product.model';
 
           <!-- Individual Category Items -->
           <div *ngFor="let cat of categories" (click)="selectCategory(cat.key)" style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; cursor: pointer;">
-            <div [style.borderColor]="selectedCategory === cat.key ? '#769f2e' : 'transparent'" style="width: 58px; height: 58px; background: #ffffff; border-radius: 12px; padding: 1px; display: flex; align-items: center; justify-content: center; border: 2px solid; box-sizing: border-box; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
-              <img [src]="cat.image" [alt]="cat.name" style="width: 100%; height: 100%; border-radius: 10px; object-fit: cover;">
+            <div [style.borderColor]="selectedCategory === cat.key ? '#769f2e' : 'transparent'" style="width: 58px; height: 58px; background: #e2e8f0; border-radius: 12px; padding: 1px; display: flex; align-items: center; justify-content: center; border: 2px solid; box-sizing: border-box; box-shadow: 0 2px 6px rgba(0,0,0,0.04); overflow: hidden;">
+              <img [src]="cat.image" [alt]="cat.name" loading="lazy" decoding="async" style="width: 100%; height: 100%; border-radius: 10px; object-fit: cover;">
             </div>
             <span style="font-size: 11px; font-weight: 700; color: #334155;">{{ cat.name }}</span>
           </div>
         </div>
       </section>
 
-      <!-- Banner Carousel Slide Track -->
-      <div style="position: relative; width: 100%; overflow: hidden; background: #f8f8f8;">
+      <!-- Banner Carousel Slide Track with Progressive Loading Placeholder -->
+      <div style="position: relative; width: 100%; overflow: hidden; background: #cbd5e1; min-height: 160px;">
         <div #bannerTrack style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;" (scroll)="onBannerScroll()">
-          <div *ngFor="let banner of banners" style="flex: 0 0 100%; scroll-snap-align: start; height: 160px;">
-            <img [src]="banner.image" [alt]="banner.alt" style="width: 100%; height: 100%; object-fit: cover;">
+          <div *ngFor="let banner of banners" style="flex: 0 0 100%; scroll-snap-align: start; height: 160px; background: #e2e8f0;">
+            <img [src]="banner.image" [alt]="banner.alt" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease;">
           </div>
         </div>
         <!-- Banner Carousel Dots -->
@@ -93,10 +93,24 @@ import { Product } from '../../models/product.model';
         <p style="font-size: 12px; color: #64748b; margin: 0;">Đặc sản từ những nhà vườn Việt Nam</p>
       </div>
 
-      <!-- Product Grid 2 Columns - Cards with border-radius: 5% -->
-      <div style="padding: 12px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background-color: #f8f8f8;">
+      <!-- Skeleton Loading State for Slow Networks -->
+      <div *ngIf="isLoading" style="padding: 12px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background-color: #f8f8f8;">
+        <div *ngFor="let item of [1,2,3,4,5,6]" class="skeleton-card">
+          <div class="skeleton-img"></div>
+          <div style="padding: 10px 12px; display: flex; flex-direction: column; gap: 6px;">
+            <div class="skeleton-line" style="width: 80%; height: 14px;"></div>
+            <div class="skeleton-line" style="width: 50%; height: 12px;"></div>
+            <div class="skeleton-line" style="width: 65%; height: 14px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Product Grid (2 Columns) with Blur-up Placeholder & Native Lazy Loading -->
+      <div *ngIf="!isLoading" style="padding: 12px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background-color: #f8f8f8;">
         <a *ngFor="let p of filteredProducts" [routerLink]="['/product-detail', p.id]" style="background: #ffffff; border-radius: 5%; overflow: hidden; text-decoration: none; color: inherit; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; flex-direction: column; border: 1px solid #eeeeee;">
-          <img [src]="p.image" [alt]="p.name" style="width: 100%; aspect-ratio: 1/1; object-fit: cover;">
+          <div style="width: 100%; aspect-ratio: 1/1; background-color: #e2e8f0; overflow: hidden; position: relative;">
+            <img [src]="p.image" [alt]="p.name" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease;">
+          </div>
           <div style="padding: 10px 12px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
             <div style="font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 4px; line-height: 1.3;">{{ p.name }}</div>
             <div style="font-size: 12px; color: #f59e0b; margin-bottom: 4px; font-weight: 600;">
@@ -107,7 +121,38 @@ import { Product } from '../../models/product.model';
         </a>
       </div>
     </div>
-  `
+  `,
+  styles: [`
+    .skeleton-card {
+      background: #ffffff;
+      border-radius: 5%;
+      overflow: hidden;
+      border: 1px solid #eeeeee;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .skeleton-img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+
+    .skeleton-line {
+      background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 4px;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+  `]
 })
 export class FarmerHomeComponent implements OnInit {
   @ViewChild('bannerTrack') bannerTrack!: ElementRef<HTMLDivElement>;
@@ -117,6 +162,7 @@ export class FarmerHomeComponent implements OnInit {
   searchQuery = '';
   filteredProducts: Product[] = [];
   activeBanner = 0;
+  isLoading = true;
 
   banners = [
     { image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791073011/agriagent_ai/banners/j3pqh5cwtxtykoanmwi7.png', alt: 'Trái cây tươi ngon mọng nước' },
@@ -155,24 +201,31 @@ export class FarmerHomeComponent implements OnInit {
   }
 
   private updateProducts() {
-    this.productService.getProductsFromApi().subscribe(products => {
-      const cleanQuery = this.searchQuery.trim().toLowerCase();
-      this.filteredProducts = products.filter(p => {
-        let matchCat = true;
-        if (this.selectedCategory && this.selectedCategory !== 'all') {
-          const catItem = this.categories.find(c => c.key === this.selectedCategory);
-          const catName = catItem ? catItem.name.toLowerCase() : this.selectedCategory.toLowerCase();
-          matchCat = (p.category && p.category.toLowerCase().includes(catName)) ||
-                     (p.name && p.name.toLowerCase().includes(catName)) ||
-                     p.id === this.selectedCategory ||
-                     p.category === this.selectedCategory;
-        }
+    this.isLoading = true;
+    this.productService.getProductsFromApi().subscribe({
+      next: (products) => {
+        const cleanQuery = this.searchQuery.trim().toLowerCase();
+        this.filteredProducts = products.filter(p => {
+          let matchCat = true;
+          if (this.selectedCategory && this.selectedCategory !== 'all') {
+            const catItem = this.categories.find(c => c.key === this.selectedCategory);
+            const catName = catItem ? catItem.name.toLowerCase() : this.selectedCategory.toLowerCase();
+            matchCat = (p.category && p.category.toLowerCase().includes(catName)) ||
+                       (p.name && p.name.toLowerCase().includes(catName)) ||
+                       p.id === this.selectedCategory ||
+                       p.category === this.selectedCategory;
+          }
 
-        const matchQuery = !cleanQuery || 
-                           (p.name && p.name.toLowerCase().includes(cleanQuery)) || 
-                           (p.location && p.location.toLowerCase().includes(cleanQuery));
-        return matchCat && matchQuery;
-      });
+          const matchQuery = !cleanQuery || 
+                             (p.name && p.name.toLowerCase().includes(cleanQuery)) || 
+                             (p.location && p.location.toLowerCase().includes(cleanQuery));
+          return matchCat && matchQuery;
+        });
+        this.isLoading = false;
+      },
+      error: () => {
+        this.isLoading = false;
+      }
     });
   }
 }
