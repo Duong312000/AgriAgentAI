@@ -119,9 +119,8 @@ export class FarmerHomeComponent implements OnInit {
   activeBanner = 0;
 
   banners = [
-    { image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068881/agriagent_ai/home_banner.jpg', alt: 'Nông sản tươi tại chợ quê' },
-    { image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068880/agriagent_ai/co_ban_trai_cay_tren_thuyen.jpg', alt: 'Những trái cây tươi ngon từ nhà vườn' },
-    { image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791068871/agriagent_ai/4d6db1ad7275923ce24c19acbf3b0ad1.jpg', alt: 'Thu hoạch nông sản sạch tại vườn' }
+    { image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791073011/agriagent_ai/banners/j3pqh5cwtxtykoanmwi7.png', alt: 'Trái cây tươi ngon mọng nước' },
+    { image: 'https://res.cloudinary.com/zdavpzw2/image/upload/v1791073011/agriagent_ai/banners/i2jrog3exet4ahc9s0qx.png', alt: 'Đồng hành cùng Nông Thương' }
   ];
 
   categories = [
